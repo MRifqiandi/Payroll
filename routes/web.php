@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SlipController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.admin.main');
+Route::middleware('auth')->group(function () {
+    Route::controller(SlipController::class)->group(function () {
+        Route::get('/', 'index')->name('slip.index');
+    });
 });
+
+require __DIR__.'/auth.php';

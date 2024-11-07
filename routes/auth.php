@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
     Route::controller(AuthenticatedSessionController::class)->group(function () {
         Route::get('/login', 'create')->name('login');
-        // Route::post('/login', 'store');
+        Route::post('/login', 'store');
     });
 });
+
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });

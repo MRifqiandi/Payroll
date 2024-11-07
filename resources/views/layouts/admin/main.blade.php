@@ -19,41 +19,15 @@
         @include('layouts.admin.sidebar')
 
         <div class="page-wrapper">
-
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-
-
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-
-                                {{-- @yield('content') --}}
-                                @yield('container')
-
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
+                @yield('content')
 
                 {{-- @include('sweetalert::alert') --}}
             </div>
 
             @include('layouts.admin.footer')
 
-            @yield('scripts')
+            @yield('script')
         </div>
     </div>
 </body>

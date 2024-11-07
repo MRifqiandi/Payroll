@@ -19,12 +19,12 @@ class AuthenticatedSessionController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if(auth()->attempt($credentials)){
+        if (auth()->attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
 
-        return back()->with('error', 'Login Failed! Email or Password is wrong.');
+        return view('pages.auth.login')->with('error', 'Email atau password anda salah!');
     }
 
     public function reset(Request $request){
