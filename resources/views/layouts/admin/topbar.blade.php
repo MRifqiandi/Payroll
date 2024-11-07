@@ -26,10 +26,10 @@
                       <span class="logo-text">
                           <!-- dark Logo text -->
                           <img src="{{ URL::asset('src/assets/images/simbanding.png') }}" alt="homepage"
-                              class="dark-logo" width="150" />
+                              class="dark-logo" width="110" />
                           <!-- Light Logo text -->
                           <img src="{{ URL::asset('src/assets/images/simbanding.png') }}" class="light-logo"
-                              alt="homepage" width="150" />
+                              alt="homepage" width="110" />
                       </span>
                   </a>
               </div>
@@ -100,13 +100,10 @@
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                           aria-haspopup="true" aria-expanded="true">
-                          {{-- <img src="{{ URL::asset('https://ui-avatars.com/api/?background=random&name=' . Auth::user()->name) }}"
-                                    alt="userprofile" class="rounded-circle" width="40"> --}}
-                          <img src='https://ui-avatars.com/api/?background=random&name=Ayam'
-                              alt="userprofile" class="rounded-circle" width="40">
+                          <img src="{{ URL::asset('https://ui-avatars.com/api/?background=random&name=' . Auth::user()->name) }}"
+                                    alt="userprofile" class="rounded-circle" width="40">
                           <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span>
-                              {{-- <span class="text-dark">{{ Auth::user()->name }}</span>  --}}
-                              <span class="text-dark">Ayam</span>
+                              <span class="text-dark">{{ Auth::user()->name }}</span>
                               <i data-feather="chevron-down" class="svg-icon"></i>
                           </span>
                       </a>

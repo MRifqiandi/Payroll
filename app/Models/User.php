@@ -20,6 +20,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $guarded = [];
+    public $incrementing = false;
+    public $keyType = 'uuid';
 
     /**
      * The attributes that should be hidden for serialization.

@@ -16,7 +16,7 @@
             <div class="logo">
                 <img src="{{ URL::asset('src/assets/images/logoitk.png') }}" width="200" />
                 <br>
-                <img src="{{ URL::asset('src/assets/images/simbanding.png') }}" width="150" />
+                <img src="{{ URL::asset('src/assets/images/simbanding.png') }}" width="120" />
                 <br>
             </div>
             <form action="{{ route('login') }}" method="POST">

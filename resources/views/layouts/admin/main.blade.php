@@ -27,9 +27,12 @@
 
             @include('layouts.admin.footer')
 
-            @yield('script')
         </div>
     </div>
+
+    @yield('script')
+
+    @yield('modal')
 </body>
 
 </html>

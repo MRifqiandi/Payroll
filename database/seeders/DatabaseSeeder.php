@@ -23,18 +23,27 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'superadmin@gmail.com',
             'password' => bcrypt('12345678'),
+            'number' => '123456',
+            'rank' => 'Admin',
+            'position' => 'Admin',
         ])->assignRole('admin');
 
         User::create([
             'name' => 'finance',
             'email' => 'finance@gmail.com',
             'password' => bcrypt('12345678'),
+            'number' => '123456',
+            'rank' => 'Admin',
+            'position' => 'Admin',
         ])->assignRole('finance');
 
         User::create([
             'name' => 'staff',
             'email' => 'staff@gmail.com',
             'password' => bcrypt('12345678'),
+            'number' => '123456',
+            'rank' => 'Admin',
+            'position' => 'Admin',
         ])->assignRole('staff');
     }
 }

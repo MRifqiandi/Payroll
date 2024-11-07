@@ -4,9 +4,9 @@
 @section('content')
     <div class="card card-flush h-md-100">
         <div class="card-body pt-6">
-            <h1>
+            <h2>
                 SLIP GAJI
-            </h1>
+            </h2>
             <div class="table-responsive" style="overflow: hidden">
                 <table class="table table-striped table-row-dashed align-middle gs-0 gy-3 my-0" id="table_invoice">
                     <thead>

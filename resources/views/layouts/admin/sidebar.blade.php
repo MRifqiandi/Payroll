@@ -21,21 +21,34 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link {{ isActive('slip.index') }}" href="{{ route('slip.index') }}" aria-expanded="false">
+                    <a class="sidebar-link sidebar-link {{ isActive('slip.index') }}" href="{{ route('slip.index') }}"
+                        aria-expanded="false">
                         <i data-feather="home" class="feather-icon"></i>
                         <b class="hide-menu">Dashboard</b>
                     </a>
-                </li>
-                <li class="list-divider"></li>
-                <li class="nav-small-cap"><span class="hide-menu">Menu</span></li>
 
+                @hasanyrole(['admin', 'finance'])
+                    <li class="list-divider"></li>
+                    <li class="nav-small-cap"><span class="hide-menu">Menu</span></li>
+                @endrole
 
-                <li class="sidebar-item {{ isActive('slip.index') }}">
-                    <a class="sidebar-link sidebar-link" href="{{ URL('/pengajuan') }}" aria-expanded="false">
-                        <i class="fas fa-indent" class="feather-icon"></i>
-                        <b class="hide-menu">Data Pengajuan</b>
-                    </a>
-                </li>
+                @role('admin')
+                    <li class="sidebar-item {{ isActive('account.index') }}">
+                        <a class="sidebar-link sidebar-link" href="{{ route('account.index') }}" aria-expanded="false">
+                            <i class="fas fa-user" class="feather-icon"></i>
+                            <b class="hide-menu">Akun</b>
+                        </a>
+                    </li>
+                @endrole
+
+                @hasanyrole(['admin', 'finance'])
+                    <li class="sidebar-item {{ isActive('upload.index') }}">
+                        <a class="sidebar-link sidebar-link" href="{{ route('upload.index') }}" aria-expanded="false">
+                            <i class="fas fa-upload" class="feather-icon"></i>
+                            <b class="hide-menu">Upload</b>
+                        </a>
+                    </li>
+                @endhasanyrole
             </ul>
         </nav>
     </div>
