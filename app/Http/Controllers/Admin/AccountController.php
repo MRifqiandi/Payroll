@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Services\Admin\AccountService;
+use App\Utils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Yajra\DataTables\Facades\DataTables;
 
 class AccountController extends Controller
 {
@@ -27,7 +31,22 @@ class AccountController extends Controller
         ]);
 
         DB::beginTransaction();
-        AccountService::store($request->role, $request->name, $request->email, $request->password, $request->rank, $request->number, $request->position);
+
+        $key = Utils::GENERATE_RSA_KEY();
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'rank' => $request->rank,
+            'number' => $request->number,
+            'position' => $request->position,
+            'public_key' => $key['public_key'],
+            'private_key' => Utils::ENCRYPT_ENV($key['private_key']),
+        ]);
+
+        $user->assignRole($request->role);
+
         DB::commit();
 
         return response()->json([
@@ -42,11 +61,30 @@ class AccountController extends Controller
             'id' => 'required',
             'role' => 'required',
             'name' => 'required',
+            'rank' => 'required',
+            'number' => 'required',
+            'position' => 'required',
             'email' => 'required|email|unique:users,email,' . $request->id,
         ]);
 
+        $user = User::whereId($request->id)->first();
+
+        if (!$user) {
+            throw new HttpException(404, 'User not found');
+        }
+
         DB::beginTransaction();
-        AccountService::update($request->id, $request->role, $request->name, $request->email);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'rank' => $request->rank,
+            'number' => $request->number,
+            'position' => $request->position,
+        ]);
+
+        $user->syncRoles([$request->role]);
+
         DB::commit();
 
         return response()->json([
@@ -62,7 +100,14 @@ class AccountController extends Controller
             'password' => 'required|min:8',
         ]);
 
-        AccountService::updatePassword($request->id, $request->password);
+        $user = User::whereId($request->id)->first();
+
+        if (!$user) {
+            throw new HttpException(404, 'User not found');
+        }
+
+        $user->password = bcrypt($request->password);
+        $user->save();
 
         return response()->json([
             'status' => 'success',
@@ -76,7 +121,21 @@ class AccountController extends Controller
             'id' => 'required',
         ]);
 
-        AccountService::delete($request->id);
+        $user = User::whereId($request->id)->first();
+
+        if (!$user) {
+            throw new HttpException(404, 'User not found');
+        }
+
+        if ($user->files()->exists()) {
+            throw new HttpException(400, 'Cannot delete user with files');
+        }
+
+        if ($user->uploads()->exists()) {
+            throw new HttpException(400, 'Cannot delete user with uploads');
+        }
+
+        $user->delete();
 
         return response()->json([
             'status' => 'success',
@@ -86,6 +145,20 @@ class AccountController extends Controller
 
     public function getDatatable()
     {
-        return AccountService::getDatatable();
+        $query = User::query();
+
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->addColumn('role', function ($query) {
+                return $query->getRoleNames()->first();
+            })
+            ->addColumn('action', function ($query) {
+                return view('pages.account.menu', compact('query'));
+            })
+            ->addColumn('role', function ($query) {
+                return view('pages.account.role', compact('query'));
+            })
+            ->rawColumns(['action', 'role'])
+            ->make(true);
     }
 }

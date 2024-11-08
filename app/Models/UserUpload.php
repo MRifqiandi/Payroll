@@ -26,11 +26,11 @@ class UserUpload extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function uploadFiles()
+    public function files()
     {
-        return $this->hasMany(UploadFile::class, 'user_upload_id');
+        return $this->hasMany(UserFile::class, 'user_upload_id', 'id');
     }
 }

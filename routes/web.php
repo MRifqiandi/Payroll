@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('upload')->group(function () {
             Route::controller(UploadController::class)->group(function () {
                 Route::get('/', 'index')->name('upload.index');
+                Route::post('/store', 'store')->name('upload.store');
             });
         });
     });

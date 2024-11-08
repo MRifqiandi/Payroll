@@ -11,17 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_files', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('name');
-            $table->text('file');
-            $table->text('key');
-            $table->softDeletes();
-            $table->timestamps();
-        });
-
         Schema::create('user_uploads', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
@@ -29,15 +18,21 @@ return new class extends Migration
             $table->string('name');
             $table->text('file');
             $table->text('key');
+            $table->text('iv');
             $table->timestamps();
         });
 
-        Schema::create('upload_files', function (Blueprint $table) {
+        Schema::create('user_files', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_file_id');
-            $table->foreign('user_file_id')->references('id')->on('user_files');
+            $table->uuid('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->uuid('user_upload_id');
             $table->foreign('user_upload_id')->references('id')->on('user_uploads');
+            $table->string('name');
+            $table->text('file');
+            $table->text('key');
+            $table->text('iv');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -53,4 +53,14 @@ class User extends Authenticatable
             }
         });
     }
+
+    public function files()
+    {
+        return $this->hasMany(UserFile::class, 'user_id', 'id');
+    }
+
+    public function uploads()
+    {
+        return $this->hasMany(UserUpload::class, 'user_id');
+    }
 }

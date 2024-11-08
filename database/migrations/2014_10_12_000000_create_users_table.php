@@ -22,9 +22,8 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('2fa')->default(false);
             $table->text('2fa_secret')->nullable();
-            $table->text('public_key')->nullable();
-            $table->boolean('enable_key')->default(false);
-            $table->text('private_key')->nullable();
+            $table->text('public_key');
+            $table->text('private_key');
             $table->rememberToken();
             $table->timestamps();
         });
