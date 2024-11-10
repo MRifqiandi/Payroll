@@ -17,13 +17,9 @@ class SlipController extends Controller
         return view('pages.home.index');
     }
 
-    public function donwload(Request $request)
+    public function download($id)
     {
-        $request->validate([
-            'id' => 'required',
-        ]);
-
-        $file = UserFile::whereId($request->id)->first();
+        $file = UserFile::whereId($id)->first();
 
         if (!$file) {
             throw new HttpException(404, 'File not found');
@@ -49,6 +45,7 @@ class SlipController extends Controller
     public function getDatatable()
     {
         $query = UserFile::where('user_id', Auth::user()->id)
+            ->with('upload.user:id,name')
             ->orderBy('created_at', 'desc');
 
         return DataTables::of($query)
@@ -58,6 +55,9 @@ class SlipController extends Controller
             })
             ->addColumn('created_at', function ($query) {
                 return Carbon::parse($query->created_at)->format('d F Y H:i:s');
+            })
+            ->addColumn('user', function ($query) {
+                return $query->upload->user->name;
             })
             ->rawColumns(['action'])
             ->make(true);

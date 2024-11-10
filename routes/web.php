@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::controller(SlipController::class)->group(function () {
         Route::get('/', 'index')->name('slip.index');
-        Route::get('/donwload', 'donwload')->name('slip.donwload');
+        Route::get('/donwload/{id}', 'download')->name('slip.download');
 
         Route::get('/get/table', 'getDatatable')->name('slip.table');
     });

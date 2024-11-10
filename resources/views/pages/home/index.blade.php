@@ -33,7 +33,7 @@
     let slipTable;
 
     $(document).ready(function() {
-        slipTable; = $('#table_slip').DataTable({
+        slipTable = $('#table_slip').DataTable({
             processing: true,
             serverSide: true,
             retrieve: true,
@@ -41,9 +41,6 @@
             responsive: false,
             ajax: {
                 url: "{{ route('slip.table') }}",
-                // data: function(data) {
-                //     data.city = $('#filter_city').val();
-                // }
             },
             language: {
                 "lengthMenu": "Show _MENU_",

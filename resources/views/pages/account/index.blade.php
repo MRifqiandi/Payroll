@@ -121,9 +121,6 @@
                 responsive: false,
                 ajax: {
                     url: "{{ route('account.table') }}",
-                    // data: function(data) {
-                    //     data.city = $('#filter_city').val();
-                    // }
                 },
                 language: {
                     "lengthMenu": "Show _MENU_",

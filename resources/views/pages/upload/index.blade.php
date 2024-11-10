@@ -55,9 +55,6 @@
                 responsive: false,
                 ajax: {
                     url: "{{ route('upload.table') }}",
-                    // data: function(data) {
-                    //     data.city = $('#filter_city').val();
-                    // }
                 },
                 language: {
                     "lengthMenu": "Show _MENU_",
