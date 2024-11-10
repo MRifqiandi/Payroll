@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('file');
             $table->text('key');
             $table->text('iv');
+            $table->softDeletes();
             $table->timestamps();
         });
 

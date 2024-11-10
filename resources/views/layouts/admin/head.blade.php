@@ -33,5 +33,19 @@
             background-color: #f8d7da;
             color: #721c24;
         }
+
+        .hover-pointer {
+            cursor: pointer;
+        }
+
+        .hover-pointer:hover {
+            color: blue;
+        }
+
+        .required:after {
+            content: " *";
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>

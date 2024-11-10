@@ -30,13 +30,17 @@ class Utils
 
     public static function DECRYPT_SLIP($file, $aesKey, $iv, $privateKey)
     {
-        $privateKey = self::DECRYPT_ENV($privateKey);
-        $aesKey = self::DECRYPT_RSA($aesKey, $privateKey);
-        $iv = self::DECRYPT_ENV($iv);
+        try {
+            $privateKey = self::DECRYPT_ENV($privateKey);
+            $aesKey = self::DECRYPT_RSA($aesKey, $privateKey);
+            $iv = self::DECRYPT_ENV($iv);
 
-        $decryptedData = json_decode(json_decode(self::DECRYPT_AES($file, $iv, $aesKey)));
+            $decryptedData = json_decode(json_decode(self::DECRYPT_AES($file, $iv, $aesKey)));
 
-        return $decryptedData;
+            return $decryptedData;
+        } catch (\Throwable $th) {
+            throw new HttpException(403, 'Invalid key');
+        }
     }
 
     public static function GENERATE_RSA_KEY(): array

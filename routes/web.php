@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::controller(SlipController::class)->group(function () {
         Route::get('/', 'index')->name('slip.index');
+        Route::get('/donwload', 'donwload')->name('slip.donwload');
+
+        Route::get('/get/table', 'getDatatable')->name('slip.table');
     });
 
     Route::middleware('role:admin|finance')->group(function () {
@@ -26,6 +29,11 @@ Route::middleware('auth')->group(function () {
             Route::controller(UploadController::class)->group(function () {
                 Route::get('/', 'index')->name('upload.index');
                 Route::post('/store', 'store')->name('upload.store');
+                Route::get('/download/{id}', 'download')->name('upload.download');
+                Route::get('/receivers', 'getReceivers')->name('upload.receivers');
+                Route::post('/delete', 'delete')->name('upload.delete');
+
+                Route::get('/get/table', 'getDatatable')->name('upload.table');
             });
         });
     });

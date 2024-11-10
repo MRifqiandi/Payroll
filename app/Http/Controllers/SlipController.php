@@ -2,12 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserFile;
+use App\Utils;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Yajra\DataTables\Facades\DataTables;
 
 class SlipController extends Controller
 {
     public function index()
     {
         return view('pages.home.index');
+    }
+
+    public function donwload(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+        ]);
+
+        $file = UserFile::whereId($request->id)->first();
+
+        if (!$file) {
+            throw new HttpException(404, 'File not found');
+        }
+
+        if ($file->user_id !== auth()->id()) {
+            throw new HttpException(403, 'Unauthorized');
+        }
+
+        $data = Utils::DECRYPT_SLIP(
+            $file->file,
+            $file->key,
+            $file->iv,
+            Auth::user()->private_key
+        );
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $data,
+        ]);
+    }
+
+    public function getDatatable()
+    {
+        $query = UserFile::where('user_id', Auth::user()->id)
+            ->orderBy('created_at', 'desc');
+
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->addColumn('action', function ($query) {
+                return view('pages.home.menu', compact('query'));
+            })
+            ->addColumn('created_at', function ($query) {
+                return Carbon::parse($query->created_at)->format('d F Y H:i:s');
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 }

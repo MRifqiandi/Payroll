@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Facades\Excel;
  */
 class UploadService
 {
-    public static function store($user, $file,  $slips)
+    public static function store($user, $file, $slips, $name)
     {
         $rows = array_slice(Excel::toArray([], $file)[0], 1);
 
@@ -20,7 +20,7 @@ class UploadService
 
         $upload = UserUpload::create([
             'user_id' => $user->id,
-            'name' => $file->getClientOriginalName(),
+            'name' => $name,
             'file' => $data['file'],
             'key' => $data['key'],
             'iv' => $data['iv'],

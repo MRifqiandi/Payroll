@@ -13,6 +13,13 @@
                 <div class="px-3" style="max-height: 400px; overflow-y: auto;">
                     <div class="fv-row mb-3">
                         <label class="d-flex align-items-center fs-5 fw-semibold mb-2">
+                            <span class="required">Nama</span>
+                        </label>
+                        <input type="text" class="form-control form-control-lg form-control-solid" name="name" required
+                            placeholder="" value="">
+                    </div>
+                    <div class="fv-row mb-3">
+                        <label class="d-flex align-items-center fs-5 fw-semibold mb-2">
                             <span class="required">File</span>
                         </label>
                         <input type="file" class="form-control form-control-lg form-control-solid" name="file" required
@@ -37,10 +44,10 @@
         $('#form_add_upload').on('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
-            // $('#form_add_upload [type="submit"]').attr('disabled', true);
-            // $('#form_add_upload [type="submit"]').html(
-            //     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...'
-            // );
+            $('#form_add_upload [type="submit"]').attr('disabled', true);
+            $('#form_add_upload [type="submit"]').html(
+                '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...'
+            );
             $.ajax({
                 url: "{{ route('upload.store') }}",
                 type: 'POST',
@@ -60,10 +67,10 @@
                     uploadTable?.draw();
                 },
                 error: function(xhr, status, error) {
-                    // const data = xhr.responseJSON;
-                    // toastr.error(data.message, 'Opps!');
-                    // $('#form_add_upload [type="submit"]').attr('disabled', false);
-                    // $('#form_add_upload [type="submit"]').html('Kirim')
+                    const data = xhr.responseJSON;
+                    toastr.error(data.message, 'Opps!');
+                    $('#form_add_upload [type="submit"]').attr('disabled', false);
+                    $('#form_add_upload [type="submit"]').html('Kirim')
                 }
             });
         });

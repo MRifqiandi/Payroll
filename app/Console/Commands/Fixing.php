@@ -29,6 +29,7 @@ class Fixing extends Command
     public function handle()
     {
         $file = UserFile::first();
+
         $user = User::whereId($file['user_id'])->first();
 
         // $privateKey = Utils::DECRYPT_ENV($user['private_key']);
@@ -37,7 +38,7 @@ class Fixing extends Command
         // $file = Utils::DECRYPT_AES($file['file'], $aesKey, $iv);
 
         $file = Utils::DECRYPT_SLIP($file['file'], $file['key'], $file['iv'], $user['private_key']);
-dd($file->email);
+
         dd($file);
 
 
