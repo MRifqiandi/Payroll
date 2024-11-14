@@ -13,8 +13,16 @@ class UserUpload extends Model
 
     protected $guarded = [];
 
+    protected $table;
     public $incrementing = false;
     protected $keyType = 'uuid';
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->table = config('database.tables.DB_USER_UPLOADS');
+    }
 
     protected static function boot()
     {

@@ -63,6 +63,7 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+            'table' => config('database.table.DB_USERS'),
         ],
 
         // 'users' => [

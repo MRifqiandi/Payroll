@@ -19,6 +19,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table;
     protected $guarded = [];
     public $incrementing = false;
     public $keyType = 'uuid';
@@ -42,6 +43,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->table = config('database.tables.DB_USERS');
+    }
 
     protected static function boot()
     {

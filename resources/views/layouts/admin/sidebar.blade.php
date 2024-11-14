@@ -1,19 +1,17 @@
 @php
-    function isActive($path)
-    {
+    $isActive = function($path) {
         return request()->routeIs($path) ? 'selected' : '';
-    }
+    };
 
-    function isAnyActive($paths)
-    {
+    $isAnyActive = function($paths) {
         foreach ($paths as $path) {
-            if (isActive($path)) {
+            if ($isActive($path)) {
                 return 'selected';
             }
         }
 
         return '';
-    }
+    };
 @endphp
 
 <aside class="left-sidebar" data-sidebarbg="skin6">
@@ -21,7 +19,7 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link {{ isActive('slip.index') }}" href="{{ route('slip.index') }}"
+                    <a class="sidebar-link sidebar-link {{ $isActive('slip.index') }}" href="{{ route('slip.index') }}"
                         aria-expanded="false">
                         <i data-feather="home" class="feather-icon"></i>
                         <b class="hide-menu">Dashboard</b>
@@ -33,7 +31,7 @@
                 @endrole
 
                 @role('admin')
-                    <li class="sidebar-item {{ isActive('account.index') }}">
+                    <li class="sidebar-item {{ $isActive('account.index') }}">
                         <a class="sidebar-link sidebar-link" href="{{ route('account.index') }}" aria-expanded="false">
                             <i class="fas fa-user" class="feather-icon"></i>
                             <b class="hide-menu">Akun</b>
@@ -42,7 +40,7 @@
                 @endrole
 
                 @hasanyrole(['admin', 'finance'])
-                    <li class="sidebar-item {{ isActive('upload.index') }}">
+                    <li class="sidebar-item {{ $isActive('upload.index') }}">
                         <a class="sidebar-link sidebar-link" href="{{ route('upload.index') }}" aria-expanded="false">
                             <i class="fas fa-upload" class="feather-icon"></i>
                             <b class="hide-menu">Upload</b>

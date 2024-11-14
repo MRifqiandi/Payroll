@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_uploads', function (Blueprint $table) {
+        Schema::create(config('database.tables.DB_USER_UPLOADS'), function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on(config('database.tables.DB_USERS'));
             $table->string('name');
             $table->text('file');
             $table->text('key');
@@ -23,12 +23,12 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('user_files', function (Blueprint $table) {
+        Schema::create(config('database.tables.DB_USER_FILES'), function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on(config('database.tables.DB_USERS'));
             $table->uuid('user_upload_id');
-            $table->foreign('user_upload_id')->references('id')->on('user_uploads');
+            $table->foreign('user_upload_id')->references('id')->on(config('database.tables.DB_USER_UPLOADS'));
             $table->string('name');
             $table->text('file');
             $table->text('key');

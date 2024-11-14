@@ -142,4 +142,18 @@ class Utils
             throw new HttpException(403, 'Invalid 2FA code');
         }
     }
+
+    public static function CREATE_ENV_VARIABLE($key, $value)
+    {
+        $envPath = base_path('.env');
+        $envContent = file_get_contents($envPath);
+
+        // Remove any existing entry for the key to avoid duplicates
+        $envContent = preg_replace("/^{$key}=.*$/m", '', $envContent);
+
+        // Append the new key-value pair
+        $envContent .= "\n{$key}={$value}";
+
+        file_put_contents($envPath, $envContent);
+    }
 }

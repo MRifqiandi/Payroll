@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 return [
 
     'models' => [
@@ -36,7 +38,7 @@ return [
          * default value but you may easily change it to any table you like.
          */
 
-        'roles' => 'roles',
+        'roles' => env('DB_ROLES', 'roles'),
 
         /*
          * When using the "HasPermissions" trait from this package, we need to know which
@@ -44,7 +46,7 @@ return [
          * default value but you may easily change it to any table you like.
          */
 
-        'permissions' => 'permissions',
+        'permissions' => env('DB_PERMISSIONS', 'permissions'),
 
         /*
          * When using the "HasPermissions" trait from this package, we need to know which
@@ -52,15 +54,14 @@ return [
          * basic default value but you may easily change it to any table you like.
          */
 
-        'model_has_permissions' => 'model_has_permissions',
-
+        'model_has_permissions' => env('DB_MODEL_HAS_PERMISSIONS', 'model_has_permissions'),
         /*
          * When using the "HasRoles" trait from this package, we need to know which
          * table should be used to retrieve your models roles. We have chosen a
          * basic default value but you may easily change it to any table you like.
          */
 
-        'model_has_roles' => 'model_has_roles',
+        'model_has_roles' => env('DB_MODEL_HAS_ROLES', 'model_has_roles'),
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -68,7 +69,7 @@ return [
          * basic default value but you may easily change it to any table you like.
          */
 
-        'role_has_permissions' => 'role_has_permissions',
+        'role_has_permissions' => env('DB_ROLE_HAS_PERMISSIONS', 'role_has_permissions'),
     ],
 
     'column_names' => [

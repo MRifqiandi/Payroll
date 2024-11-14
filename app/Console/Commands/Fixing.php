@@ -28,6 +28,7 @@ class Fixing extends Command
      */
     public function handle()
     {
+        dd(config('permission.table_names.roles'));
         $file = UserFile::first();
 
         $user = User::whereId($file['user_id'])->first();
