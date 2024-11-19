@@ -36,6 +36,14 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
+        Schema::create(config('database.tables.DB_API_KEYS'), function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('name');
+            $table->text('key');
+            $table->softDeletes();
+            $table->timestamps();
+        });
     }
 
     /**

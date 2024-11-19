@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('2fa')->default(false);
             $table->text('2fa_secret')->nullable();
             $table->text('public_key');
             $table->text('private_key');

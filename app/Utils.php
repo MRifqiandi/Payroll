@@ -134,13 +134,9 @@ class Utils
         );
     }
 
-    public static function VERIFY_2FA(string $secret, string $code): void
+    public static function VERIFY_2FA(string $secret, string $code)
     {
-        $verify = (new Google2FA())->verifyKey($secret, $code);
-
-        if (!$verify) {
-            throw new HttpException(403, 'Invalid 2FA code');
-        }
+        return (new Google2FA())->verifyKey($secret, $code);
     }
 
     public static function CREATE_ENV_VARIABLE($key, $value)

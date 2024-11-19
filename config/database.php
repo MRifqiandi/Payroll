@@ -152,6 +152,7 @@ return [
         'DB_USERS' => env('DB_USERS', 'users'),
         'DB_USER_UPLOADS' => env('DB_USER_UPLOADS', 'user_uploads'),
         'DB_USER_FILES' => env('DB_USER_FILES', 'user_files'),
+        'DB_API_KEYS' => env('DB_API_KEYS', 'api_keys'),
     ],
 
 ];

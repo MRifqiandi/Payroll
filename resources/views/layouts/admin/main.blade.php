@@ -33,6 +33,12 @@
     @yield('script')
 
     @yield('modal')
+
+    @if (Auth::user()['2fa_secret'])
+        @include('layouts.admin.disable_2fa_modal')
+    @else
+        @include('layouts.admin.enable_2fa_modal')
+    @endif
 </body>
 
 </html>

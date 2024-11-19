@@ -47,6 +47,15 @@
                         </a>
                     </li>
                 @endhasanyrole
+
+                @role('admin')
+                    <li class="sidebar-item {{ $isActive('api-key.index') }}">
+                        <a class="sidebar-link sidebar-link" href="{{ route('api-key.index') }}" aria-expanded="false">
+                            <i class="fas fa-key" class="feather-icon"></i>
+                            <b class="hide-menu">Api Key</b>
+                        </a>
+                    </li>
+                @endrole
             </ul>
         </nav>
     </div>

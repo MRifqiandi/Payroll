@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\ApiKeyController;
+use App\Http\Controllers\AuthenticatorController;
 use App\Http\Controllers\Finance\UploadController;
 use App\Http\Controllers\SlipController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +24,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/donwload/{id}', 'download')->name('slip.download');
 
         Route::get('/get/table', 'getDatatable')->name('slip.table');
+    });
+
+    Route::prefix('authenticator')->group(function () {
+        Route::controller(AuthenticatorController::class)->group(function () {
+            Route::post('/enable', 'enable')->name('authenticator.enable');
+            Route::post('/disable', 'disable')->name('authenticator.disable');
+        });
     });
 
     Route::middleware('role:admin|finance')->group(function () {
@@ -48,6 +57,18 @@ Route::middleware('auth')->group(function () {
                 Route::post('/delete', 'delete')->name('account.delete');
 
                 Route::get('/get/table', 'getDatatable')->name('account.table');
+            });
+        });
+    });
+
+    Route::middleware('role:admin')->group(function () {
+        Route::prefix('api-key')->group(function () {
+            Route::controller(ApiKeyController::class)->group(function () {
+                Route::get('/', 'index')->name('api-key.index');
+                Route::post('/store', 'store')->name('api-key.store');
+                Route::post('/delete', 'delete')->name('api-key.delete');
+
+                Route::get('/get/table', 'getDatatable')->name('api-key.table');
             });
         });
     });

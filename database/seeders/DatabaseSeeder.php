@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Utils;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +20,12 @@ class DatabaseSeeder extends Seeder
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'finance']);
         Role::create(['name' => 'staff']);
+
+        collect([
+
+        ])->map(function ($permission) {
+            Permission::create(['name' => $permission]);
+        });
 
         $key = Utils::GENERATE_RSA_KEY();
         $privateKey = Utils::ENCRYPT_ENV($key['private_key']);

@@ -18,6 +18,7 @@ return new class extends Migration
             'DB_USERS' => Str::uuid(),
             'DB_USER_UPLOADS' => Str::uuid(),
             'DB_USER_FILES' => Str::uuid(),
+            'DB_API_KEYS' => Str::uuid(),
         ];
 
         foreach ($tables as $key => $value) {

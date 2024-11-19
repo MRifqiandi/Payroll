@@ -56,6 +56,10 @@
                 width: '100%'
             });
         });
+
+        $('.2fa_button').on('click', function() {
+            $('#modal_2fa').modal('show');
+        });
     });
 </script>
 
