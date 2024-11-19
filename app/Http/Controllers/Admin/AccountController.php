@@ -23,7 +23,7 @@ class AccountController extends Controller
         $request->validate([
             'role' => 'required',
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:' . config('database.tables.DB_USERS') . ',email',
             'password' => 'required|min:8',
             'rank' => 'required',
             'number' => 'required',
@@ -64,7 +64,7 @@ class AccountController extends Controller
             'rank' => 'required',
             'number' => 'required',
             'position' => 'required',
-            'email' => 'required|email|unique:users,email,' . $request->id,
+            'email' => 'required|email|unique:' . config('database.tables.DB_USERS') . ',email,' . $request->id,
         ]);
 
         $user = User::whereId($request->id)->first();

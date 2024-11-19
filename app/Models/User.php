@@ -51,6 +51,15 @@ class User extends Authenticatable
         $this->table = config('database.tables.DB_USERS');
     }
 
+    public function getTable()
+    {
+        $tableName = config('database.tables.DB_USERS');
+        if (!$tableName) {
+            throw new \Exception("Table name is not defined in the configuration");
+        }
+        return $tableName;
+    }
+
     protected static function boot()
     {
         parent::boot();
