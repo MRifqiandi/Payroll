@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
         Route::controller(AuthenticatorController::class)->group(function () {
             Route::post('/enable', 'enable')->name('authenticator.enable');
             Route::post('/disable', 'disable')->name('authenticator.disable');
+            Route::post('/verify', 'verify')->name('authenticator.verify');
         });
     });
 

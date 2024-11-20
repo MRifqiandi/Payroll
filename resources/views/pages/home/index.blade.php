@@ -1,9 +1,20 @@
 @extends('layouts.admin.main')
 @section('title', 'Dashboard')
 
+@section('modal')
+    @if (auth()->user()['2fa_secret'])
+        @include('layouts.admin.validate_2fa_modal')
+    @endif
+@endsection
+
 @section('content')
     <div class="card card-flush h-md-100">
         <div class="card-body pt-6">
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
             <h2>
                 List Slip Gaji
             </h2>
@@ -29,62 +40,74 @@
 @endsection
 
 @section('script')
-<script>
-    let slipTable;
+    <script>
+        let slipTable;
 
-    $(document).ready(function() {
-        slipTable = $('#table_slip').DataTable({
-            processing: true,
-            serverSide: true,
-            retrieve: true,
-            deferRender: true,
-            responsive: false,
-            ajax: {
-                url: "{{ route('slip.table') }}",
-            },
-            language: {
-                "lengthMenu": "Show _MENU_",
-                "emptyTable": "Tidak ada data terbaru 📁",
-                "zeroRecords": "Data tidak ditemukan 😞",
-            },
-            buttons: [],
-            dom: "<'row mb-2'" +
-                "<'col-12 col-lg-6 d-flex align-items-center justify-content-start'l B>" +
-                "<'col-12 col-lg-6 d-flex align-items-center justify-content-lg-end justify-content-start 'f>" +
-                ">" +
+        function onDonwload() {
+            @if (auth()->user()['2fa_secret'] && !\App\Utils::IS_DEVICE_VALIDATED())
+                $('#modal_validate_2fa').modal('show');
+            @else
+                const id = $(this).data('id');
+                console.log(id)
+                window.open(`{{ route('slip.download', '') }}` + '/' + id, '_blank');
+            @endif
+        };
 
-                "<'table-responsive'tr>" +
+        $(document).ready(function() {
+            $(document).on('click', '.slip-donwload-button', onDonwload);
 
-                "<'row'" +
-                "<'col-12 col-lg-5 d-flex align-items-center justify-content-center justify-content-lg-start'i>" +
-                "<'col-12 col-lg-7 d-flex align-items-center justify-content-center justify-content-lg-end'p>" +
-                ">",
-            columns: [{
-                    data: 'DT_RowIndex',
-                    orderable: false,
-                    searchable: false
+            slipTable = $('#table_slip').DataTable({
+                processing: true,
+                serverSide: true,
+                retrieve: true,
+                deferRender: true,
+                responsive: false,
+                ajax: {
+                    url: "{{ route('slip.table') }}",
                 },
-                {
-                    data: 'name'
+                language: {
+                    "lengthMenu": "Show _MENU_",
+                    "emptyTable": "Tidak ada data terbaru 📁",
+                    "zeroRecords": "Data tidak ditemukan 😞",
                 },
-                {
-                    data: 'created_at',
+                buttons: [],
+                dom: "<'row mb-2'" +
+                    "<'col-12 col-lg-6 d-flex align-items-center justify-content-start'l B>" +
+                    "<'col-12 col-lg-6 d-flex align-items-center justify-content-lg-end justify-content-start 'f>" +
+                    ">" +
+
+                    "<'table-responsive'tr>" +
+
+                    "<'row'" +
+                    "<'col-12 col-lg-5 d-flex align-items-center justify-content-center justify-content-lg-start'i>" +
+                    "<'col-12 col-lg-7 d-flex align-items-center justify-content-center justify-content-lg-end'p>" +
+                    ">",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'name'
+                    },
+                    {
+                        data: 'created_at',
+                    },
+                    {
+                        data: 'user',
+                    },
+                    {
+                        data: 'action'
+                    }
+                ],
+                search: {
+                    "regex": true
                 },
-                {
-                    data: 'user',
-                },
-                {
-                    data: 'action'
-                }
-            ],
-            search: {
-                "regex": true
-            },
-            columnDefs: [{
-                targets: [0, 4],
-                className: 'text-center',
-            }, ],
+                columnDefs: [{
+                    targets: [0, 4],
+                    className: 'text-center',
+                }, ],
+            });
         });
-    });
-</script>
+    </script>
 @endsection

@@ -19,6 +19,12 @@ class SlipController extends Controller
 
     public function download($id)
     {
+        if (Auth::user()['2fa_secret']) {
+            if (!Utils::IS_DEVICE_VALIDATED()) {
+                return redirect()->route('slip.index')->with('error', 'OTP not validated');
+            }
+        }
+
         $file = UserFile::whereId($id)->first();
 
         if (!$file) {

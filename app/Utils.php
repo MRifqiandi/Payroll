@@ -11,6 +11,8 @@ use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
+use Illuminate\Support\Facades\Cache;
+use Jenssegers\Agent\Agent;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Utils
@@ -166,5 +168,23 @@ class Utils
         } catch (\Throwable $th) {
             return false;
         }
+    }
+
+    public static function STORE_VALIDATED_DEVICE()
+    {
+        $cacheKey = 'validated_device_' . auth()->id() . '_' . md5(self::GET_DEVICE_INFO());
+        Cache::put($cacheKey, true, now()->addDays(2));
+    }
+
+    public static function GET_DEVICE_INFO()
+    {
+        $agent = new Agent();
+        return $agent->device() . '|' . $agent->platform() . '|' . $agent->browser();
+    }
+
+    public static function IS_DEVICE_VALIDATED()
+    {
+        $cacheKey = 'validated_device_' . auth()->id() . '_' . md5(self::GET_DEVICE_INFO());
+        return Cache::has($cacheKey);
     }
 }

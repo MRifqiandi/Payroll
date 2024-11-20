@@ -8,6 +8,31 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AuthenticatorController extends Controller
 {
+    public function verify(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|string',
+        ]);
+
+        /** @var \App\Models\User */
+        $user = auth()->user();
+
+        if (!$user["2fa_secret"]) {
+            throw new HttpException(400, '2FA Not Enabled!');
+        }
+
+        if (!Utils::VERIFY_2FA($user["2fa_secret"], $request->code)) {
+            throw new HttpException(400, 'Invalid Code!');
+        }
+
+        Utils::STORE_VALIDATED_DEVICE(auth()->id());
+
+        return response()->json([
+            'status' => 'success',
+            'message' => '2FA Verified!',
+        ]);
+    }
+
     public function enable(Request $request)
     {
         $request->validate([

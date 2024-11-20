@@ -1,6 +1,5 @@
 <div class="d-flex justify-content-center align-items-center">
-    <a class="btn btn-sm btn-icon btn-info w-30px h-30px mx-1" target="_blank"
-        href="{{ route('slip.download', $query->id) }}">
+    <button class="btn btn-sm btn-icon btn-info w-30px h-30px mx-1 slip-donwload-button" data-id="{{ $query->id }}">
         <span class="fa fa-file"></span>
-    </a>
+    </button>
 </div>
