@@ -14,6 +14,28 @@ class SlipController extends Controller
 {
     public function index()
     {
+        // $data = [
+        //     'nama' => 'Dwi Harti Ningrum',
+        //     'nip' => '199609112022032020',
+        //     'pangkat' => 'III/a',
+        //     'jabatan' => 'Staf Administrasi',
+        //     'gaji_pokok' => '3.571.000',
+        //     'tunjangan_istri_suami' => '357.100',
+        //     'tunjangan_anak' => '71.420',
+        //     'tunjangan_umum' => '-',
+        //     'tunjangan_beras' => '217.260',
+        //     'tunjangan_pajak' => '-',
+        //     'penghasilan_kotor' => '4.216.870',
+        //     'iwp' => '319.961',
+        //     'pot_bpjs' => '73.209',
+        //     'jumlah_potongan' => '393.170',
+        //     'penghasilan_bersih' => '3.823.700',
+        //     'tanggal' => '4 November 2024',
+        //     'nama_pembuat' => 'Dwi Harti Ningrum',
+        //     'nip_pembuat' => '199609112022032020',
+        // ];
+
+        // return view('exports.slip.gaji-bulanan', compact('data'));
         return view('pages.home.index');
     }
 

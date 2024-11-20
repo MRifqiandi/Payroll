@@ -5,10 +5,8 @@
                 <h5 class="modal-title">Create API Key</h5>
             </div>
             <div class="modal-body">
-                <!-- Alert Container -->
                 <div id="modal-alert-container" class="mb-3"></div>
 
-                <!-- Form for API Key Creation -->
                 <div id="create-api-key-section">
                     <form id="create-api-key-form">
                         <div class="mb-3">
@@ -56,7 +54,6 @@
                     </form>
                 </div>
 
-                <!-- API Key Display Section -->
                 <div id="api-key-display" class="d-none mt-4">
                     <p class="fw-bold">Details:</p>
                     <p><strong>Name:</strong> <span id="api-name-text"></span></p>
@@ -90,13 +87,11 @@
         $('#create-api-key-form').submit(function(e) {
             e.preventDefault();
 
-            // Show loading spinner
             $('#loading-spinner').removeClass('d-none');
             $('#create-api-key-btn').prop('disabled', true);
 
             const formData = $(this).serialize();
 
-            // AJAX request to create API key
             $.ajax({
                 url: '{{ route('api-key.store') }}',
                 method: 'POST',
@@ -105,14 +100,14 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                 },
                 success: function(response) {
-                    if (response.status === 'success') {
-                        $('#api-name-text').text($('#api-name').val());
-                        $('#api-user-text').text(response.data.user);
-                        $('#api-key-text').text(response.data.key);
+                    $('#api-name-text').text($('#api-name').val());
+                    $('#api-user-text').text(response.data.user);
+                    $('#api-key-text').text(response.data.key);
 
-                        $('#create-api-key-section').addClass('d-none');
-                        $('#api-key-display').removeClass('d-none');
-                    }
+                    $('#create-api-key-section').addClass('d-none');
+                    $('#api-key-display').removeClass('d-none');
+
+                    keyTable?.draw();
                 },
                 error: function(xhr) {
                     let message = 'An error occurred. Please try again.';

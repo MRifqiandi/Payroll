@@ -1,0 +1,65 @@
+<table>
+    <thead>
+        <tr>
+            <th>kdsatker</th>
+            <th>kdanak</th>
+            <th>kdsubanak</th>
+            <th>bulan</th>
+            <th>tahun</th>
+            <th>nogaji</th>
+            <th>kdjns</th>
+            <th>nip</th>
+            <th>nmpeg</th>
+            <th>kdduduk</th>
+            <th>kdgol</th>
+            <th>npwp</th>
+            <th>nmrek</th>
+            <th>nm_bank</th>
+            <th>rekening</th>
+            <th>kdbankspan</th>
+            <th>nmbankspan</th>
+            <th>kdpos</th>
+            <th>kdnegara</th>
+            <th>kdkppn</th>
+            <th>tipesup</th>
+            <th>gjpokok</th>
+            <th>tjistri</th>
+            <th>tjanak</th>
+            <th>tjupns</th>
+            <th>tjstruk</th>
+            <th>tjfungs</th>
+            <th>tjdaerah</th>
+            <th>tjpencil</th>
+            <th>tjlain</th>
+            <th>tjkompen</th>
+            <th>pembul</th>
+            <th>tjberas</th>
+            <th>tjpph</th>
+            <th>potpfkbul</th>
+            <th>potpfk2</th>
+            <th>potpfk10</th>
+            <th>potpph</th>
+            <th>potswrum</th>
+            <th>potkelbtj</th>
+            <th>potlain</th>
+            <th>pottabrum</th>
+            <th>bersih</th>
+            <th>sandi</th>
+            <th>kdkawin</th>
+            <th>kdjab</th>
+            <th>thngj</th>
+            <th>kdgapok</th>
+            <th>bpjs</th>
+            <th>bpjs2</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($datas as $data)
+            <tr>
+                @foreach ($data as $d)
+                    <td>{{ $d }}</td>
+                @endforeach
+            </tr>
+        @endforeach
+    </tbody>
+</table>

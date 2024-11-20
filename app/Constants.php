@@ -8,4 +8,8 @@ class Constants
         "GAJI BULANAN" => "GAJI BULANAN",
         "UANG MAKAN" => "UANG MAKAN",
     ];
+
+    const API_PERMISSION = [
+
+    ];
 }

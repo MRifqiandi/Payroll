@@ -44,6 +44,50 @@
     <script>
         let keyTable;
 
+        const onDeleteKey = (id) => {
+            Swal.fire({
+                title: 'Delete!',
+                text: `Apakah Anda yakin ingin menghapus api key ini?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: 'rgb(221, 107, 85)',
+                cancelButtonColor: 'gray',
+                confirmButtonText: 'Yes, Delete!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('api-key.delete') }}",
+                        type: 'POST',
+                        data: {
+                            id
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(data) {
+                            Swal.fire({
+                                title: 'Success',
+                                text: `${data.message}`,
+                                icon: 'success',
+                                confirmButtonColor: 'green',
+                            });
+
+                            keyTable?.draw();
+                        },
+                        error: function(xhr, status, error) {
+                            const data = xhr.responseJSON;
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: data.message,
+                            });
+                        }
+                    });
+                }
+            });
+        };
+
         $(document).ready(function() {
             keyTable = $('#table_key').DataTable({
                 processing: true,
