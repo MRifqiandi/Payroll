@@ -28,6 +28,12 @@ class UploadController extends Controller
 
     public function download($id)
     {
+        if (Auth::user()['2fa_secret']) {
+            if (!Utils::IS_DEVICE_VALIDATED()) {
+                return redirect()->route('upload.index')->with('error', 'OTP not validated');
+            }
+        }
+
         $upload = UserUpload::whereId($id)->first();
 
         if (!$upload) {
@@ -115,6 +121,12 @@ class UploadController extends Controller
 
     public function delete(Request $request)
     {
+        if (Auth::user()['2fa_secret']) {
+            if (!Utils::IS_DEVICE_VALIDATED()) {
+                return redirect()->route('upload.index')->with('error', 'OTP not validated');
+            }
+        }
+
         $request->validate([
             'id' => 'required',
         ]);

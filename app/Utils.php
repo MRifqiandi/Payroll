@@ -173,7 +173,7 @@ class Utils
     public static function STORE_VALIDATED_DEVICE()
     {
         $cacheKey = 'validated_device_' . auth()->id() . '_' . md5(self::GET_DEVICE_INFO());
-        Cache::put($cacheKey, true, now()->addDays(2));
+        Cache::put($cacheKey, true, now()->addDays(1));
     }
 
     public static function GET_DEVICE_INFO()

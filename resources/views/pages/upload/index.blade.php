@@ -4,11 +4,19 @@
 @section('modal')
     @include('pages.upload.modal.add')
     @include('pages.upload.modal.receiver')
+    @if (auth()->user()['2fa_secret'])
+        @include('layouts.admin.validate_2fa_modal')
+    @endif
 @endsection
 
 @section('content')
     <div class="card card-flush h-md-100">
         <div class="card-body pt-6">
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="d-flex justify-content-between">
                 <h1>
                     History Upload
@@ -47,7 +55,27 @@
     <script>
         let uploadTable;
 
+        function onDownload() {
+            @if (auth()->user()['2fa_secret'] && !\App\Utils::IS_DEVICE_VALIDATED())
+                $('#modal_validate_2fa').modal('show');
+            @else
+                const id = $(this).data('id');
+                const url = `{{ route('upload.download', '') }}/${id}`;
+
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = '';
+                a.style.display = 'none';
+
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            @endif
+        }
+
         $(document).ready(function() {
+            $(document).on('click', '.download-button', onDownload);
+
             uploadTable = $('#table_upload').DataTable({
                 processing: true,
                 serverSide: true,
@@ -139,40 +167,45 @@
             });
 
             $(document).on('click', '.btn-delete-upload', function() {
-                let id = $(this).data('id');
+                @if (auth()->user()['2fa_secret'] && !\App\Utils::IS_DEVICE_VALIDATED())
+                    $('#modal_validate_2fa').modal('show');
+                @else
+                    let id = $(this).data('id');
 
-                Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: "Data yang dihapus tidak dapat dikembalikan!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Ya, hapus!',
-                    cancelButtonText: 'Batal',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: "{{ route('upload.delete') }}",
-                            type: 'POST',
-                            data: {
-                                id: id
-                            },
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            success: function(response) {
-                                toastr.success(response.message, 'Selamat 🚀 !');
-                                uploadTable.ajax.reload();
-                            },
-                            error: function(xhr, status, error) {
-                                const data = xhr.responseJSON;
-                                toastr.error(data.message, 'Opps!');
-                            }
-                        });
-                    }
-                });
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Data yang dihapus tidak dapat dikembalikan!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "{{ route('upload.delete') }}",
+                                type: 'POST',
+                                data: {
+                                    id: id
+                                },
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                        'content')
+                                },
+                                success: function(response) {
+                                    toastr.success(response.message, 'Selamat 🚀 !');
+                                    uploadTable.ajax.reload();
+                                },
+                                error: function(xhr, status, error) {
+                                    const data = xhr.responseJSON;
+                                    toastr.error(data.message, 'Opps!');
+                                }
+                            });
+                        }
+                    });
+                @endif
             });
         });
     </script>

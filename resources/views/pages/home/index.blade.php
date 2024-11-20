@@ -48,7 +48,6 @@
                 $('#modal_validate_2fa').modal('show');
             @else
                 const id = $(this).data('id');
-                console.log(id)
                 window.open(`{{ route('slip.download', '') }}` + '/' + id, '_blank');
             @endif
         };
