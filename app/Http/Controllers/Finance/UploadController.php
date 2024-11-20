@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Finance;
 
+use App\Constants;
+use App\Exports\Upload\MealAllowance;
+use App\Exports\Upload\MonthlySalary;
 use App\Exports\UploadExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -38,7 +41,14 @@ class UploadController extends Controller
             $upload->user->private_key
         );
 
-        return Excel::download(new UploadExport($data), $upload->name . ".xlsx");
+        switch ($upload->type) {
+            case Constants::SLIP_TYPE['GAJI BULANAN']:
+                return Excel::download(new MonthlySalary($data), $upload->name . ".xlsx");
+            case Constants::SLIP_TYPE['UANG MAKAN']:
+                return Excel::download(new MealAllowance($data), $upload->name . ".xlsx");
+            default:
+                throw new HttpException(404, 'Invalid slip type');
+        }
     }
 
     public function getReceivers(Request $request)
@@ -71,16 +81,17 @@ class UploadController extends Controller
         $request->validate([
             'name' => 'required',
             'file' => 'required|file|mimes:csv,xlsx,xls',
+            'type' => 'required|in:' . implode(',', array_keys(Constants::SLIP_TYPE)),
             'accept' => 'nullable',
         ]);
 
         $file = $request->file('file');
 
-        $fileData = UploadService::parseFileData($file);
+        $fileData = UploadService::parseFileData($file, $request->type);
 
         $userKeys = UploadService::fetchUserKeysByNumber(array_keys($fileData));
 
-        $encryptedSlips = UploadService::createEncryptedSlips($userKeys['data'], $fileData, $request->name);
+        $encryptedSlips = UploadService::createEncryptedSlips($userKeys['data'], $fileData, $request->name, $request->type);
 
         if (count($userKeys['invalid']) > 0 && !$request->accept) {
             return response()->json([
@@ -92,7 +103,7 @@ class UploadController extends Controller
 
         DB::beginTransaction();
 
-        UploadService::store(Auth::user(), $file, $encryptedSlips, $request->name);
+        UploadService::store(Auth::user(), $file, $encryptedSlips, $request->name, $request->type);
 
         DB::commit();
 
@@ -126,7 +137,7 @@ class UploadController extends Controller
     public function getDatatable()
     {
         $query = UserUpload::with('user')
-            ->select(['id', 'name', 'user_id', 'created_at'])
+            ->select(['id', 'name', 'type', 'user_id', 'created_at'])
             ->withCount('files')
             ->orderBy('created_at', 'desc');
 

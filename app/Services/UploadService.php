@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Facades\Excel;
  */
 class UploadService
 {
-    public static function store($user, $file, $slips, $name)
+    public static function store($user, $file, $slips, $name, $type)
     {
         $rows = array_slice(Excel::toArray([], $file)[0], 1);
 
@@ -24,6 +24,7 @@ class UploadService
             'file' => $data['file'],
             'key' => $data['key'],
             'iv' => $data['iv'],
+            'type' => $type,
         ]);
 
         $upload->files()->createMany($slips);
@@ -35,46 +36,14 @@ class UploadService
      * Extracts data from an uploaded file and formats it into an associative array.
      *
      * @param \Illuminate\Http\UploadedFile $file The uploaded CSV, XLSX, or XLS file.
+     * @param \App\Constants::SLIP_TYPE $type The type of slip to parse.
      * @return array An associative array of user data keyed by number, with each entry containing 'data'.
      */
-    public static function parseFileData($file)
+    public static function parseFileData($file, $type)
     {
         $rows = array_slice(Excel::toArray([], $file)[0], 1);
 
-        $data = collect($rows)->mapWithKeys(function ($row) {
-            return [
-                $row[7] => [
-                    'gjpokok' => $row[21],
-                    'tjistri' => $row[22],
-                    'tjanak' => $row[23],
-                    'tjupns' => $row[24],
-                    'tjstruk' => $row[25],
-                    'tjfungs' => $row[26],
-                    'tjdaerah' => $row[27],
-                    'tjpencil' => $row[28],
-                    'tjlain' => $row[29],
-                    'tjkompen' => $row[30],
-                    'pembul' => $row[31],
-                    'tjberas' => $row[32],
-                    'tjpph' => $row[33],
-                    'potpfkbul' => $row[34],
-                    'potpfk2' => $row[35],
-                    'potpfk10' => $row[36],
-                    'potpph' => $row[37],
-                    'potswrum' => $row[38],
-                    'potkelbtj' => $row[39],
-                    'potlain' => $row[40],
-                    'pottabrum' => $row[41],
-                    'bersih' => $row[42],
-                    // 'kdkawin' => $row[44],
-                    // 'kdjab' => $row[45],
-                    // 'thngj' => $row[46],
-                    // 'kdgapok' => $row[47],
-                    'bpjs' => $row[48],
-                    'bpjs2' => $row[49],
-                ],
-            ];
-        })->toArray();
+        $data = ParseSlip::execute($rows, $type);
 
         return $data;
     }
@@ -119,7 +88,7 @@ class UploadService
      *               - 'user_id': the user's ID.
      *               - 'data': the encrypted data using the user's public key.
      */
-    public static function createEncryptedSlips($keys, $data, $name)
+    public static function createEncryptedSlips($keys, $data, $name, $type)
     {
         $slip = [];
 
@@ -127,6 +96,7 @@ class UploadService
             $slip[] = [
                 'user_id' => $user['id'],
                 'name' => $name,
+                'type' => $type,
                 ...Utils::ENCRYPT_SLIP(json_encode($data[$number]), $user['public_key']),
             ];
         }

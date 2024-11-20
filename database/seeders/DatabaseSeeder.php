@@ -21,9 +21,7 @@ class DatabaseSeeder extends Seeder
         Role::create(['name' => 'finance']);
         Role::create(['name' => 'staff']);
 
-        collect([
-
-        ])->map(function ($permission) {
+        collect([])->map(function ($permission) {
             Permission::create(['name' => $permission]);
         });
 
@@ -64,23 +62,36 @@ class DatabaseSeeder extends Seeder
             'private_key' => $privateKey,
         ])->assignRole('staff');
 
-        foreach (range(1, 10) as $i) {
-            (function () use ($i) {
-                $key = Utils::GENERATE_RSA_KEY();
-                $privateKey = Utils::ENCRYPT_ENV($key['private_key']);
-                $publicKey = $key['public_key'];
+        collect([
+            199210102019032033,
+            199008112019032016,
+            197004211998021001,
+            198909012019031008,
+            199112212019032018,
+            198909212019031006,
+            199609112022032020,
+            199808222022032011,
+            198705212010122005,
+            198908192019031010,
+            198910082015042002,
+            198512182019031011,
+            199111292019032017,
+            199804032022031008
+        ])->map(function ($num) {
+            $key = Utils::GENERATE_RSA_KEY();
+            $privateKey = Utils::ENCRYPT_ENV($key['private_key']);
+            $publicKey = $key['public_key'];
 
-                User::create([
-                    'name' => 'User ' . $i,
-                    'email' => 'kucing' . $i . '@gmail.com',
-                    'password' => bcrypt('12345678'),
-                    'number' => '123456',
-                    'rank' => 'staff ' . $i,
-                    'position' => 'staff ' . $i,
-                    'public_key' => $publicKey,
-                    'private_key' => $privateKey,
-                ])->assignRole('staff');
-            })();
-        }
+            User::create([
+                'name' => 'Staff',
+                'email' => $num . '@gmail.com',
+                'password' => bcrypt('12345678'),
+                'number' => $num,
+                'rank' => 'Staff',
+                'position' => 'Staff',
+                'public_key' => $publicKey,
+                'private_key' => $privateKey,
+            ])->assignRole('staff');
+        });
     }
 }

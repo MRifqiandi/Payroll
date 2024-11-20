@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Exports;
+namespace App\Exports\Upload;
 
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class UploadExport implements FromView, WithEvents
+class MealAllowance implements FromView, WithEvents
 {
     private $data;
 
@@ -18,7 +18,7 @@ class UploadExport implements FromView, WithEvents
 
     public function view(): View
     {
-        return view('exports.upload', [
+        return view('exports.upload.meal-allowance', [
             'datas' => $this->data
         ]);
     }

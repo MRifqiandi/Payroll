@@ -25,6 +25,7 @@
                     <thead>
                         <tr class="fs-7 fw-bold text-gray-500 border-bottom-0">
                             <th class="w-50px text-center">NO</th>
+                            <th>TIPE</th>
                             <th>NAMA</th>
                             <th>TANGGAL</th>
                             <th>OLEH</th>
@@ -77,6 +78,9 @@
                         data: 'DT_RowIndex',
                         orderable: false,
                         searchable: false
+                    },
+                    {
+                        data: 'type'
                     },
                     {
                         data: 'name'
