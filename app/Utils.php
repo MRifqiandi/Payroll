@@ -144,12 +144,27 @@ class Utils
         $envPath = base_path('.env');
         $envContent = file_get_contents($envPath);
 
-        // Remove any existing entry for the key to avoid duplicates
         $envContent = preg_replace("/^{$key}=.*$/m", '', $envContent);
 
-        // Append the new key-value pair
         $envContent .= "\n{$key}={$value}";
 
         file_put_contents($envPath, $envContent);
+    }
+
+    public static function GENERATE_API_KEY()
+    {
+        return "SGJI_" . bin2hex(random_bytes(15)) . "_ITK";
+    }
+
+    public static function VERIFY_API_KEY($client, $key)
+    {
+        try {
+            $client = base64_decode($client);
+            $key = self::DECRYPT_ENV($key);
+
+            return $client == $key;
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on(config('database.tables.DB_USERS'));
             $table->string('name');
-            $table->text('file');
+            $table->longText('file');
             $table->text('key');
             $table->text('iv');
             $table->softDeletes();
@@ -40,6 +40,7 @@ return new class extends Migration
         Schema::create(config('database.tables.DB_API_KEYS'), function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->text('user');
             $table->text('key');
             $table->softDeletes();
             $table->timestamps();

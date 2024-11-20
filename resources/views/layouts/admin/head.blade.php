@@ -47,5 +47,11 @@
             color: red;
             font-weight: bold;
         }
+
+        #invalid-list li {
+            list-style: none;
+            font-size: 1rem;
+            font-weight: 500;
+        }
     </style>
 </head>

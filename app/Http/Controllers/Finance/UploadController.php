@@ -71,15 +71,24 @@ class UploadController extends Controller
         $request->validate([
             'name' => 'required',
             'file' => 'required|file|mimes:csv,xlsx,xls',
+            'accept' => 'nullable',
         ]);
 
         $file = $request->file('file');
 
         $fileData = UploadService::parseFileData($file);
 
-        $userKeys = UploadService::fetchUserKeysByEmail(array_keys($fileData));
+        $userKeys = UploadService::fetchUserKeysByNumber(array_keys($fileData));
 
         $encryptedSlips = UploadService::createEncryptedSlips($userKeys['data'], $fileData, $request->name);
+
+        if (count($userKeys['invalid']) > 0 && !$request->accept) {
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'Some NIP/NIPPPK/NIPH were not found in the database. Do you want to continue?',
+                'data' => $userKeys['invalid'],
+            ]);
+        }
 
         DB::beginTransaction();
 
@@ -117,6 +126,7 @@ class UploadController extends Controller
     public function getDatatable()
     {
         $query = UserUpload::with('user')
+            ->select(['id', 'name', 'user_id', 'created_at'])
             ->withCount('files')
             ->orderBy('created_at', 'desc');
 

@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
                 Route::post('/store', 'store')->name('account.store');
                 Route::post('/update', 'update')->name('account.update');
                 Route::post('/update/password', 'updatePassword')->name('account.update.password');
+                Route::post('/disable/authenticator', 'disableAuthenticator')->name('account.disable.authenticator');
                 Route::post('/delete', 'delete')->name('account.delete');
 
                 Route::get('/get/table', 'getDatatable')->name('account.table');

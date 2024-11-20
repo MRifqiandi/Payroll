@@ -115,6 +115,32 @@ class AccountController extends Controller
         ]);
     }
 
+    public function disableAuthenticator(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+        ]);
+
+        $user = User::whereId($request->id)->first();
+
+        if (!$user) {
+            throw new HttpException(404, 'User not found');
+        }
+
+        if (!$user["2fa_secret"]) {
+            throw new HttpException(400, 'Authenticator is not enabled');
+        }
+
+        $user->update([
+            '2fa_secret' => null,
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Authenticator disabled successfully'
+        ]);
+    }
+
     public function delete(Request $request)
     {
         $request->validate([

@@ -112,6 +112,50 @@
             });
         };
 
+        const onDisableAuthenticator = (id) => {
+            Swal.fire({
+                title: 'Disable Authenticator!',
+                text: `Apakah Anda yakin ingin menonaktifkan 2fa user ini?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: 'rgb(221, 107, 85)',
+                cancelButtonColor: 'gray',
+                confirmButtonText: 'Yes, Disable!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('account.disable.authenticator') }}",
+                        type: 'POST',
+                        data: {
+                            id
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(data) {
+                            Swal.fire({
+                                title: 'Success',
+                                text: `${data.message}`,
+                                icon: 'success',
+                                confirmButtonColor: 'green',
+                            });
+
+                            accountTable?.draw();
+                        },
+                        error: function(xhr, status, error) {
+                            const data = xhr.responseJSON;
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: data.message,
+                            });
+                        }
+                    });
+                }
+            });
+        };
+
         $(document).ready(function() {
             accountTable = $('#table_account').DataTable({
                 processing: true,
