@@ -1,5 +1,6 @@
 <?php
 
+use App\Constants;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on(config('database.tables.DB_USERS'));
+            $table->enum('type', Constants::SLIP_TYPE);
             $table->string('name');
             $table->longText('file');
             $table->text('key');
@@ -29,6 +31,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on(config('database.tables.DB_USERS'));
             $table->uuid('user_upload_id');
             $table->foreign('user_upload_id')->references('id')->on(config('database.tables.DB_USER_UPLOADS'));
+            $table->enum('type', Constants::SLIP_TYPE);
             $table->string('name');
             $table->text('file');
             $table->text('key');

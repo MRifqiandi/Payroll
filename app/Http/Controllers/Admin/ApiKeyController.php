@@ -20,8 +20,8 @@ class ApiKeyController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'permission' => 'required|array'
+            'name' => 'required|unique:' . config('database.tables.DB_API_KEYS') . ',name',
+            // 'permission' => 'required|array'
         ]);
 
         $user = bin2hex(random_bytes(6));
@@ -29,11 +29,17 @@ class ApiKeyController extends Controller
 
         DB::beginTransaction();
 
+        // ApiKey::create([
+        //     'name' => $request->name,
+        //     'user' => $user,
+        //     'key' => Utils::ENCRYPT_ENV($key),
+        // ])->syncPermissions($request->permission);
+
         ApiKey::create([
             'name' => $request->name,
             'user' => $user,
             'key' => Utils::ENCRYPT_ENV($key),
-        ])->syncPermissions($request->permission);
+        ]);
 
         DB::commit();
 
@@ -75,6 +81,9 @@ class ApiKeyController extends Controller
             ->addIndexColumn()
             ->addColumn('action', function ($query) {
                 return view('pages.api-key.menu', compact('query'));
+            })
+            ->addColumn('permission', function ($query) {
+                return "";
             })
             ->rawColumns(['action'])
             ->make(true);

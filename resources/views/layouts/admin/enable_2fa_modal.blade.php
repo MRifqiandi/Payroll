@@ -41,7 +41,7 @@
             </div>
         `);
 
-        $('#modal-alert-container').html(alert);
+        $('#modal_2fa #modal-alert-container').html(alert);
 
         setTimeout(() => {
             alert.alert('close');

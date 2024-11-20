@@ -36,7 +36,7 @@
                 <i class="fa fa-times close-icon" data-bs-dismiss="alert" aria-label="Close" style="cursor: pointer;"></i>
             </div>
         `);
-        $('#modal-alert-container').html(alert);
+        $('#modal_2fa #modal-alert-container').html(alert);
         setTimeout(() => {
             alert.alert('close');
         }, 5000);
