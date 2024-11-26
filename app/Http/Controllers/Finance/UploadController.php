@@ -103,7 +103,7 @@ class UploadController extends Controller
             return response()->json([
                 'status' => 'fail',
                 'message' => 'Some NIP/NIPPPK/NIPH were not found in the database. Do you want to continue?',
-                'data' => $userKeys['invalid'],
+                'data' => [...$userKeys['invalid']],
             ]);
         }
 

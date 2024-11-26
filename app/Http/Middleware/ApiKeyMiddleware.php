@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\ApiKey;
+use App\Services\ApiAuth;
 use App\Utils;
 use Closure;
 use Illuminate\Http\Request;
@@ -22,18 +23,20 @@ class ApiKeyMiddleware
         $client = $request->header('X-API-KEY');
 
         if (!$user || !$client) {
-            throw new HttpException(403, 'Invalid API key / User');
+            throw new HttpException(403, 'Invalid API Key / User');
         }
 
         $key = ApiKey::where('user', $user)->first();
 
         if (!$key) {
-            throw new HttpException(403, 'Invalid API key / User');
+            throw new HttpException(403, 'Invalid API Key / User');
         }
 
-        if (!Utils::VERIFY_API_KEY($client, $key)) {
-            throw new HttpException(403, 'Invalid API key / User');
+        if (!Utils::VERIFY_API_KEY($client, $key->key)) {
+            throw new HttpException(403, 'Invalid API Key / User');
         }
+
+        ApiAuth::setKey($key);
 
         return $next($request);
     }

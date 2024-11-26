@@ -15,36 +15,13 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Permissions:</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="create-permission"
-                                    name="permissions[]" value="create">
-                                <label class="form-check-label" for="create-permission">Create</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="read-permission"
-                                    name="permissions[]" value="read">
-                                <label class="form-check-label" for="read-permission">Read</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="update-permission"
-                                    name="permissions[]" value="update">
-                                <label class="form-check-label" for="update-permission">Update</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="delete-permission"
-                                    name="permissions[]" value="delete">
-                                <label class="form-check-label" for="delete-permission">Delete</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="list-permission"
-                                    name="permissions[]" value="list">
-                                <label class="form-check-label" for="list-permission">List</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="manage-permission"
-                                    name="permissions[]" value="manage">
-                                <label class="form-check-label" for="manage-permission">Manage</label>
-                            </div>
+                            @foreach (\App\Constants::API_PERMISSION as $permission)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="manage-permission"
+                                        name="permissions[]" value="{{ $permission }}">
+                                    <label class="form-check-label" for="manage-permission">{{ $permission }}</label>
+                                </div>
+                            @endforeach
                         </div>
                         <button type="submit" class="btn btn-primary w-100" id="create-api-key-btn">
                             <span id="loading-spinner" class="spinner-border spinner-border-sm d-none" role="status"

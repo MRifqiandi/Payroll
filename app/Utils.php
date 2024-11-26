@@ -12,6 +12,8 @@ use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Jenssegers\Agent\Agent;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -153,19 +155,28 @@ class Utils
         file_put_contents($envPath, $envContent);
     }
 
+    public static function GENERATE_API_USER()
+    {
+        return "SGJI_USER_" . bin2hex(random_bytes(5)) . "_ITK";
+    }
+
     public static function GENERATE_API_KEY()
     {
-        return "SGJI_" . bin2hex(random_bytes(15)) . "_ITK";
+        return "SGJI_SECRET_" . bin2hex(random_bytes(13)) . "_ITK";
     }
 
     public static function VERIFY_API_KEY($client, $key)
     {
         try {
             $client = base64_decode($client);
-            $key = self::DECRYPT_ENV($key);
 
-            return $client == $key;
+            if (!$client) {
+                return false;
+            }
+
+            return Hash::check($client, $key);
         } catch (\Throwable $th) {
+            Log::error($th);
             return false;
         }
     }

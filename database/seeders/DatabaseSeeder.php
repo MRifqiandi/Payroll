@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Constants;
 use App\Models\User;
 use App\Utils;
 use Illuminate\Database\Seeder;
@@ -21,8 +22,11 @@ class DatabaseSeeder extends Seeder
         Role::create(['name' => 'finance']);
         Role::create(['name' => 'staff']);
 
-        collect([])->map(function ($permission) {
-            Permission::create(['name' => $permission]);
+        collect(Constants::API_PERMISSION)->map(function ($permission) {
+            Permission::create([
+                'name' => $permission,
+                'guard_name' => 'api',
+            ]);
         });
 
         $key = Utils::GENERATE_RSA_KEY();

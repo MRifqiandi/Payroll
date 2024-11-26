@@ -46,9 +46,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        if ($request->ajax() || $request->wantsJson()) {
+        if ($request->ajax() || $request->wantsJson() || $request->is('api/*')) {
             if ($exception instanceof HttpException) {
                 return response()->json([
+                    "code" => $exception->getStatusCode(),
                     "status" => "fail",
                     "message" => $exception->getMessage(),
                 ], $exception->getStatusCode());
@@ -56,6 +57,7 @@ class Handler extends ExceptionHandler
 
             if ($exception instanceof ValidationException) {
                 return response()->json([
+                    "code" => 400,
                     "status" => "fail",
                     "message" => $exception->validator->errors()->first(),
                 ], 400);
@@ -63,6 +65,7 @@ class Handler extends ExceptionHandler
 
             if ($exception instanceof TokenMismatchException) {
                 return response()->json([
+                    "code" => 419,
                     "status" => "fail",
                     "message" => "Sesi tidak tervalidasi, silahkan refresh halaman",
                 ], 419);
@@ -70,6 +73,7 @@ class Handler extends ExceptionHandler
 
             if ($exception instanceof AuthenticationException) {
                 return response()->json([
+                    "code" => 401,
                     "status" => "fail",
                     "message" => "Sesi tidak valid, silahkan login kembali",
                 ], 401);
@@ -78,6 +82,7 @@ class Handler extends ExceptionHandler
             Log::error($exception);
 
             return response()->json([
+                'code' => 500,
                 'status' => 'fail',
                 'message' => "Something Went Wrong, Please Contact Administrator",
             ], 500);

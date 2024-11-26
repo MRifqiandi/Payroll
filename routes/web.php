@@ -19,6 +19,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
+    Route::get('/test', function () {
+        return view('pages.test');
+    });
+
+    Route::get('/ayam', function () {
+        return view('exports.slip.monthly-salary');
+    })->name('test.pdf');
+
     Route::controller(SlipController::class)->group(function () {
         Route::get('/', 'index')->name('slip.index');
         Route::get('/donwload/{id}', 'download')->name('slip.download');

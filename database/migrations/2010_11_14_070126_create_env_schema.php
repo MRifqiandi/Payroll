@@ -22,16 +22,20 @@ return new class extends Migration
         ];
 
         foreach ($tables as $key => $value) {
-            config(["database.tables.{$key}" => $value]);
-            Utils::CREATE_ENV_VARIABLE($key, $value);
+            if (env($key)) {
+                config(["database.tables.{$key}" => env($key)]);
+            } else {
+                config(["database.tables.{$key}" => $value]);
+                Utils::CREATE_ENV_VARIABLE($key, $value);
+            }
         }
 
         $permission = [
-            'roles' => Str::uuid(),
-            'permissions' => Str::uuid(),
-            'model_has_permissions' => Str::uuid(),
-            'model_has_roles' => Str::uuid(),
-            'role_has_permissions' => Str::uuid(),
+            'roles' => env('DB_ROLES') ?? Str::uuid(),
+            'permissions' => env('DB_PERMISSIONS') ?? Str::uuid(),
+            'model_has_permissions' => env('DB_MODEL_HAS_PERMISSIONS') ?? Str::uuid(),
+            'model_has_roles' => env('DB_MODEL_HAS_ROLES') ?? Str::uuid(),
+            'role_has_permissions' => env('DB_ROLE_HAS_PERMISSIONS') ?? Str::uuid(),
         ];
 
         config(["permission.table_names" => $permission]);

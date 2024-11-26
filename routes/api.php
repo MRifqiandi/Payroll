@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\AccountController;
+use App\Http\Controllers\Api\SlipController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('api_key')->group(function () {
+    Route::prefix('account')->group(function () {
+        Route::controller(AccountController::class)->group(function () {
+            Route::get('/', 'get');
+        });
+    });
+
+    Route::prefix('slip')->group(function () {
+        Route::controller(SlipController::class)->group(function () {
+            Route::get('/list/{account_id}', 'list');
+            Route::get('/get/{slip_id}', 'get');
+        });
+    });
 });

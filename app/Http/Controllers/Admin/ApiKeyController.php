@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Constants;
 use App\Http\Controllers\Controller;
 use App\Models\ApiKey;
 use App\Utils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -21,25 +23,19 @@ class ApiKeyController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:' . config('database.tables.DB_API_KEYS') . ',name',
-            // 'permission' => 'required|array'
+            'permissions' => 'required|min:1|array|in:' . implode(',', Constants::API_PERMISSION),
         ]);
 
-        $user = bin2hex(random_bytes(6));
+        $user = Utils::GENERATE_API_USER();
         $key = Utils::GENERATE_API_KEY();
 
         DB::beginTransaction();
 
-        // ApiKey::create([
-        //     'name' => $request->name,
-        //     'user' => $user,
-        //     'key' => Utils::ENCRYPT_ENV($key),
-        // ])->syncPermissions($request->permission);
-
         ApiKey::create([
             'name' => $request->name,
             'user' => $user,
-            'key' => Utils::ENCRYPT_ENV($key),
-        ]);
+            'key' => Hash::make($key),
+        ])->syncPermissions($request->permissions);
 
         DB::commit();
 
@@ -83,7 +79,7 @@ class ApiKeyController extends Controller
                 return view('pages.api-key.menu', compact('query'));
             })
             ->addColumn('permission', function ($query) {
-                return "";
+                return $query->getPermissionNames()->implode(', ');
             })
             ->rawColumns(['action'])
             ->make(true);

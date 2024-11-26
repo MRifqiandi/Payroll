@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Spatie\Permission\Traits\HasPermissions;
+use Spatie\Permission\Traits\HasRoles;
 
 class ApiKey extends Model
 {
-    use HasFactory, HasPermissions;
+    use HasFactory, HasPermissions, HasRoles;
 
+    protected $guard_name = 'api';
     protected $guarded = [];
 
     protected $table;
