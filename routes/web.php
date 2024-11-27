@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ApiKeyController;
 use App\Http\Controllers\AuthenticatorController;
 use App\Http\Controllers\Finance\UploadController;
 use App\Http\Controllers\SlipController;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,54 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/ayam', function () {
+        $user = [
+            'name' => 'John Doe',
+            'nip' => 31231312,
+            'rank' => 'PNS',
+            'position' => 'Kepala Sekolah',
+        ];
+
+        $data = [
+            'bulan' => 4,
+            'tahun' => 2024,
+            'gjpokok' => 3213,
+            'tjistri' => 3213,
+            'tjanak' => 123444,
+            'tjupns' => 321312321,
+            'tjstruk' => 3123123,
+            'tjfungs' => 1232131,
+            'tjdaerah' => 132131,
+            'tjpencil' => 3213123,
+            'tjlain' => 43243,
+            'tjkompen' => 24423,
+            'pembul' => null,
+            'tjberas' => 31231,
+            'tjpph' => 132132,
+            'potpfkbul' => 132123,
+            'potpfk2' => 3333,
+            'potpfk10' => 3331,
+            'potpph' => 1111111,
+            'potswrum' => 5555,
+            'potkelbtj' => 2532,
+            'potlain' => 8888,
+            'pottabrum' => 345,
+            'bersih' => 131,
+            'bpjs' => 31111,
+            'bpjs2' => 1,
+        ];
+
+        $a = view('exports.slip.monthly-salary', [
+            'user' => $user,
+            'data' => $data,
+        ])->render();
+        $b = view('exports.slip.monthly-salary', [
+            'user' => $user,
+            'data' => $data,
+        ])->render();
+
+        $htmlContent = $a . '<div style="page-break-after: always;"></div>' . $b;
+        $pdf = Pdf::loadHTML($htmlContent);
+        return $pdf->download('invoice.pdf');
         return view('exports.slip.monthly-salary');
     })->name('test.pdf');
 

@@ -26,6 +26,8 @@ class ParseSlip
         return collect($rows)->mapWithKeys(function ($row) {
             return [
                 $row[7] => [
+                    'bulan' => $row[3],
+                    'tahun' => $row[4],
                     'gjpokok' => $row[21],
                     'tjistri' => $row[22],
                     'tjanak' => $row[23],

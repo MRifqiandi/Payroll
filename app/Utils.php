@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Jenssegers\Agent\Agent;
+use NumberToWords\NumberToWords;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Utils
@@ -39,7 +40,7 @@ class Utils
             $aesKey = self::DECRYPT_RSA($aesKey, $privateKey);
             $iv = self::DECRYPT_ENV($iv);
 
-            $decryptedData = json_decode(json_decode(self::DECRYPT_AES($file, $iv, $aesKey)));
+            $decryptedData = collect(json_decode(json_decode(self::DECRYPT_AES($file, $iv, $aesKey))))->toArray();
 
             return $decryptedData;
         } catch (\Throwable $th) {
@@ -198,4 +199,26 @@ class Utils
         $cacheKey = 'validated_device_' . auth()->id() . '_' . md5(self::GET_DEVICE_INFO());
         return Cache::has($cacheKey);
     }
+
+    public static function NUMBER_TO_MONTH($number) {
+        if (!is_numeric($number)) {
+            return "-";
+        }
+
+        $monthName = strtoupper(date("F", mktime(0, 0, 0, $number, 1)));
+        return $monthName;
+    }
+
+    public static function FORMAT_CURRENCY($value) {
+        if (!is_numeric($value)) {
+            return "-";
+        }
+
+        return number_format($value, 0, ',', '.');
+    }
+
+    public static function NUMBER_TO_TEXT($value) {
+        return ucfirst(((new NumberToWords())->getNumberTransformer('id'))->toWords($value));
+    }
 }
+

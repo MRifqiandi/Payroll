@@ -47,13 +47,33 @@
             @if (auth()->user()['2fa_secret'] && !\App\Utils::IS_DEVICE_VALIDATED())
                 $('#modal_validate_2fa').modal('show');
             @else
-                const id = $(this).data('id');
-                window.open(`{{ route('slip.download', '') }}` + '/' + id, '_blank');
+                const $button = $(this);
+                const id = $button.data('id');
+                const url = `{{ route('slip.download', '') }}/${id}`;
+
+
+                $button.addClass('loading');
+
+                const anchor = document.createElement('a');
+                anchor.href = url;
+                anchor.download = true;
+
+                document.body.appendChild(anchor);
+                anchor.click();
+                document.body.removeChild(anchor);
+
+
+                setTimeout(() => {
+                    $button.removeClass('loading').addClass('done');
+                    setTimeout(() => {
+                        $button.removeClass('done');
+                    }, 2000);
+                }, 5000);
             @endif
         };
 
         $(document).ready(function() {
-            $(document).on('click', '.slip-donwload-button', onDonwload);
+            $(document).on('click', '.slip-download-button', onDonwload);
 
             slipTable = $('#table_slip').DataTable({
                 processing: true,

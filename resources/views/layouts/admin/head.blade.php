@@ -53,5 +53,74 @@
             font-size: 1rem;
             font-weight: 500;
         }
+
+        .slip-download-button {
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .slip-download-button.loading {
+            pointer-events: none;
+            /* Disable clicks while loading */
+            color: transparent;
+            /* Hide the icon text while loading */
+        }
+
+        .slip-download-button.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            /* Ensure it appears above the button */
+        }
+
+        .slip-download-button.done {
+            background-color: #28a745 !important;
+            /* Success green */
+            color: #fff !important;
+        }
+
+        .slip-download-button.done::after {
+            content: '\f00c';
+            /* FontAwesome checkmark */
+            font-family: FontAwesome;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            z-index: 2;
+            /* Ensure it appears above the button */
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes spin {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
