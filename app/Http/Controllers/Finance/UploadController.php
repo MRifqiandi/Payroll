@@ -71,7 +71,8 @@ class UploadController extends Controller
 
         $receivers = User::select([
             'name',
-            'email'
+            'email',
+            'number'
         ])->whereIn('id', $upload->files()->pluck('user_id'))
             ->orderBy('name')
             ->get();
@@ -97,8 +98,6 @@ class UploadController extends Controller
 
         $userKeys = UploadService::fetchUserKeysByNumber(array_keys($fileData));
 
-        $encryptedSlips = UploadService::createEncryptedSlips($userKeys['data'], $fileData, $request->name, $request->type);
-
         if (count($userKeys['invalid']) > 0 && !$request->accept) {
             return response()->json([
                 'status' => 'fail',
@@ -106,6 +105,8 @@ class UploadController extends Controller
                 'data' => [...$userKeys['invalid']],
             ]);
         }
+
+        $encryptedSlips = UploadService::createEncryptedSlips($userKeys['data'], $fileData, $request->name, $request->type);
 
         DB::beginTransaction();
 

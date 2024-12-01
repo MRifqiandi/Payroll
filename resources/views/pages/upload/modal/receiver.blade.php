@@ -1,5 +1,5 @@
 <div class="modal fade" id="modal_view_receivers" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered mw-650px">
+    <div class="modal-dialog modal-dialog-centered mw-950px" style="min-width: 800px !important">
         <div class="modal-content">
             <div class="modal-header flex-stack align-items-center">
                 <div class="fs-2 fw-bold">Penerima Slip</div>
@@ -17,6 +17,7 @@
                                 <th class="w-50px text-center">NO</th>
                                 <th>NAMA</th>
                                 <th>EMAIL</th>
+                                <th>NIP/NIPPPK/NIPH</th>
                             </tr>
                         </thead>
 

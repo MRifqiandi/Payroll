@@ -7,6 +7,7 @@ use App\Models\UserFile;
 use App\Utils;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
+use Tests\Data\CreateEncryptedSlipsData;
 
 class Fixing extends Command
 {
@@ -29,6 +30,7 @@ class Fixing extends Command
      */
     public function handle()
     {
+        dd(CreateEncryptedSlipsData::getFile());
         dd(base64_encode("SGJI_SECRET_0d50fbf439bcca866076135acf_ITK"));
         $a = Utils::GENERATE_API_KEY();
 

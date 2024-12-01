@@ -59,22 +59,31 @@
             @if (auth()->user()['2fa_secret'] && !\App\Utils::IS_DEVICE_VALIDATED())
                 $('#modal_validate_2fa').modal('show');
             @else
-                const id = $(this).data('id');
+                const $button = $(this);
+                const id = $button.data('id');
                 const url = `{{ route('upload.download', '') }}/${id}`;
 
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = '';
-                a.style.display = 'none';
+                $button.addClass('loading');
 
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+                const anchor = document.createElement('a');
+                anchor.href = url;
+                anchor.download = true;
+
+                document.body.appendChild(anchor);
+                anchor.click();
+                document.body.removeChild(anchor);
+
+                setTimeout(() => {
+                    $button.removeClass('loading').addClass('done');
+                    setTimeout(() => {
+                        $button.removeClass('done');
+                    }, 2000);
+                }, 5000);
             @endif
         }
 
         $(document).ready(function() {
-            $(document).on('click', '.download-button', onDownload);
+            $(document).on('click', '.slip-download-button', onDownload);
 
             uploadTable = $('#table_upload').DataTable({
                 processing: true,
@@ -157,6 +166,7 @@
                                     <td class="text-center">${index + 1}</td>
                                     <td>${item.name}</td>
                                     <td>${item.email}</td>
+                                    <td>${item.number}</td>
                                 </tr>
                             `;
                         });
