@@ -181,7 +181,7 @@ class EncryptSlipsPerformanceTest extends TestCase
         $aggregatedResults = [];
 
         $countResult = [];
-        $messageCounts = [1, 5, 10, 15, 20, 25, 30, 50];
+        $messageCounts = [1, 5, 10, 15, 20, 25, 30, 50, 100];
 
         $i = 1;
         // Iterate over the data and run ENCRYPT_SLIP for each pair
