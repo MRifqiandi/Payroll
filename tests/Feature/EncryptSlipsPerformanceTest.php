@@ -16,17 +16,17 @@ class EncryptSlipsPerformanceTest extends TestCase
         $resources = [];
 
         // Generate AES Key
-        $start = microtime(true);
-        $startMemory = memory_get_usage();
-        $startCpu = getrusage();
+        // $start = microtime(true);
+        // $startMemory = memory_get_usage();
+        // $startCpu = getrusage();
         $aesKey = Utils::GENERATE_AES_KEY();
-        $wallClockTime = microtime(true) - $start;
-        $resources[] = [
-            'operation' => 'GENERATE AES KEY',
-            'Execution Time (s)' => $wallClockTime,
-            'RAM (KB)' => (memory_get_usage() - $startMemory) / 1024,
-            'CPU Time (s)' => self::calculateCpuCost($startCpu, getrusage()),
-        ];
+        // $wallClockTime = microtime(true) - $start;
+        // $resources[] = [
+        //     'operation' => 'GENERATE AES KEY',
+        //     'Execution Time (s)' => $wallClockTime,
+        //     'RAM (KB)' => (memory_get_usage() - $startMemory) / 1024,
+        //     'CPU Time (s)' => self::calculateCpuCost($startCpu, getrusage()),
+        // ];
 
         // Encrypt Data with AES
         $start = microtime(true);
@@ -35,7 +35,7 @@ class EncryptSlipsPerformanceTest extends TestCase
         $encryptedData = Utils::ENCRYPT_AES(json_encode($file), $aesKey);
         $wallClockTime = microtime(true) - $start;
         $resources[] = [
-            'operation' => 'ENCRYPT AES',
+            'operation' => 'ENCRYPT DATA (AES-128)',
             'Execution Time (s)' => $wallClockTime,
             'RAM (KB)' => (memory_get_usage() - $startMemory) / 1024,
             'CPU Time (s)' => self::calculateCpuCost($startCpu, getrusage()),
@@ -48,7 +48,7 @@ class EncryptSlipsPerformanceTest extends TestCase
         $encryptedKey = Utils::ENCRYPT_RSA($aesKey, $key);
         $wallClockTime = microtime(true) - $start;
         $resources[] = [
-            'operation' => 'ENCRYPT RSA',
+            'operation' => 'ENCRYPT AES KEY (RSA-2048)',
             'Execution Time (s)' => $wallClockTime,
             'RAM (KB)' => (memory_get_usage() - $startMemory) / 1024,
             'CPU Time (s)' => self::calculateCpuCost($startCpu, getrusage()),
@@ -61,7 +61,7 @@ class EncryptSlipsPerformanceTest extends TestCase
         $encryptedIv = Utils::ENCRYPT_ENV($encryptedData['iv']);
         $wallClockTime = microtime(true) - $start;
         $resources[] = [
-            'operation' => 'ENCRYPT ENV',
+            'operation' => 'ENCRYPT IV (AES-256-CBC)',
             'Execution Time (s)' => $wallClockTime,
             'RAM (KB)' => (memory_get_usage() - $startMemory) / 1024,
             'CPU Time (s)' => self::calculateCpuCost($startCpu, getrusage()),
@@ -91,36 +91,82 @@ class EncryptSlipsPerformanceTest extends TestCase
      */
     protected function printPerformanceTable($title, $results)
     {
-        // Calculate column widths dynamically
-        $colWidths = [
+        // Calculate column widths dynamically for the two tables
+        $colWidthsFirstTable = [
             'operation' => max(strlen('Cryptographic Operation'), ...array_map(fn($r) => strlen($r['operation']), $results)) + 2,
             'Execution Time (s)' => max(strlen('Execution Time (s)'), ...array_map(fn($r) => strlen(number_format($r['Execution Time (s)'], 5)), $results)) + 2,
+        ];
+
+        $colWidthsSecondTable = [
+            'operation' => max(strlen('Cryptographic Operation'), ...array_map(fn($r) => strlen($r['operation']), $results)) + 2,
             'RAM (KB)' => max(strlen('RAM Usage (KB)'), ...array_map(fn($r) => strlen(number_format($r['RAM (KB)'], 2)), $results)) + 2,
             'CPU Time (s)' => max(strlen('CPU Time (s)'), ...array_map(fn($r) => strlen(number_format($r['CPU Time (s)'], 5)), $results)) + 2,
         ];
 
-        // Header
-        echo "\n$title\n";
-        echo str_repeat('-', array_sum($colWidths) + 5) . "\n";
+        // First Table - Execution Time
+        echo "\n$title - Execution Time\n";
+        echo str_repeat('-', array_sum($colWidthsFirstTable) + 5) . "\n";
         printf(
-            "| %-{$colWidths['operation']}s | %-{$colWidths['Execution Time (s)']}s | %-{$colWidths['RAM (KB)']}s | %-{$colWidths['CPU Time (s)']}s |\n",
-            'Cryptographic Operation', 'Execution Time (s)', 'RAM Usage (KB)', 'CPU Time (s)'
+            "| %-{$colWidthsFirstTable['operation']}s | %-{$colWidthsFirstTable['Execution Time (s)']}s |\n",
+            'Cryptographic Operation',
+            'Execution Time (s)'
         );
-        echo str_repeat('-', array_sum($colWidths) + 5) . "\n";
+        echo str_repeat('-', array_sum($colWidthsFirstTable) + 5) . "\n";
 
-        // Rows
         foreach ($results as $result) {
             printf(
-                "| %-{$colWidths['operation']}s | %-{$colWidths['Execution Time (s)']}s | %-{$colWidths['RAM (KB)']}s | %-{$colWidths['CPU Time (s)']}s |\n",
+                "| %-{$colWidthsFirstTable['operation']}s | %-{$colWidthsFirstTable['Execution Time (s)']}s |\n",
                 $result['operation'],
-                number_format($result['Execution Time (s)'], 5),
+                number_format($result['Execution Time (s)'], 5)
+            );
+        }
+
+        echo str_repeat('-', array_sum($colWidthsFirstTable) + 5) . "\n";
+
+        // Second Table - RAM and CPU Time
+        echo "\n$title - RAM and CPU Time\n";
+        echo str_repeat('-', array_sum($colWidthsSecondTable) + 5) . "\n";
+        printf(
+            "| %-{$colWidthsSecondTable['operation']}s | %-{$colWidthsSecondTable['RAM (KB)']}s | %-{$colWidthsSecondTable['CPU Time (s)']}s |\n",
+            'Cryptographic Operation',
+            'RAM Usage (KB)',
+            'CPU Time (s)'
+        );
+        echo str_repeat('-', array_sum($colWidthsSecondTable) + 5) . "\n";
+
+        foreach ($results as $result) {
+            printf(
+                "| %-{$colWidthsSecondTable['operation']}s | %-{$colWidthsSecondTable['RAM (KB)']}s | %-{$colWidthsSecondTable['CPU Time (s)']}s |\n",
+                $result['operation'],
                 number_format($result['RAM (KB)'], 2),
                 number_format($result['CPU Time (s)'], 5)
             );
         }
 
-        // Footer
-        echo str_repeat('-', array_sum($colWidths) + 5) . "\n";
+        echo str_repeat('-', array_sum($colWidthsSecondTable) + 5) . "\n";
+    }
+
+    protected function printNumberMessage($results)
+    {
+        echo "\n Number of messages \n";
+
+        echo "+-----------------------------------+--------------------+---------------------+-------------------+-------------------+\n";
+        echo "| Cryptographic Operation         | Number of Messages | Execution Time (s)  | RAM Usage (KB)    | CPU Time (s)      |\n";
+        echo "+-----------------------------------+--------------------+---------------------+-------------------+-------------------+\n";
+
+        // Print individual results
+        foreach ($results as $result) {
+            printf(
+                "| %-33s | %-18d | %-19.5f | %-18.2f | %-17.5f |\n",
+                $result['operation'],
+                $result['messages'],
+                $result['Execution Time (s)'],
+                $result['RAM (KB)'],
+                $result['CPU Time (s)']
+            );
+        }
+
+        echo "+-----------------------------------+--------------------+---------------------+-------------------+-------------------+\n";
     }
 
     /**
@@ -134,6 +180,10 @@ class EncryptSlipsPerformanceTest extends TestCase
         $individualResults = [];
         $aggregatedResults = [];
 
+        $countResult = [];
+        $messageCounts = [1, 5, 10, 15, 20, 25, 30, 50];
+
+        $i = 1;
         // Iterate over the data and run ENCRYPT_SLIP for each pair
         foreach ($data as $item) {
             $file = $item[0];
@@ -158,7 +208,19 @@ class EncryptSlipsPerformanceTest extends TestCase
                 $aggregatedResults[$operation]['RAM (KB)'] += $result['RAM (KB)'];
                 $aggregatedResults[$operation]['CPU Time (s)'] += $result['CPU Time (s)'];
                 $aggregatedResults[$operation]['count']++;
+
+                if (in_array($i, $messageCounts)) {
+                    $countResult[] = [
+                        'operation' => $operation,
+                        'messages' => $i,
+                        'Execution Time (s)' => $aggregatedResults[$operation]['Execution Time (s)'],
+                        'RAM (KB)' => $aggregatedResults[$operation]['RAM (KB)'],
+                        'CPU Time (s)' => $aggregatedResults[$operation]['CPU Time (s)'],
+                    ];
+                }
             }
+
+            $i++;
         }
 
         // Prepare average results
@@ -173,9 +235,15 @@ class EncryptSlipsPerformanceTest extends TestCase
         }
 
         // Print individual results
-        $this->printPerformanceTable("Individual Results", $individualResults);
+        // $this->printPerformanceTable("Individual Results", $individualResults);
 
         // Print average results
         $this->printPerformanceTable("Average Results", $averageResults);
+
+        foreach (['ENCRYPT DATA (AES-128)', 'ENCRYPT AES KEY (RSA-2048)', 'ENCRYPT IV (AES-256-CBC)'] as $operationFilter) {
+            $this->printNumberMessage(array_filter($countResult, function($item) use ($operationFilter) {
+                return $item['operation'] === $operationFilter;
+            }));
+        }
     }
 }
