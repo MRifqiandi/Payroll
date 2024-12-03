@@ -181,7 +181,7 @@ class EncryptSlipsPerformanceTest extends TestCase
         $aggregatedResults = [];
 
         $countResult = [];
-        $messageCounts = [1, 5, 10, 15, 20, 25, 30, 50, 100];
+        $messageCounts = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
 
         $i = 1;
         // Iterate over the data and run ENCRYPT_SLIP for each pair
@@ -241,7 +241,7 @@ class EncryptSlipsPerformanceTest extends TestCase
         $this->printPerformanceTable("Average Results", $averageResults);
 
         foreach (['ENCRYPT DATA (AES-128)', 'ENCRYPT AES KEY (RSA-2048)', 'ENCRYPT IV (AES-256-CBC)'] as $operationFilter) {
-            $this->printNumberMessage(array_filter($countResult, function($item) use ($operationFilter) {
+            $this->printNumberMessage(array_filter($countResult, function ($item) use ($operationFilter) {
                 return $item['operation'] === $operationFilter;
             }));
         }
