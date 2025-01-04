@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>LOGIN | SIMGAJI</title>
+    <title>LUPA PASSWORD | SIMGAJI</title>
     <link href="{{ URL::asset('src/logincss.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -13,43 +13,33 @@
 <body>
     <div id="formWrapper">
         <div id="form">
-            <div class="logo">
+            <div class="logo" style="margin-bottom: 0 !important;">
                 <img src="{{ URL::asset('src/assets/images/logoitk.png') }}" width="200" />
                 <br>
-                <img src="{{ URL::asset('src/assets/images/simbanding.png') }}" width="120" />
+                {{-- <img src="{{ URL::asset('src/assets/images/simbanding.png') }}" width="120" /> --}}
+                <h3 style="">Lupa Password</h3>
                 <br>
             </div>
-            <form action="{{ route('login') }}" method="POST">
+            <form action="{{ route('password.email') }}" method="POST">
                 @csrf
                 @isset($error)
                     <div class="alert alert-danger" role="alert">
                         {{ $error }}
                     </div>
                 @endisset
-                @isset($message)
-                    <div class="alert alert-success" role="alert">
-                        {{ $message }}
-                    </div>
-                @endisset
                 <div class="form-item">
                     <p class="formLabel">Email</p>
                     <input type="text" name="email" id="email" class="form-style" name="email" required />
                 </div>
-                <div class="form-item">
-                    <p class="formLabel">Password</p>
-                    <input type="password" name="password" id="password" class="form-style" name="password" required
-                        autocomplete="current-password" /><i class="bi bi-eye-slash"
-                        style="position:absolute; margin-left: 80%; bottom: 45px" id="togglePassword"></i>
-                </div>
-
 
                 <div class="form-item">
-                    <a href="{{ route('password.request') }}">Lupa Password?</a>
+                    <a href="{{ route('login') }}">Balik ke login</a>
 
-                    <input type="submit" class="login pull-right" value="Log In">
+                    <input type="submit" class="login pull-right" style="width: 150px" value="Reset Password">
                     <div class="clear-fix"></div>
                 </div>
                 <br>
+            </form>
         </div>
     </div>
     </form>

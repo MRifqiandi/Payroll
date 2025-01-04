@@ -41,6 +41,7 @@ class SlipController extends Controller
         ])->paginate($count, ['*'], 'page', $page);
 
         return response()->json([
+            "code" => 200,
             "status" => "success",
             "data" => $files->items(),
             "meta" => [
@@ -69,6 +70,7 @@ class SlipController extends Controller
         $data = Utils::DECRYPT_SLIP($file->file, $file->key, $file->iv, $user->private_key);
 
         return response()->json([
+            "code" => 200,
             "status" => "success",
             "data" => [
                 "user" => [

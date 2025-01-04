@@ -36,6 +36,7 @@ class AccountController extends Controller
         ])->paginate($count, ['*'], 'page', $page);
 
         return response()->json([
+            "code" => 200,
             "status" => "success",
             "data" => $accounts->items(),
             "meta" => [

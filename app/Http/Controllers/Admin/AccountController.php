@@ -95,24 +95,24 @@ class AccountController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $request->validate([
-            'id' => 'required',
-            'password' => 'required|min:8',
-        ]);
+        // $request->validate([
+        //     'id' => 'required',
+        //     'password' => 'required|min:8',
+        // ]);
 
-        $user = User::whereId($request->id)->first();
+        // $user = User::whereId($request->id)->first();
 
-        if (!$user) {
-            throw new HttpException(404, 'User not found');
-        }
+        // if (!$user) {
+        //     throw new HttpException(404, 'User not found');
+        // }
 
-        $user->password = bcrypt($request->password);
-        $user->save();
+        // $user->password = bcrypt($request->password);
+        // $user->save();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Password updated successfully'
-        ]);
+        // return response()->json([
+        //     'status' => 'success',
+        //     'message' => 'Password updated successfully'
+        // ]);
     }
 
     public function disableAuthenticator(Request $request)

@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-center align-items-center">
-    <button class="btn btn-sm btn-icon btn-light w-30px h-30px btn-reset-password mx-1" data-id="{{ $query->id }}"
+    {{-- <button class="btn btn-sm btn-icon btn-light w-30px h-30px btn-reset-password mx-1" data-id="{{ $query->id }}"
         data-name="{{ $query->name }}" data-email="{{ $query->email }}">
         <span class="fa fa-key"></span>
-    </button>
+    </button> --}}
     @if ($query['2fa_secret'])
         <button class="btn btn-sm btn-icon btn-info w-30px h-30px mx-1"
             onclick="onDisableAuthenticator('{{ $query->id }}')">

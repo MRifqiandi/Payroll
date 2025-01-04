@@ -60,6 +60,10 @@
         $('.2fa_button').on('click', function() {
             $('#modal_2fa').modal('show');
         });
+
+        $('.reset_password_button').on('click', function() {
+            $('#modal_reset_password').modal('show');
+        });
     });
 </script>
 

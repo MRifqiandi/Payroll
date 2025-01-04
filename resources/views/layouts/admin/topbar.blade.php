@@ -53,7 +53,14 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item d-flex justify-content-between align-items-center 2fa_button">
+                        <button class="dropdown-item d-flex justify-content-between align-items-center reset_password_button">
+                            <div>
+                                <i data-feather="lock" class="svg-icon mr-2 ml-1"></i>
+                                Ubah Password
+                            </div>
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item d-flex justify-content-between align-items-center 2fa_button">
                             <div>
                                 <i data-feather="key" class="svg-icon mr-2 ml-1"></i>
                                 2FA
@@ -63,7 +70,7 @@
                             @else
                                 <span class="badge badge-light-danger px-3">Disabled</span>
                             @endif
-                        </a>
+                        </button>
                         {{-- <a class="dropdown-item" href="javascript:void(0)"><i data-feather="credit-card"
                                         class="svg-icon mr-2 ml-1"></i>
                                     My Balance</a>

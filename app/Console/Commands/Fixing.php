@@ -30,8 +30,7 @@ class Fixing extends Command
      */
     public function handle()
     {
-        dd(CreateEncryptedSlipsData::getFile());
-        dd(base64_encode("SGJI_SECRET_0d50fbf439bcca866076135acf_ITK"));
+        dd(base64_encode("SGJI_SECRET_2b8314abe96209c4fccff004d2_ITK"));
         $a = Utils::GENERATE_API_KEY();
 
         dd(Hash::make("SGJI_SECRET_f41f2b1b523d10f03d9095db93_ITK"), Hash::check("SGJI_SECRET_f41f2b1b523d10f03d9095db93_ITK", Hash::make("SGJI_SECRET_f41f2b1b523d10f03d9095db93_ITK")));

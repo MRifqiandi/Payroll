@@ -39,6 +39,8 @@
     @else
         @include('layouts.admin.enable_2fa_modal')
     @endif
+
+    @include('layouts.admin.reset_password_modal')
 </body>
 
 </html>
