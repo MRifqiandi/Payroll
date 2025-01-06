@@ -28,48 +28,55 @@
                         <label class="d-flex align-items-center fs-5 fw-semibold mb-2">
                             <span class="required">Nama</span>
                         </label>
-                        <input type="text" class="form-control form-control-lg form-control-solid" name="name" required
-                            placeholder="" value="">
+                        <input type="text" class="form-control form-control-lg form-control-solid" name="name"
+                            required placeholder="" value="">
                     </div>
 
                     <div class="fv-row mb-3">
                         <label class="d-flex align-items-center fs-5 fw-semibold mb-2">
                             <span class="required">NIP/NIPPPK/NIPH</span>
                         </label>
-                        <input type="text" class="form-control form-control-lg form-control-solid" name="number" required
-                            placeholder="" value="">
+                        <input type="text" class="form-control form-control-lg form-control-solid" name="number"
+                            required placeholder="" value="">
                     </div>
 
                     <div class="fv-row mb-3">
                         <label class="d-flex align-items-center fs-5 fw-semibold mb-2">
                             <span class="required">Pangkat/Golongan</span>
                         </label>
-                        <input type="text" class="form-control form-control-lg form-control-solid" name="rank" required
-                            placeholder="" value="">
+                        {{-- <input type="text" class="form-control form-control-lg form-control-solid" name="rank" required
+                            placeholder="" value=""> --}}
+                        <select name="rank" class="form-select form-select-solid" data-control="select2" required autocomplete="off"
+                            data-select2-parent="#modal_add_account">
+                            <option value="" disabled selected>Pilih Golongan</option>
+                            @foreach (\App\Constants::USER_RANK as $value)
+                                <option value="{{ $value }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="fv-row mb-3">
                         <label class="d-flex align-items-center fs-5 fw-semibold mb-2">
                             <span class="required">Jabatan</span>
                         </label>
-                        <input type="text" class="form-control form-control-lg form-control-solid" name="position" required
-                            placeholder="" value="">
+                        <input type="text" class="form-control form-control-lg form-control-solid" name="position"
+                            required placeholder="" value="">
                     </div>
 
                     <div class="fv-row mb-3">
                         <label class="d-flex align-items-center fs-5 fw-semibold mb-2">
                             <span class="required">Email</span>
                         </label>
-                        <input type="text" class="form-control form-control-lg form-control-solid" name="email" required
-                            placeholder="" value="">
+                        <input type="text" class="form-control form-control-lg form-control-solid" name="email"
+                            required placeholder="" value="">
                     </div>
 
                     <div class="fv-row mb-3">
                         <label class="d-flex align-items-center fs-5 fw-semibold mb-2">
                             <span class="required">Password</span>
                         </label>
-                        <input type="text" class="form-control form-control-lg form-control-solid" name="password" required
-                            placeholder="" value="">
+                        <input type="text" class="form-control form-control-lg form-control-solid" name="password"
+                            required placeholder="" value="">
                     </div>
                 </div>
 

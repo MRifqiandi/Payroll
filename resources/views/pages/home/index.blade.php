@@ -18,6 +18,8 @@
             <h2>
                 List Slip Gaji
             </h2>
+            <div>Golongan : {{ auth()->user()->rank }}</div>
+            <p>Base Salary : <span class="text-success">{{ \App\Utils::GET_SALARY_AMOUNT(auth()->user()->rank, auth()->user()->join_date) }}/month</span> </p>
             <div class="table-responsive" style="overflow: hidden">
                 <table class="table table-striped table-row-dashed align-middle gs-0 gy-3 my-0" id="table_slip">
                     <thead>

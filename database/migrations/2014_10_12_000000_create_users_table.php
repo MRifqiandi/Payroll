@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('number');
             $table->string('rank');
+            $table->date('join_date');
             $table->string('position');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

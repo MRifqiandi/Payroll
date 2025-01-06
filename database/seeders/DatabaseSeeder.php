@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Constants;
 use App\Models\User;
 use App\Utils;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -38,7 +39,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'superadmin@gmail.com',
             'password' => bcrypt('12345678'),
             'number' => '123456',
-            'rank' => 'Admin',
+            'join_date' => now(),
+            'rank' => Constants::USER_RANK['PNS-IV/e'],
             'position' => 'Admin',
             'public_key' => $publicKey,
             'private_key' => $privateKey,
@@ -49,7 +51,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'finance@gmail.com',
             'password' => bcrypt('12345678'),
             'number' => '123456',
-            'rank' => 'Admin',
+            'join_date' => "2021-01-01",
+            'rank' => Constants::USER_RANK['ASN-VI'],
             'position' => 'Admin',
             'public_key' => $publicKey,
             'private_key' => $privateKey,
@@ -59,8 +62,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'staff',
             'email' => 'staff@gmail.com',
             'password' => bcrypt('12345678'),
+            'join_date' => "2022-01-01",
             'number' => '123456',
-            'rank' => 'Admin',
+            'rank' => Constants::USER_RANK['NON-ASN-S1'],
             'position' => 'Admin',
             'public_key' => $publicKey,
             'private_key' => $privateKey,
@@ -90,8 +94,9 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Staff',
                 'email' => $num . '@gmail.com',
                 'password' => bcrypt('12345678'),
+                'join_date' => '2023-01-01',
                 'number' => $num,
-                'rank' => 'Staff',
+                'rank' => Constants::USER_RANK['NON-ASN-S1'],
                 'position' => 'Staff',
                 'public_key' => $publicKey,
                 'private_key' => $privateKey,

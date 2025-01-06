@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\User;
 use App\Models\UserFile;
 use App\Utils;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use Tests\Data\CreateEncryptedSlipsData;
@@ -30,6 +31,8 @@ class Fixing extends Command
      */
     public function handle()
     {
+        dd(Carbon::parse("2021-12-12")->diffInYears(Carbon::now()));
+
         dd(base64_encode("SGJI_SECRET_2b8314abe96209c4fccff004d2_ITK"));
         $a = Utils::GENERATE_API_KEY();
 

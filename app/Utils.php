@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Data\Salary;
 use Illuminate\Support\Facades\Crypt;
 use phpseclib3\Crypt\RSA;
 use phpseclib3\Crypt\PublicKeyLoader;
@@ -11,6 +12,7 @@ use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -200,7 +202,8 @@ class Utils
         return Cache::has($cacheKey);
     }
 
-    public static function NUMBER_TO_MONTH($number) {
+    public static function NUMBER_TO_MONTH($number)
+    {
         if (!is_numeric($number)) {
             return "-";
         }
@@ -209,7 +212,8 @@ class Utils
         return $monthName;
     }
 
-    public static function FORMAT_CURRENCY($value) {
+    public static function FORMAT_CURRENCY($value)
+    {
         if (!is_numeric($value)) {
             return "-";
         }
@@ -217,8 +221,26 @@ class Utils
         return number_format($value, 0, ',', '.');
     }
 
-    public static function NUMBER_TO_TEXT($value) {
+    public static function NUMBER_TO_TEXT($value)
+    {
         return ucfirst(((new NumberToWords())->getNumberTransformer('id'))->toWords($value));
     }
-}
 
+    public static function GET_SALARY_AMOUNT($rank, $join_date)
+    {
+        $year = Carbon::parse($join_date)->diffInYears(Carbon::now());
+
+        if (isset(Salary::USER_RANK_SALARY[$rank])) {
+            $salaries = Salary::USER_RANK_SALARY[$rank];
+
+            if (isset($salaries[$year])) {
+                return "Rp " . self::FORMAT_CURRENCY($salaries[$year]);
+            }
+
+            $maxIndex = max(array_keys($salaries));
+            return "Rp " . self::FORMAT_CURRENCY($salaries[$maxIndex]);
+        } else {
+            return "Rp -";
+        }
+    }
+}
