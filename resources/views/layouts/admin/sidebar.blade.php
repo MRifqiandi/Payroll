@@ -4,14 +4,15 @@
     };
 
     $isAnyActive = function($paths) {
-        foreach ($paths as $path) {
-            if ($isActive($path)) {
-                return 'selected';
-            }
+    foreach ($paths as $path) {
+        if (request()->routeIs($path)) {
+            return 'selected';
         }
+    }
 
-        return '';
-    };
+    return '';
+};
+
 @endphp
 
 <aside class="left-sidebar" data-sidebarbg="skin6">
@@ -25,10 +26,21 @@
                         <b class="hide-menu">Dashboard</b>
                     </a>
 
+                    @role('staff')
+                    <li class="sidebar-item {{ $isActive('cuti.status') }}">
+                        <a class="sidebar-link sidebar-link" href="{{ route('cuti.status') }}" aria-expanded="false">
+                            <i class="bi bi-palette2"></i>
+                            <b class="hide-menu">Cuti</b>
+                        </a>
+                    </li>
+                @endrole
+
                 @hasanyrole(['admin', 'finance'])
                     <li class="list-divider"></li>
                     <li class="nav-small-cap"><span class="hide-menu">Menu</span></li>
                 @endrole
+
+
 
                 @role('admin')
                     <li class="sidebar-item {{ $isActive('account.index') }}">
@@ -47,6 +59,15 @@
                         </a>
                     </li>
                 @endhasanyrole
+
+                @role(['admin', 'finance'])
+                    <li class="sidebar-item {{ $isActive('salary.index', 'pages.payroll.create') }}">
+                        <a class="sidebar-link sidebar-link" href="{{ route('salary.index') }}" aria-expanded="false">
+                            <i class="fas fa-fax" class="feather-icon"></i>
+                            <b class="hide-menu">Payroll</b>
+                        </a>
+                    </li>
+                @endrole
 
                 @role('admin')
                     <li class="sidebar-item {{ $isActive('api-key.index') }}">

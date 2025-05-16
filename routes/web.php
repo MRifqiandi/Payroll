@@ -4,6 +4,9 @@ use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\ApiKeyController;
 use App\Http\Controllers\AuthenticatorController;
 use App\Http\Controllers\Finance\UploadController;
+use App\Http\Controllers\Payroll\SalaryController;
+use App\Http\Controllers\Payroll\SalaryRaiseController;
+use App\Http\Controllers\Payroll\SalaryStatusController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SlipController;
 use Illuminate\Support\Facades\Route;
@@ -80,5 +83,35 @@ Route::middleware('auth')->group(function () {
         });
     });
 });
+
+Route::post('/salary/{id}/finalize', [SalaryStatusController::class, 'finalize'])->name('salary.finalize');
+
+
+Route::middleware('role:admin|finance')->group(function () {
+    Route::prefix('salary')->group(function () {
+        Route::controller(SalaryController::class)->group(function () {
+            Route::get('/', 'index')->name('salary.index');
+            Route::post('/store', 'store')->name('salary.store');
+            Route::get('/create', 'create')->name('salary.create');
+            Route::post('/update/{id}', 'update')->name('salary.update');
+            Route::post('/delete', 'delete')->name('salary.delete');
+            Route::put('/salary/update/{id}', [SalaryController::class, 'update'])->name('salary.update');
+            Route::delete('/salary/{id}', [SalaryController::class, 'destroy'])->name('salary.destroy');
+            Route::get('/gaji/riwayat', [SalaryController::class, 'showAllHistory'])->name('salary.history');
+
+
+
+            Route::get('/get/table', 'getDatatable')->name('salary.table');
+        });
+    });
+});
+
+Route::get('/salary-raise-history', [SalaryRaiseController::class, 'index'])->name('salary.raise.history');
+
+// routes/web.php
+Route::get('/salary/history', [SalaryController::class, 'salaryHistory'])->name('salary.history');
+
+Route::get('/salary/logs/ajax', [SalaryController::class, 'getSalaryLogsAjax'])->name('salary.logs.ajax');
+
 
 require __DIR__ . '/auth.php';

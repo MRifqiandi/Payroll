@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
+
+
 @include('layouts.admin.head')
 
 <body>
@@ -21,8 +23,6 @@
         <div class="page-wrapper">
             <div class="container-fluid">
                 @yield('content')
-
-                {{-- @include('sweetalert::alert') --}}
             </div>
 
             @include('layouts.admin.footer')
