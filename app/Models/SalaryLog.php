@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SalaryLog extends Model
 {
     use HasFactory;
-
+    
     protected $table = 'salary_log';
 
     protected $fillable = [

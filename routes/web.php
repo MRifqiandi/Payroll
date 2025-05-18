@@ -7,6 +7,7 @@ use App\Http\Controllers\Finance\UploadController;
 use App\Http\Controllers\Payroll\SalaryController;
 use App\Http\Controllers\Payroll\SalaryRaiseController;
 use App\Http\Controllers\Payroll\SalaryStatusController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SlipController;
 use Illuminate\Support\Facades\Route;
@@ -105,6 +106,30 @@ Route::middleware('role:admin|finance')->group(function () {
         });
     });
 });
+
+
+Route::middleware('role:admin|finance|staff')->prefix('laporan')->group(function () {
+    Route::controller(LaporanController::class)->group(function () {
+        Route::get('/', 'index')->name('laporan.index');                    // /laporan
+        Route::get('/upload', 'create')->name('laporan.create');            // /laporan/upload
+        Route::get('/laporan/list', [LaporanController::class, 'list'])->name('laporan.list');
+        Route::get('/laporan/download/{id}', [LaporanController::class, 'download'])->name('laporan.download');
+        // Route::get('/laporan/download', [LaporanController::class, 'download'])->name('laporan.download');
+        Route::delete('/laporan/{id}', [LaporanController::class, 'destroy'])->name('laporan.destroy');
+
+        Route::post('/', 'store')->name('laporan.store');                   // /laporan (POST)
+        Route::get('/jenis/{jenis}', 'byJenis');                            // /laporan/jenis/{jenis}
+        Route::get('/{id}', 'show');                                        // /laporan/{id}
+        Route::delete('/{id}', 'destroy');                                 // /laporan/{id} (DELETE)
+        Route::get('/get/table', 'getDatatable')->name('salary.table');    // /laporan/get/table
+    });
+});
+
+
+
+
+
+
 
 Route::get('/salary-raise-history', [SalaryRaiseController::class, 'index'])->name('salary.raise.history');
 

@@ -12,8 +12,6 @@ class CreateTaxTable extends Migration
             $table->id();
             $table->foreignId('employee_id')->constrained('employee')->onDelete('cascade');
             $table->decimal('pph21', 15, 2)->default(0);
-            $table->string('buktiPotong')->nullable();
-            $table->date('tanggalLaporan')->nullable();
             $table->timestamps();
         });
     }

@@ -1,4 +1,5 @@
     @extends('layouts.admin.main')
+    @section('title', 'Payroll')
 
     @section('content')
     <div class="bg-white min-vh-100 py-4">

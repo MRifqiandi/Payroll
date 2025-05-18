@@ -15,9 +15,8 @@ class Tax extends Model
     // Tentukan kolom yang dapat diisi secara massal (mass assignment)
     protected $fillable = [
         'employee_id',
+        'salary_id',
         'pph21',
-        'buktiPotong',
-        'tanggalLaporan',
     ];
 
     // Relasi dengan model Employee

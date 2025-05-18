@@ -15,6 +15,7 @@ class Bpjs extends Model
     // Tentukan kolom yang dapat diisi secara massal (mass assignment)
     protected $fillable = [
         'employee_id',
+        'salary_id',
         'jenisBpjs',
         'iuranPerusahaan',
         'iuranKaryawan',

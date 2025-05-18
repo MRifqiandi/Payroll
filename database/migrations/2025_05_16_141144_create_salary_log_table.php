@@ -16,8 +16,7 @@ class CreateSalaryLogTable extends Migration
             $table->decimal('old_value', 15, 2)->nullable(); // nilai sebelum diubah
             $table->decimal('new_value', 15, 2)->nullable(); // nilai setelah diubah
             $table->text('alasan')->nullable(); // opsional, alasan perubahan
-            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null'); // admin yang ubah
-            $table->timestamp('updated_at'); // waktu perubahan
+            $table->timestamps();
         });
     }
 

@@ -32,6 +32,8 @@
             </div>
         </form>
 
+        <div class="card border-2" style="border-radius: 10px;">
+        <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-bordered table-striped align-middle table-hover m-0">
                 <thead class="table-light">
@@ -75,6 +77,9 @@
 
             </table>
         </div>
+        </div>
+        </div>
+
         <div class="mt-3">
             {{ $salaryHistory->links('pagination::bootstrap-5') }}
         </div>

@@ -69,6 +69,25 @@
                     </li>
                 @endrole
 
+                @role(['admin', 'finance', 'staff'])
+                    <li class="sidebar-item dropdown {{ request()->routeIs('laporan.list') || request()->routeIs('laporan.create') ? 'active' : '' }}">
+                        <a href="#laporanDropdown" class="sidebar-link dropdown-toggle" data-bs-toggle="collapse" role="button" aria-expanded="{{ (request()->routeIs('laporan.list') || request()->routeIs('laporan.create')) ? 'true' : 'false' }}" aria-controls="laporanDropdown">
+                            <i class="fas fa-fax"></i>
+                            <b class="hide-menu">Laporan</b>
+                        </a>
+                        <ul class="collapse list-unstyled {{ (request()->routeIs('laporan.list') || request()->routeIs('laporan.create')) ? 'show' : '' }}" id="laporanDropdown">
+                            <li class="{{ request()->routeIs('laporan.list') ? 'active' : '' }}">
+                                <a class="sidebar-link" href="{{ route('laporan.list') }}">Daftar Laporan</a>
+                            </li>
+                            <li class=" {{ request()->routeIs('laporan.create') ? 'active' : '' }}">
+                                <a class="sidebar-link" href="{{ route('laporan.create') }}">Upload Laporan</a>
+                            </li>
+                        </ul>
+                    </li>
+                @endrole
+
+
+
                 @role('admin')
                     <li class="sidebar-item {{ $isActive('api-key.index') }}">
                         <a class="sidebar-link sidebar-link" href="{{ route('api-key.index') }}" aria-expanded="false">
