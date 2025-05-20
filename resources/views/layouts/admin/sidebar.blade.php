@@ -26,18 +26,19 @@
                         <b class="hide-menu">Dashboard</b>
                     </a>
 
-                    @role('staff')
-                    <li class="sidebar-item {{ $isActive('cuti.status') }}">
-                        <a class="sidebar-link sidebar-link" href="{{ route('cuti.status') }}" aria-expanded="false">
-                            <i class="bi bi-palette2"></i>
-                            <b class="hide-menu">Cuti</b>
-                        </a>
-                    </li>
-                @endrole
 
                 @hasanyrole(['admin', 'finance'])
                     <li class="list-divider"></li>
                     <li class="nav-small-cap"><span class="hide-menu">Menu</span></li>
+                @endrole
+
+                @role('staff')
+                    <li class="sidebar-item {{ $isActive('employee.profile') }}">
+                        <a class="sidebar-link sidebar-link" href="{{ route('employee.profile') }}" aria-expanded="false">
+                            <i class="fas fa-id-badge" class="feather-icon"></i>
+                            <b class="hide-menu">Profil Saya</b>
+                        </a>
+                    </li>
                 @endrole
 
 
@@ -79,7 +80,7 @@
                             <li class="{{ request()->routeIs('laporan.list') ? 'active' : '' }}">
                                 <a class="sidebar-link" href="{{ route('laporan.list') }}">Daftar Laporan</a>
                             </li>
-                            <li class=" {{ request()->routeIs('laporan.create') ? 'active' : '' }}">
+                            <li class="{{ request()->routeIs('laporan.create') ? 'active' : '' }}">
                                 <a class="sidebar-link" href="{{ route('laporan.create') }}">Upload Laporan</a>
                             </li>
                         </ul>

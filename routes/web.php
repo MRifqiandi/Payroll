@@ -3,12 +3,15 @@
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\ApiKeyController;
 use App\Http\Controllers\AuthenticatorController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Finance\UploadController;
 use App\Http\Controllers\Payroll\SalaryController;
 use App\Http\Controllers\Payroll\SalaryRaiseController;
 use App\Http\Controllers\Payroll\SalaryStatusController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\Payroll\TaxController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SlipController;
 use Illuminate\Support\Facades\Route;
 
@@ -128,7 +131,29 @@ Route::middleware('role:admin|finance|staff')->prefix('laporan')->group(function
 
 
 
+Route::get('/salary/detail-pph21', function () {
+    if (!session()->has('pph21_detail')) abort(404);
+    return view('pages.payroll.tax-detail', session('pph21_detail'));
+})->name('salary.tax_detail');
 
+Route::get('/taxes', [TaxController::class, 'index'])->name('tax.index');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    //  Route::get('/profil-saya', [EmployeeController::class, 'profile'])->name('employee.profile');
+});
+
+Route::middleware(['auth', 'role:staff'])->group(function () {
+    Route::get('/profil-saya', [EmployeeController::class, 'profile'])->name('employee.profile');
+
+    // Opsional jika ada edit
+    Route::get('/profil-saya/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
+    Route::post('/profil-saya/update', [EmployeeController::class, 'update'])->name('employee.update');
+});
+
+
+// routes/web.php atau api.php
+Route::get('/get-ter-by-ptkp/{ptkp_id}', [SalaryController::class, 'getTerByPtkp']);
 
 
 Route::get('/salary-raise-history', [SalaryRaiseController::class, 'index'])->name('salary.raise.history');

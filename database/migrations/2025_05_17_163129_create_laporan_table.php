@@ -10,13 +10,13 @@ class CreateLaporanTable extends Migration
     {
         Schema::create('laporan', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id')->nullable(); // bisa null jika laporan umum
+            $table->unsignedBigInteger('employee_id')->nullable();
             $table->string('jenisLaporan'); // misal: 'pajak', 'absensi', dll
             $table->date('tanggalLaporan');
-            $table->text('detailLaporan'); // bisa JSON atau teks
+            $table->json('detailLaporan'); // bisa JSON atau teks
             $table->timestamps();
 
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('set null');
+            $table->foreign('employee_id')->references('id')->on('employee')->onDelete('set null');
         });
     }
 

@@ -3,8 +3,11 @@
 
 @section('content')
 
-<div class="container mt-5">
-    <h2>Upload Laporan (PDF / Excel)</h2>
+
+<div class="bg-white min-vh-100 py-4">
+    <div class="d-flex justify-content-between align-items-center pb-3 gap-3">
+<div class="container">
+    <h2 class="fw-bold text-primary pb-3">Upload Laporan (PDF / Excel)</h2>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -22,10 +25,10 @@
 
     <form action="{{ route('laporan.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
+ 
         <div class="mb-3">
-            <label for="employee_id" class="form-label">Karyawan (Optional)</label>
-            <select name="employee_id" id="employee_id" class="form-select">
+            <label for="employee_id" class="form-label">Nama Karyawan</label>
+            <select name="employee_id" id="employee_id" class="form-select select2">
                 <option value="">-- Pilih Karyawan --</option>
                 @foreach($employees as $employee)
                     <option value="{{ $employee->id }}" {{ old('employee_id') == $employee->id ? 'selected' : '' }}>
@@ -35,17 +38,18 @@
             </select>
         </div>
 
-
+        {{-- Dropdown Jenis Laporan --}}
         <div class="mb-3">
             <label for="jenisLaporan" class="form-label">Jenis Laporan</label>
-            <select name="jenisLaporan" id="jenisLaporan" class="form-select" required>
+            <select name="jenisLaporan" id="jenisLaporan" class="form-select select2" required>
                 <option value="">-- Pilih Jenis Laporan --</option>
-                <option value="pajak">Pajak</option>
-                <option value="bpjs">BPJS</option>
-                <option value="kepatuhan">Kepatuhan</option>
-                <option value="audit_internal">Audit Internal</option>
+                <option value="pajak" {{ old('jenisLaporan') == 'pajak' ? 'selected' : '' }}>Pajak</option>
+                <option value="bpjs" {{ old('jenisLaporan') == 'bpjs' ? 'selected' : '' }}>BPJS</option>
+                <option value="kepatuhan" {{ old('jenisLaporan') == 'kepatuhan' ? 'selected' : '' }}>Kepatuhan</option>
+                <option value="audit_internal" {{ old('jenisLaporan') == 'audit_internal' ? 'selected' : '' }}>Audit Internal</option>
             </select>
         </div>
+
         <div class="mb-3">
             <label for="buktiPotong" class="form-label">Bukti Potong (PDF/JPG/PNG)</label>
             <input type="file" name="buktiPotong" id="buktiPotong" class="form-control" accept=".pdf,.jpg,.png">
@@ -61,9 +65,26 @@
             <input type="date" name="tanggalLaporan" id="tanggalLaporan" class="form-control" required>
         </div>
 
-
-
         <button type="submit" class="btn btn-primary">Upload Laporan</button>
     </form>
 </div>
+</div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#employee_id').select2({
+            placeholder: "-- Pilih Karyawan --",
+            allowClear: true,
+            width: '100%'
+        });
+
+        $('#jenisLaporan').select2({
+            placeholder: "-- Pilih Jenis Laporan --",
+            allowClear: true,
+            width: '100%'
+        });
+    });
+</script>
+
 @endsection

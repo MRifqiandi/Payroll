@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class LaporanController extends Controller
 {
+    // Tampilkan semua laporan (paginate 10), untuk API
     public function index(Request $request)
     {
         $query = Laporan::query()->with('employee');
@@ -77,6 +78,11 @@ public function download($id, Request $request)
 
     return Storage::download($filePath, $fileName);
 }
+
+
+
+
+
 
     // Simpan laporan baru dengan upload file (PDF / Excel)
     public function store(Request $request)

@@ -18,6 +18,9 @@
         <a href="{{ route('salary.raise.history') }}" class="btn btn-info shadow-sm text-white">
             <i class="bi bi-clock-history me-1"></i>Riwayat Kenaikan Gaji
         </a>
+        <a href="{{ route('tax.index') }}" class="btn btn-info shadow-sm text-white">
+            <i class="bi bi-clock-history me-1"></i>Riwayat PPh21
+        </a>
         </div>
     </div>
 
@@ -63,14 +66,12 @@
                         <th>Nama Karyawan</th>
                         <th>Periode</th>
                         <th>Gaji Pokok</th>
-                        <th>Tunj. Transportasi</th>
-                        <th>Tunj. Makan</th>
-                        <th>Tunj. Kesehatan</th>
                         <th>Bonus</th>
                         <th>Insentif</th>
                         <th>Lembur</th>
+                        <th>Total Tunjangan</th>
                         <th>Total Potongan</th>
-                        <th>Total Gaji</th>
+                        <th>Gaji Bersih</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -80,14 +81,18 @@
                         <td>{{ $salary->employee->nama }}</td>
                         <td>{{ \Carbon\Carbon::parse($salary->periodeGaji)->translatedFormat('F Y') }}</td>
                         <td>Rp {{ number_format($salary->gajiPokok, 2, ',', '.') }}</td>
-                        <td>Rp {{ number_format($salary->tunjanganTransportasi, 2, ',', '.') }}</td>
-                        <td>Rp {{ number_format($salary->tunjanganMakan, 2, ',', '.') }}</td>
-                        <td>Rp {{ number_format($salary->tunjanganKesehatan, 2, ',', '.') }}</td>
                         <td>Rp {{ number_format($salary->bonus, 2, ',', '.') }}</td>
                         <td>Rp {{ number_format($salary->insentif, 2, ',', '.') }}</td>
                         <td>Rp {{ number_format($salary->lembur, 2, ',', '.') }}</td>
+                            @php
+                                $totalTunjangan = $salary->tunjanganTransportasi + $salary->tunjanganMakan + $salary->tunjanganKesehatan + $salary->tukin;
+                            @endphp
+                            <td>Rp {{ number_format($totalTunjangan, 2, ',', '.') }} 
+                        </td>
+
                         <td>Rp {{ number_format($salary->totalPotongan, 2, ',', '.') }}</td>
-                        <td><strong>Rp {{ number_format($salary->totalGaji, 2, ',', '.') }}</strong></td>
+                        <td>
+                            <strong>Rp {{ number_format($salary->totalGaji, 2, ',', '.') }}</strong></td>
                         <td>
         <div class="dropdown">
             <button class="btn btn-sm btn-outline-primary rounded-pill dropdown-toggle" type="button" id="dropdownMenu{{ $salary->id }}" data-bs-toggle="dropdown" aria-expanded="false">
@@ -177,7 +182,8 @@
 
                         <div class="mb-3">
                             <label for="pph21" class="form-label">PPH 21</label>
-                            <input type="number" class="form-control" id="pph21" name="pph21" value="{{ $salary->pph21 }}" required>
+                            <input type="text" class="form-control" id="pph21" name="pph21" value="{{ number_format($salary->tax->pph21, 2, ',', '.') }}" readonly>
+
                         </div>
 
                         <div class="mb-3">
@@ -220,6 +226,12 @@
                         <tr><th>Bonus</th><td>Rp {{ number_format($salary->bonus, 2, ',', '.') }}</td></tr>
                         <tr><th>Insentif</th><td>Rp {{ number_format($salary->insentif, 2, ',', '.') }}</td></tr>
                         <tr><th>Lembur</th><td>Rp {{ number_format($salary->lembur, 2, ',', '.') }}</td></tr>
+                        <tr><th>Total Tunjangan</th>
+                            @php
+                                $totalTunjangan = $salary->tunjanganTransportasi + $salary->tunjanganMakan + $salary->tunjanganKesehatan + $salary->tukin;
+                            @endphp
+                            <td>Rp {{ number_format($totalTunjangan, 2, ',', '.') }} 
+                        </td></tr>
                         <tr><th>Total Potongan</th><td>Rp {{ number_format($salary->totalPotongan, 2, ',', '.') }}</td></tr>
                         <tr><th><strong>Total Gaji</strong></th><td><strong>Rp {{ number_format($salary->totalGaji, 2, ',', '.') }}</strong></td></tr>
                     </table>

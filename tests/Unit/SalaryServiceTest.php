@@ -26,7 +26,6 @@ class SalaryServiceTest extends TestCase
         // Buat data employee untuk relasi FK
         $this->employee = Employee::factory()->create([
             'nama' => 'John Doe',
-            // isi field lain jika perlu
         ]);
     }
 
@@ -107,6 +106,23 @@ class SalaryServiceTest extends TestCase
 
         $this->assertEquals($expected, $total);
     }
+
+public function testCalculatePph21()
+{
+    $service = new SalaryService();
+
+    $brutoBulanan = 10000000;
+    $iuranPensiun = 100000;
+    $ptkp = 54000000;
+
+    $expected = 318333; // Sesuai hasil perhitungan di atas
+    $actual = $service->calculatePph21($brutoBulanan, $iuranPensiun, $ptkp);
+
+    $this->assertEqualsWithDelta($expected, $actual, 1000); // toleransi ±1000
+}
+
+
+
 
     public function testLogPerubahanSalaryCreatesLogsOnlyIfValueChanges()
     {

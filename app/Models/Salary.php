@@ -12,7 +12,7 @@ class Salary extends Model
     protected $table = 'salary';
     protected $fillable = [
         'employee_id', 'periodeGaji', 'gajiPokok', 'tunjanganTransportasi', 'tunjanganMakan',
-        'tunjanganKesehatan', 'bonus', 'insentif', 'lembur', 'totalPotongan', 'totalGaji'
+        'tunjanganKesehatan','tukin', 'bonus', 'insentif', 'lembur', 'totalPotongan', 'totalGaji'
     ];
 
     public function employee()

@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Permission\Traits\HasRoles;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
     use HasFactory;
+    use HasRoles;
 
     protected $table = 'employee';
 
@@ -18,6 +21,7 @@ class Employee extends Model
         'tanggalLahir',
         'statusPernikahan',
         'jabatan',
+        'ptkp_id',
         'departemen',
         'statusKepegawaian',
         'masaKerja',
@@ -36,6 +40,13 @@ class Employee extends Model
         'updated_at',
     ];
 
+    protected $casts = [
+    'tanggalLahir' => 'date',
+    'tanggalMasuk' => 'date',
+    'tanggalKeluar' => 'date',
+];
+
+
     public function salaries()
     {
         return $this->hasMany(Salary::class);
@@ -49,5 +60,11 @@ class Employee extends Model
     {
         return $this->hasMany(Bpjs::class);
     }
+
+    public function laporans()
+{
+    return $this->hasMany(Laporan::class);
+}
+
 
 }

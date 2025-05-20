@@ -16,12 +16,32 @@ class Tax extends Model
     protected $fillable = [
         'employee_id',
         'salary_id',
+        'ptkp_id',
         'pph21',
+        'penghasilan_neto',
+        'biaya_jabatan',
+        'iuran_pensiun',
+        'penghasilan_kena_pajak',
+        'tahun',
+        'bulan'
     ];
 
     // Relasi dengan model Employee
-    public function employee()
+public function employee()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(Employee::class, 'employee_id');
     }
+
+    public function salary()
+    {
+        return $this->hasOne(Salary::class, 'employee_id', 'employee_id')
+            ->whereYear('periodeGaji', $this->tahun)
+            ->whereMonth('periodeGaji', $this->bulan);
+    }
+
+    public function ptkp()
+    {
+        return $this->belongsTo(Ptkp::class, 'ptkp_id');
+    }
+
 }

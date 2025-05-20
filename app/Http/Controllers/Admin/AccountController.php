@@ -21,6 +21,7 @@ class AccountController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'employee_id' => 'required|exists:employee,id',
             'role' => 'required',
             'name' => 'required',
             'email' => 'required|email|unique:' . config('database.tables.DB_USERS') . ',email',
@@ -41,6 +42,7 @@ class AccountController extends Controller
             'rank' => $request->rank,
             'number' => $request->number,
             'position' => $request->position,
+            'employee_id' => $request->employee_id,
             'public_key' => $key['public_key'],
             'private_key' => Utils::ENCRYPT_ENV($key['private_key']),
         ]);
@@ -59,6 +61,7 @@ class AccountController extends Controller
     {
         $request->validate([
             'id' => 'required',
+            'employee_id' => 'required|exists:employee,id',
             'role' => 'required',
             'name' => 'required',
             'rank' => 'required',
@@ -81,6 +84,7 @@ class AccountController extends Controller
             'rank' => $request->rank,
             'number' => $request->number,
             'position' => $request->position,
+            'employee_id' => $request->employee_id,
         ]);
 
         $user->syncRoles([$request->role]);
@@ -171,12 +175,16 @@ class AccountController extends Controller
 
     public function getDatatable()
     {
-        $query = User::query();
+        // $query = User::query();
+         $query = User::with('employee')->select();
 
         return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('role', function ($query) {
                 return $query->getRoleNames()->first();
+            })
+            ->addColumn('employee_name', function ($user) {
+                return $user->employee ? $user->employee->name : '-';
             })
             ->addColumn('action', function ($query) {
                 return view('pages.account.menu', compact('query'));

@@ -97,6 +97,8 @@ class SalaryService
     ]
 );
 
+
+
 Bpjs::updateOrCreate(
     [
         'salary_id' => $salaryId,
@@ -112,6 +114,8 @@ Bpjs::updateOrCreate(
 
         });
     }
+
+
 
     // Contoh method untuk create atau update salary sekaligus hitung total gaji dan log perubahan
     public function createOrUpdateSalary(array $data): Salary
@@ -143,4 +147,49 @@ Bpjs::updateOrCreate(
 
         return $salary;
     }
+
+    public function calculatePph21(
+        float $brutoBulanan,
+        float $iuranPensiunBulanan = 100000,
+        float $ptkp = 54000000
+    ): float {
+        $brutoTahunan = $brutoBulanan * 12;
+        $biayaJabatan = min($brutoTahunan * 0.05, 6000000); // Maks Rp6 juta
+        $iuranPensiun = $iuranPensiunBulanan * 12;
+
+        $neto = $brutoTahunan - $biayaJabatan - $iuranPensiun;
+        $pkp = $neto - $ptkp;
+
+        if ($pkp <= 0) return 0;
+
+        // Bulatkan ke bawah ke ribuan terdekat
+        $pkp = floor($pkp / 1000) * 1000;
+
+        // Hitung PPh21 tahunan dengan tarif progresif
+        $pph21 = 0;
+        $lapisan = [
+            [50000000, 0.05],
+            [250000000, 0.15],
+            [500000000, 0.25],
+            [floatval(PHP_INT_MAX), 0.30],
+        ];
+
+        $sisa = $pkp;
+        $batasSebelumnya = 0;
+
+        foreach ($lapisan as [$batas, $tarif]) {
+            $batasKena = $batas - $batasSebelumnya;
+
+            if ($sisa <= 0) break;
+
+            $kena = min($sisa, $batasKena);
+            $pph21 += $kena * $tarif;
+            $sisa -= $kena;
+            $batasSebelumnya = $batas;
+        }
+
+        return round($pph21 / 12); // Bulanan
+    }
+
+
 }

@@ -76,7 +76,7 @@
                     <td>
                         @if(!empty($item->detailLaporan['buktiPotong']))
                             <div class="d-flex justify-content-center">
-                                <a class="btn btn-info btn-sm" href="{{ route('laporan.download', $item->id) }}?type=buktiPotong" target="_blank">Download</a>
+                                <a class="btn btn-info btn-md" href="{{ route('laporan.download', $item->id) }}?type=buktiPotong" target="_blank"><i class="bi bi-download"></i></a>
                             </div>
                         @else
                             -
@@ -86,7 +86,7 @@
                     <td>
                         @if(!empty($item->detailLaporan['fileLaporan']))
                         <div class="d-flex justify-content-center">
-                            <a class="btn btn-info btn-sm" href="{{ route('laporan.download', $item->id) }}?type=fileLaporan" target="_blank">Download</a>
+                            <a class="btn btn-info btn-md" href="{{ route('laporan.download', $item->id) }}?type=fileLaporan" target="_blank"><i class="bi bi-download"></i></a>
                         </div>
                         @else
                             -
@@ -95,10 +95,11 @@
 
                     <td>
                         <!-- Tombol hapus yang buka modal -->
+                    <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $item->id }}">
-                            Hapus
+                            <i class="bi bi-trash"></i>
                         </button>
-
+                    </div>
                         <!-- Modal Konfirmasi Hapus -->
                         <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $item->id }}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
