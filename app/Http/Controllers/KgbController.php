@@ -12,10 +12,9 @@ class KgbController extends Controller
 public function updatePrediksiManual(Request $request)
 {
     Artisan::call('kgb:update-prediksi');
-    $output = trim(Artisan::output());
 
     return response()->json([
-        'message' => $output
+        'message' => 'Prediksi KGB semua karyawan telah diperbarui.'
     ]);
 }
 

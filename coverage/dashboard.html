@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for D:\Kuliah\Tugas Akhir\SIM GAJI\simgaji-update\simgaji\app</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css?v=10.1.16" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css?v=10.1.16" rel="stylesheet" type="text/css">
+  <link href="_css/style.css?v=10.1.16" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">D:\Kuliah\Tugas Akhir\SIM GAJI\simgaji-update\simgaji\app</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Console/Commands/Fixing.php.html#13">App\Console\Commands\Fixing</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exports/UploadExport.php.html#10">App\Exports\UploadExport</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exports/Upload/MealAllowance.php.html#10">App\Exports\Upload\MealAllowance</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exports/Upload/MonthlySalary.php.html#10">App\Exports\Upload\MonthlySalary</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#14">App\Http\Controllers\Admin\AccountController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/ApiKeyController.php.html#15">App\Http\Controllers\Admin\ApiKeyController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Api/AccountController.php.html#12">App\Http\Controllers\Api\AccountController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Api/MockApiController.php.html#8">App\Http\Controllers\Api\MockApiController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Api/SlipController.php.html#14">App\Http\Controllers\Api\SlipController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/AuthenticatedSessionController.php.html#9">App\Http\Controllers\Auth\AuthenticatedSessionController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/PasswordResetController.php.html#16">App\Http\Controllers\Auth\PasswordResetController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/AuthenticatorController.php.html#9">App\Http\Controllers\AuthenticatorController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/DashboardController.php.html#8">App\Http\Controllers\DashboardController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeSalaryController.php.html#13">App\Http\Controllers\EmployeeSalaryController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Finance/UploadController.php.html#22">App\Http\Controllers\Finance\UploadController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/LogActivityController.php.html#7">App\Http\Controllers\LogActivityController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#26">App\Http\Controllers\Payroll\SalaryController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryRaiseController.php.html#10">App\Http\Controllers\Payroll\SalaryRaiseController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryStatusController.php.html#9">App\Http\Payroll\Controllers\SalaryStatusController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/ProfileController.php.html#9">App\Http\Controllers\ProfileController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/SlipController.php.html#15">App\Http\Controllers\SlipController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ApiKeyMiddleware.php.html#13">App\Http\Middleware\ApiKeyMiddleware</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/Authenticate.php.html#8">App\Http\Middleware\Authenticate</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/RedirectIfAuthenticated.php.html#11">App\Http\Middleware\RedirectIfAuthenticated</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/TrustHosts.php.html#7">App\Http\Middleware\TrustHosts</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Absensi.php.html#8">App\Models\Absensi</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Anak.php.html#8">App\Models\Anak</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/ApiKey.php.html#11">App\Models\ApiKey</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/JabatanFungsional.php.html#8">App\Models\JabatanFungsional</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/KelasJabatan.php.html#7">App\Models\KelasJabatan</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/LogActivity.php.html#8">App\Models\LogActivity</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Ptkp.php.html#8">App\Models\Ptkp</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/SalaryLog.php.html#8">App\Models\SalaryLog</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/SalaryRaise.php.html#8">App\Models\SalaryRaise</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Ter.php.html#8">App\Models\Ter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/TunjanganFungsionalDosen.php.html#9">App\Models\TunjanganFungsionalDosen</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/TunjanganKinerja.php.html#7">App\Models\TunjanganKinerja</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/TunjanganKinerjaDosen.php.html#8">App\Models\TunjanganKinerjaDosen</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/UserFile.php.html#10">App\Models\UserFile</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/UserUpload.php.html#10">App\Models\UserUpload</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Providers/BroadcastServiceProvider.php.html#8">App\Providers\BroadcastServiceProvider</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/ApiAuth.php.html#7">App\Services\ApiAuth</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/EmployeeService.php.html#7">App\Services\EmployeeService</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/ParseSlip.php.html#10">App\Services\ParseSlip</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#11">App\Services\SalaryService</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/TerCalculator.php.html#7">App\Services\TERCalculator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/UploadService.php.html#13">App\Services\UploadService</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#23">App\Utils</a></td><td class="text-right">5%</td></tr>
+       <tr><td><a href="Exceptions/Handler.php.html#13">App\Exceptions\Handler</a></td><td class="text-right">6%</td></tr>
+       <tr><td><a href="Models/Employee.php.html#12">App\Models\Employee</a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="Models/Tax.php.html#8">App\Models\Tax</a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="Console/Kernel.php.html#9">App\Console\Kernel</a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Models/User.php.html#13">App\Models\User</a></td><td class="text-right">78%</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeController.php.html#16">App\Http\Controllers\EmployeeController</a></td><td class="text-right">78%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#24">App\Http\Controllers\Payroll\PayrollController</a></td><td class="text-right">80%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#26">App\Http\Controllers\Payroll\SalaryController</a></td><td class="text-right">1406</td></tr>
+       <tr><td><a href="Utils.php.html#23">App\Utils</a></td><td class="text-right">846</td></tr>
+       <tr><td><a href="Http/Controllers/Finance/UploadController.php.html#22">App\Http\Controllers\Finance\UploadController</a></td><td class="text-right">342</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#11">App\Services\SalaryService</a></td><td class="text-right">306</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#14">App\Http\Controllers\Admin\AccountController</a></td><td class="text-right">210</td></tr>
+       <tr><td><a href="Http/Controllers/SlipController.php.html#15">App\Http\Controllers\SlipController</a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/PasswordResetController.php.html#16">App\Http\Controllers\Auth\PasswordResetController</a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="Http/Controllers/AuthenticatorController.php.html#9">App\Http\Controllers\AuthenticatorController</a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="Models/SalaryRaise.php.html#8">App\Models\SalaryRaise</a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#24">App\Http\Controllers\Payroll\PayrollController</a></td><td class="text-right">71</td></tr>
+       <tr><td><a href="Exceptions/Handler.php.html#13">App\Exceptions\Handler</a></td><td class="text-right">60</td></tr>
+       <tr><td><a href="Models/Employee.php.html#12">App\Models\Employee</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeSalaryController.php.html#13">App\Http\Controllers\EmployeeSalaryController</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Http/Controllers/Api/SlipController.php.html#14">App\Http\Controllers\Api\SlipController</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Services/ParseSlip.php.html#10">App\Services\ParseSlip</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/ApiKeyController.php.html#15">App\Http\Controllers\Admin\ApiKeyController</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/AuthenticatedSessionController.php.html#9">App\Http\Controllers\Auth\AuthenticatedSessionController</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryStatusController.php.html#9">App\Http\Payroll\Controllers\SalaryStatusController</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Middleware/ApiKeyMiddleware.php.html#13">App\Http\Middleware\ApiKeyMiddleware</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Models/UserFile.php.html#10">App\Models\UserFile</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Models/UserUpload.php.html#10">App\Models\UserUpload</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Services/TerCalculator.php.html#7">App\Services\TERCalculator</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Services/UploadService.php.html#13">App\Services\UploadService</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Middleware/RedirectIfAuthenticated.php.html#11">App\Http\Middleware\RedirectIfAuthenticated</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeController.php.html#16">App\Http\Controllers\EmployeeController</a></td><td class="text-right">15</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryRaiseController.php.html#10">App\Http\Controllers\Payroll\SalaryRaiseController</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Models/ApiKey.php.html#11">App\Models\ApiKey</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Models/User.php.html#13">App\Models\User</a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Http/Controllers/Api/AccountController.php.html#12">App\Http\Controllers\Api\AccountController</a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/ProfileController.php.html#9">App\Http\Controllers\ProfileController</a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Middleware/Authenticate.php.html#8">App\Http\Middleware\Authenticate</a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Console/Commands/Fixing.php.html#32"><abbr title="App\Console\Commands\Fixing::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Console/Kernel.php.html#14"><abbr title="App\Console\Kernel::schedule">schedule</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exports/UploadExport.php.html#14"><abbr title="App\Exports\UploadExport::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exports/UploadExport.php.html#19"><abbr title="App\Exports\UploadExport::view">view</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exports/UploadExport.php.html#26"><abbr title="App\Exports\UploadExport::registerEvents">registerEvents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exports/Upload/MealAllowance.php.html#14"><abbr title="App\Exports\Upload\MealAllowance::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exports/Upload/MealAllowance.php.html#19"><abbr title="App\Exports\Upload\MealAllowance::view">view</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exports/Upload/MealAllowance.php.html#26"><abbr title="App\Exports\Upload\MealAllowance::registerEvents">registerEvents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exports/Upload/MonthlySalary.php.html#14"><abbr title="App\Exports\Upload\MonthlySalary::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exports/Upload/MonthlySalary.php.html#19"><abbr title="App\Exports\Upload\MonthlySalary::view">view</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exports/Upload/MonthlySalary.php.html#26"><abbr title="App\Exports\Upload\MonthlySalary::registerEvents">registerEvents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#16"><abbr title="App\Http\Controllers\Admin\AccountController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#21"><abbr title="App\Http\Controllers\Admin\AccountController::store">store</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#60"><abbr title="App\Http\Controllers\Admin\AccountController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#100"><abbr title="App\Http\Controllers\Admin\AccountController::updatePassword">updatePassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#122"><abbr title="App\Http\Controllers\Admin\AccountController::disableAuthenticator">disableAuthenticator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#148"><abbr title="App\Http\Controllers\Admin\AccountController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#176"><abbr title="App\Http\Controllers\Admin\AccountController::getDatatable">getDatatable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/ApiKeyController.php.html#17"><abbr title="App\Http\Controllers\Admin\ApiKeyController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/ApiKeyController.php.html#22"><abbr title="App\Http\Controllers\Admin\ApiKeyController::store">store</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/ApiKeyController.php.html#51"><abbr title="App\Http\Controllers\Admin\ApiKeyController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/ApiKeyController.php.html#72"><abbr title="App\Http\Controllers\Admin\ApiKeyController::getDatatable">getDatatable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Api/AccountController.php.html#14"><abbr title="App\Http\Controllers\Api\AccountController::get">get</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Api/MockApiController.php.html#10"><abbr title="App\Http\Controllers\Api\MockApiController::getPegawai">getPegawai</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Api/SlipController.php.html#16"><abbr title="App\Http\Controllers\Api\SlipController::list">list</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Api/SlipController.php.html#56"><abbr title="App\Http\Controllers\Api\SlipController::get">get</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/AuthenticatedSessionController.php.html#11"><abbr title="App\Http\Controllers\Auth\AuthenticatedSessionController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/AuthenticatedSessionController.php.html#16"><abbr title="App\Http\Controllers\Auth\AuthenticatedSessionController::store">store</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/AuthenticatedSessionController.php.html#36"><abbr title="App\Http\Controllers\Auth\AuthenticatedSessionController::reset">reset</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/AuthenticatedSessionController.php.html#51"><abbr title="App\Http\Controllers\Auth\AuthenticatedSessionController::destroy">destroy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/PasswordResetController.php.html#18"><abbr title="App\Http\Controllers\Auth\PasswordResetController::showForgotPasswordForm">showForgotPasswordForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/PasswordResetController.php.html#23"><abbr title="App\Http\Controllers\Auth\PasswordResetController::sendResetLink">sendResetLink</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/PasswordResetController.php.html#71"><abbr title="App\Http\Controllers\Auth\PasswordResetController::showResetPasswordForm">showResetPasswordForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/PasswordResetController.php.html#76"><abbr title="App\Http\Controllers\Auth\PasswordResetController::resetPassword">resetPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/AuthenticatorController.php.html#11"><abbr title="App\Http\Controllers\AuthenticatorController::verify">verify</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/AuthenticatorController.php.html#36"><abbr title="App\Http\Controllers\AuthenticatorController::enable">enable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/AuthenticatorController.php.html#68"><abbr title="App\Http\Controllers\AuthenticatorController::disable">disable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/DashboardController.php.html#10"><abbr title="App\Http\Controllers\DashboardController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeController.php.html#48"><abbr title="App\Http\Controllers\EmployeeController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeController.php.html#125"><abbr title="App\Http\Controllers\EmployeeController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeController.php.html#181"><abbr title="App\Http\Controllers\EmployeeController::showOwnData">showOwnData</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeController.php.html#193"><abbr title="App\Http\Controllers\EmployeeController::prediksiKGB">prediksiKGB</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeSalaryController.php.html#17"><abbr title="App\Http\Controllers\EmployeeSalaryController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeSalaryController.php.html#55"><abbr title="App\Http\Controllers\EmployeeSalaryController::downloadSlip">downloadSlip</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Finance/UploadController.php.html#24"><abbr title="App\Http\Controllers\Finance\UploadController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Finance/UploadController.php.html#29"><abbr title="App\Http\Controllers\Finance\UploadController::download">download</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Finance/UploadController.php.html#60"><abbr title="App\Http\Controllers\Finance\UploadController::getReceivers">getReceivers</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Finance/UploadController.php.html#86"><abbr title="App\Http\Controllers\Finance\UploadController::store">store</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Finance/UploadController.php.html#123"><abbr title="App\Http\Controllers\Finance\UploadController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Finance/UploadController.php.html#150"><abbr title="App\Http\Controllers\Finance\UploadController::getDatatable">getDatatable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/LogActivityController.php.html#9"><abbr title="App\Http\Controllers\LogActivityController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#755"><abbr title="App\Http\Controllers\Payroll\PayrollController::checkExistingSalary">checkExistingSalary</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#775"><abbr title="App\Http\Controllers\Payroll\PayrollController::checkExistingSalaryAll">checkExistingSalaryAll</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#787"><abbr title="App\Http\Controllers\Payroll\PayrollController::showGenerate">showGenerate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#823"><abbr title="App\Http\Controllers\Payroll\PayrollController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#56"><abbr title="App\Http\Controllers\Payroll\SalaryController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#89"><abbr title="App\Http\Controllers\Payroll\SalaryController::getGolonganUtama">getGolonganUtama</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#229"><abbr title="App\Http\Controllers\Payroll\SalaryController::showGenerate">showGenerate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#237"><abbr title="App\Http\Controllers\Payroll\SalaryController::store">store</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#429"><abbr title="App\Http\Controllers\Payroll\SalaryController::calculatePph21">calculatePph21</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#457"><abbr title="App\Http\Controllers\Payroll\SalaryController::getPTKP">getPTKP</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#611"><abbr title="App\Http\Controllers\Payroll\SalaryController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#739"><abbr title="App\Http\Controllers\Payroll\SalaryController::destroy">destroy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#745"><abbr title="App\Http\Controllers\Payroll\SalaryController::validateData">validateData</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#759"><abbr title="App\Http\Controllers\Payroll\SalaryController::calculateTotalSalary">calculateTotalSalary</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#772"><abbr title="App\Http\Controllers\Payroll\SalaryController::salaryHistoryUser">salaryHistoryUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#805"><abbr title="App\Http\Controllers\Payroll\SalaryController::salaryHistory">salaryHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#849"><abbr title="App\Http\Controllers\Payroll\SalaryController::getSalaryLogsAjax">getSalaryLogsAjax</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryRaiseController.php.html#12"><abbr title="App\Http\Controllers\Payroll\SalaryRaiseController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryRaiseController.php.html#28"><abbr title="App\Http\Controllers\Payroll\SalaryRaiseController::myRaises">myRaises</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryStatusController.php.html#17"><abbr title="App\Http\Payroll\Controllers\SalaryStatusController::finalize">finalize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryStatusController.php.html#39"><abbr title="App\Http\Payroll\Controllers\SalaryStatusController::isSalaryComplete">isSalaryComplete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/ProfileController.php.html#11"><abbr title="App\Http\Controllers\ProfileController::updatePassword">updatePassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/SlipController.php.html#17"><abbr title="App\Http\Controllers\SlipController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/SlipController.php.html#22"><abbr title="App\Http\Controllers\SlipController::download">download</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/SlipController.php.html#71"><abbr title="App\Http\Controllers\SlipController::getDatatable">getDatatable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/ApiKeyMiddleware.php.html#20"><abbr title="App\Http\Middleware\ApiKeyMiddleware::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/Authenticate.php.html#13"><abbr title="App\Http\Middleware\Authenticate::redirectTo">redirectTo</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/RedirectIfAuthenticated.php.html#18"><abbr title="App\Http\Middleware\RedirectIfAuthenticated::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Middleware/TrustHosts.php.html#14"><abbr title="App\Http\Middleware\TrustHosts::hosts">hosts</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Absensi.php.html#22"><abbr title="App\Models\Absensi::employee">employee</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Anak.php.html#31"><abbr title="App\Models\Anak::employee">employee</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/ApiKey.php.html#22"><abbr title="App\Models\ApiKey::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/ApiKey.php.html#29"><abbr title="App\Models\ApiKey::boot">boot</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Employee.php.html#82"><abbr title="App\Models\Employee::laporans">laporans</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Employee.php.html#94"><abbr title="App\Models\Employee::getMasaKerjaGolonganAttribute">getMasaKerjaGolonganAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Employee.php.html#112"><abbr title="App\Models\Employee::getPrediksiNaikGajiAttribute">getPrediksiNaikGajiAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/JabatanFungsional.php.html#24"><abbr title="App\Models\JabatanFungsional::tunjanganKinerjaDosens">tunjanganKinerjaDosens</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/JabatanFungsional.php.html#29"><abbr title="App\Models\JabatanFungsional::tunjanganFungsionalDosen">tunjanganFungsionalDosen</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/KelasJabatan.php.html#18"><abbr title="App\Models\KelasJabatan::tunjanganKinerja">tunjanganKinerja</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/LogActivity.php.html#24"><abbr title="App\Models\LogActivity::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Ptkp.php.html#27"><abbr title="App\Models\Ptkp::taxes">taxes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/SalaryLog.php.html#23"><abbr title="App\Models\SalaryLog::employee">employee</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/SalaryLog.php.html#28"><abbr title="App\Models\SalaryLog::salary">salary</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/SalaryRaise.php.html#23"><abbr title="App\Models\SalaryRaise::employee">employee</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/SalaryRaise.php.html#29"><abbr title="App\Models\SalaryRaise::getStatusAttribute">getStatusAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/SalaryRaise.php.html#38"><abbr title="App\Models\SalaryRaise::getSelisihAttribute">getSelisihAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Tax.php.html#33"><abbr title="App\Models\Tax::salary">salary</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Ter.php.html#29"><abbr title="App\Models\Ter::ptkp">ptkp</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/TunjanganFungsionalDosen.php.html#29"><abbr title="App\Models\TunjanganFungsionalDosen::jabatanFungsional">jabatanFungsional</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/TunjanganKinerja.php.html#18"><abbr title="App\Models\TunjanganKinerja::kelasJabatan">kelasJabatan</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/TunjanganKinerjaDosen.php.html#26"><abbr title="App\Models\TunjanganKinerjaDosen::jabatanFungsional">jabatanFungsional</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/User.php.html#74"><abbr title="App\Models\User::files">files</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/User.php.html#79"><abbr title="App\Models\User::uploads">uploads</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/UserFile.php.html#20"><abbr title="App\Models\UserFile::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/UserFile.php.html#27"><abbr title="App\Models\UserFile::boot">boot</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/UserFile.php.html#38"><abbr title="App\Models\UserFile::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/UserFile.php.html#43"><abbr title="App\Models\UserFile::upload">upload</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/UserUpload.php.html#20"><abbr title="App\Models\UserUpload::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/UserUpload.php.html#27"><abbr title="App\Models\UserUpload::boot">boot</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/UserUpload.php.html#38"><abbr title="App\Models\UserUpload::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/UserUpload.php.html#43"><abbr title="App\Models\UserUpload::files">files</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Providers/BroadcastServiceProvider.php.html#13"><abbr title="App\Providers\BroadcastServiceProvider::boot">boot</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/ApiAuth.php.html#17"><abbr title="App\Services\ApiAuth::setKey">setKey</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/ApiAuth.php.html#27"><abbr title="App\Services\ApiAuth::key">key</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/ApiAuth.php.html#38"><abbr title="App\Services\ApiAuth::hasPermission">hasPermission</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/EmployeeService.php.html#9"><abbr title="App\Services\EmployeeService::getAllWithRelationsPaginate">getAllWithRelationsPaginate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/EmployeeService.php.html#14"><abbr title="App\Services\EmployeeService::findById">findById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/EmployeeService.php.html#19"><abbr title="App\Services\EmployeeService::find">find</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/EmployeeService.php.html#24"><abbr title="App\Services\EmployeeService::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/EmployeeService.php.html#29"><abbr title="App\Services\EmployeeService::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/EmployeeService.php.html#36"><abbr title="App\Services\EmployeeService::deleteById">deleteById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/EmployeeService.php.html#49"><abbr title="App\Services\EmployeeService::getActiveEmployeesPaginate">getActiveEmployeesPaginate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/ParseSlip.php.html#12"><abbr title="App\Services\ParseSlip::execute">execute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/ParseSlip.php.html#24"><abbr title="App\Services\ParseSlip::parseMonthlySalary">parseMonthlySalary</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/ParseSlip.php.html#64"><abbr title="App\Services\ParseSlip::parseMealAllowance">parseMealAllowance</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#14"><abbr title="App\Services\SalaryService::isSalaryDuplicate">isSalaryDuplicate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#22"><abbr title="App\Services\SalaryService::hitungKenaikanGaji">hitungKenaikanGaji</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#35"><abbr title="App\Services\SalaryService::getTunjanganTransportasi">getTunjanganTransportasi</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#47"><abbr title="App\Services\SalaryService::hitungTunjanganMakan">hitungTunjanganMakan</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#53"><abbr title="App\Services\SalaryService::calculateTotalSalary">calculateTotalSalary</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#59"><abbr title="App\Services\SalaryService::logPerubahanSalary">logPerubahanSalary</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#74"><abbr title="App\Services\SalaryService::saveTaxAndBpjs">saveTaxAndBpjs</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#121"><abbr title="App\Services\SalaryService::createOrUpdateSalary">createOrUpdateSalary</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#151"><abbr title="App\Services\SalaryService::calculatePph21">calculatePph21</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/TerCalculator.php.html#11"><abbr title="App\Services\TERCalculator::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/TerCalculator.php.html#24"><abbr title="App\Services\TERCalculator::hitungTER">hitungTER</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/UploadService.php.html#15"><abbr title="App\Services\UploadService::store">store</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/UploadService.php.html#42"><abbr title="App\Services\UploadService::parseFileData">parseFileData</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/UploadService.php.html#59"><abbr title="App\Services\UploadService::fetchUserKeysByNumber">fetchUserKeysByNumber</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Services/UploadService.php.html#91"><abbr title="App\Services\UploadService::createEncryptedSlips">createEncryptedSlips</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#25"><abbr title="App\Utils::ENCRYPT_SLIP">ENCRYPT_SLIP</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#38"><abbr title="App\Utils::DECRYPT_SLIP">DECRYPT_SLIP</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#53"><abbr title="App\Utils::GENERATE_RSA_KEY">GENERATE_RSA_KEY</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#64"><abbr title="App\Utils::ENCRYPT_RSA">ENCRYPT_RSA</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#73"><abbr title="App\Utils::DECRYPT_RSA">DECRYPT_RSA</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#82"><abbr title="App\Utils::GENERATE_AES_KEY">GENERATE_AES_KEY</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#87"><abbr title="App\Utils::ENCRYPT_AES">ENCRYPT_AES</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#102"><abbr title="App\Utils::DECRYPT_AES">DECRYPT_AES</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#113"><abbr title="App\Utils::ENCRYPT_ENV">ENCRYPT_ENV</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#118"><abbr title="App\Utils::DECRYPT_ENV">DECRYPT_ENV</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#123"><abbr title="App\Utils::GENERATE_2FA_SECRET">GENERATE_2FA_SECRET</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#128"><abbr title="App\Utils::GET_2FA_QRCODE">GET_2FA_QRCODE</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#144"><abbr title="App\Utils::VERIFY_2FA">VERIFY_2FA</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#161"><abbr title="App\Utils::GENERATE_API_USER">GENERATE_API_USER</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#166"><abbr title="App\Utils::GENERATE_API_KEY">GENERATE_API_KEY</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#171"><abbr title="App\Utils::VERIFY_API_KEY">VERIFY_API_KEY</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#187"><abbr title="App\Utils::STORE_VALIDATED_DEVICE">STORE_VALIDATED_DEVICE</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#193"><abbr title="App\Utils::GET_DEVICE_INFO">GET_DEVICE_INFO</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#199"><abbr title="App\Utils::IS_DEVICE_VALIDATED">IS_DEVICE_VALIDATED</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#205"><abbr title="App\Utils::NUMBER_TO_MONTH">NUMBER_TO_MONTH</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#215"><abbr title="App\Utils::FORMAT_CURRENCY">FORMAT_CURRENCY</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#224"><abbr title="App\Utils::NUMBER_TO_TEXT">NUMBER_TO_TEXT</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils.php.html#229"><abbr title="App\Utils::GET_SALARY_AMOUNT">GET_SALARY_AMOUNT</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exceptions/Handler.php.html#47"><abbr title="App\Exceptions\Handler::render">render</abbr></a></td><td class="text-right">6%</td></tr>
+       <tr><td><a href="Http/Controllers/LaporanController.php.html#20"><abbr title="App\Http\Controllers\LaporanController::index">index</abbr></a></td><td class="text-right">57%</td></tr>
+       <tr><td><a href="Providers/RouteServiceProvider.php.html#46"><abbr title="App\Providers\RouteServiceProvider::configureRateLimiting">configureRateLimiting</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Models/User.php.html#54"><abbr title="App\Models\User::getTable">getTable</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#449"><abbr title="App\Http\Controllers\Payroll\PayrollController::generateAllSalaries">generateAllSalaries</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#101"><abbr title="App\Http\Controllers\Payroll\PayrollController::showResult">showResult</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Http/Controllers/BpjsController.php.html#14"><abbr title="App\Http\Controllers\BpjsController::index">index</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#141"><abbr title="App\Http\Controllers\Payroll\PayrollController::hitungGaji">hitungGaji</abbr></a></td><td class="text-right">85%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#237"><abbr title="App\Http\Controllers\Payroll\SalaryController::store">store</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Http/Controllers/SlipController.php.html#22"><abbr title="App\Http\Controllers\SlipController::download">download</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Exceptions/Handler.php.html#47"><abbr title="App\Exceptions\Handler::render">render</abbr></a></td><td class="text-right">60</td></tr>
+       <tr><td><a href="Http/Controllers/Finance/UploadController.php.html#29"><abbr title="App\Http\Controllers\Finance\UploadController::download">download</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#805"><abbr title="App\Http\Controllers\Payroll\SalaryController::salaryHistory">salaryHistory</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/PasswordResetController.php.html#23"><abbr title="App\Http\Controllers\Auth\PasswordResetController::sendResetLink">sendResetLink</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeSalaryController.php.html#17"><abbr title="App\Http\Controllers\EmployeeSalaryController::index">index</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#611"><abbr title="App\Http\Controllers\Payroll\SalaryController::update">update</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#772"><abbr title="App\Http\Controllers\Payroll\SalaryController::salaryHistoryUser">salaryHistoryUser</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Middleware/ApiKeyMiddleware.php.html#20"><abbr title="App\Http\Middleware\ApiKeyMiddleware::handle">handle</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Models/SalaryRaise.php.html#29"><abbr title="App\Models\SalaryRaise::getStatusAttribute">getStatusAttribute</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#449"><abbr title="App\Http\Controllers\Payroll\PayrollController::generateAllSalaries">generateAllSalaries</abbr></a></td><td class="text-right">21</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#148"><abbr title="App\Http\Controllers\Admin\AccountController::delete">delete</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Controllers/Finance/UploadController.php.html#123"><abbr title="App\Http\Controllers\Finance\UploadController::delete">delete</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Middleware/RedirectIfAuthenticated.php.html#18"><abbr title="App\Http\Middleware\RedirectIfAuthenticated::handle">handle</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Services/ParseSlip.php.html#12"><abbr title="App\Services\ParseSlip::execute">execute</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#22"><abbr title="App\Services\SalaryService::hitungKenaikanGaji">hitungKenaikanGaji</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#151"><abbr title="App\Services\SalaryService::calculatePph21">calculatePph21</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Services/TerCalculator.php.html#24"><abbr title="App\Services\TERCalculator::hitungTER">hitungTER</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#141"><abbr title="App\Http\Controllers\Payroll\PayrollController::hitungGaji">hitungGaji</abbr></a></td><td class="text-right">18</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#122"><abbr title="App\Http\Controllers\Admin\AccountController::disableAuthenticator">disableAuthenticator</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Controllers/Api/SlipController.php.html#16"><abbr title="App\Http\Controllers\Api\SlipController::list">list</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Controllers/Api/SlipController.php.html#56"><abbr title="App\Http\Controllers\Api\SlipController::get">get</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Controllers/AuthenticatorController.php.html#11"><abbr title="App\Http\Controllers\AuthenticatorController::verify">verify</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Controllers/AuthenticatorController.php.html#36"><abbr title="App\Http\Controllers\AuthenticatorController::enable">enable</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Controllers/AuthenticatorController.php.html#68"><abbr title="App\Http\Controllers\AuthenticatorController::disable">disable</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Controllers/Finance/UploadController.php.html#86"><abbr title="App\Http\Controllers\Finance\UploadController::store">store</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#429"><abbr title="App\Http\Controllers\Payroll\SalaryController::calculatePph21">calculatePph21</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryStatusController.php.html#17"><abbr title="App\Http\Payroll\Controllers\SalaryStatusController::finalize">finalize</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Models/Employee.php.html#112"><abbr title="App\Models\Employee::getPrediksiNaikGajiAttribute">getPrediksiNaikGajiAttribute</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Models/SalaryRaise.php.html#38"><abbr title="App\Models\SalaryRaise::getSelisihAttribute">getSelisihAttribute</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Utils.php.html#171"><abbr title="App\Utils::VERIFY_API_KEY">VERIFY_API_KEY</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Utils.php.html#229"><abbr title="App\Utils::GET_SALARY_AMOUNT">GET_SALARY_AMOUNT</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Controllers/LaporanController.php.html#20"><abbr title="App\Http\Controllers\LaporanController::index">index</abbr></a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#60"><abbr title="App\Http\Controllers\Admin\AccountController::update">update</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/AccountController.php.html#176"><abbr title="App\Http\Controllers\Admin\AccountController::getDatatable">getDatatable</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/ApiKeyController.php.html#51"><abbr title="App\Http\Controllers\Admin\ApiKeyController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Api/AccountController.php.html#14"><abbr title="App\Http\Controllers\Api\AccountController::get">get</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/AuthenticatedSessionController.php.html#16"><abbr title="App\Http\Controllers\Auth\AuthenticatedSessionController::store">store</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Auth/PasswordResetController.php.html#76"><abbr title="App\Http\Controllers\Auth\PasswordResetController::resetPassword">resetPassword</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeController.php.html#125"><abbr title="App\Http\Controllers\EmployeeController::edit">edit</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeController.php.html#181"><abbr title="App\Http\Controllers\EmployeeController::showOwnData">showOwnData</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeController.php.html#193"><abbr title="App\Http\Controllers\EmployeeController::prediksiKGB">prediksiKGB</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/EmployeeSalaryController.php.html#55"><abbr title="App\Http\Controllers\EmployeeSalaryController::downloadSlip">downloadSlip</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Finance/UploadController.php.html#60"><abbr title="App\Http\Controllers\Finance\UploadController::getReceivers">getReceivers</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#755"><abbr title="App\Http\Controllers\Payroll\PayrollController::checkExistingSalary">checkExistingSalary</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#787"><abbr title="App\Http\Controllers\Payroll\PayrollController::showGenerate">showGenerate</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryController.php.html#849"><abbr title="App\Http\Controllers\Payroll\SalaryController::getSalaryLogsAjax">getSalaryLogsAjax</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryRaiseController.php.html#12"><abbr title="App\Http\Controllers\Payroll\SalaryRaiseController::index">index</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/SalaryStatusController.php.html#39"><abbr title="App\Http\Payroll\Controllers\SalaryStatusController::isSalaryComplete">isSalaryComplete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/ProfileController.php.html#11"><abbr title="App\Http\Controllers\ProfileController::updatePassword">updatePassword</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Middleware/Authenticate.php.html#13"><abbr title="App\Http\Middleware\Authenticate::redirectTo">redirectTo</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Models/ApiKey.php.html#29"><abbr title="App\Models\ApiKey::boot">boot</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Models/Employee.php.html#94"><abbr title="App\Models\Employee::getMasaKerjaGolonganAttribute">getMasaKerjaGolonganAttribute</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Models/UserFile.php.html#27"><abbr title="App\Models\UserFile::boot">boot</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Models/UserUpload.php.html#27"><abbr title="App\Models\UserUpload::boot">boot</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#59"><abbr title="App\Services\SalaryService::logPerubahanSalary">logPerubahanSalary</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Services/SalaryService.php.html#121"><abbr title="App\Services\SalaryService::createOrUpdateSalary">createOrUpdateSalary</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Services/UploadService.php.html#91"><abbr title="App\Services\UploadService::createEncryptedSlips">createEncryptedSlips</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Utils.php.html#38"><abbr title="App\Utils::DECRYPT_SLIP">DECRYPT_SLIP</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Utils.php.html#205"><abbr title="App\Utils::NUMBER_TO_MONTH">NUMBER_TO_MONTH</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Utils.php.html#215"><abbr title="App\Utils::FORMAT_CURRENCY">FORMAT_CURRENCY</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Payroll/PayrollController.php.html#101"><abbr title="App\Http\Controllers\Payroll\PayrollController::showResult">showResult</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Providers/RouteServiceProvider.php.html#46"><abbr title="App\Providers\RouteServiceProvider::configureRateLimiting">configureRateLimiting</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Models/User.php.html#54"><abbr title="App\Models\User::getTable">getTable</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Http/Controllers/BpjsController.php.html#14"><abbr title="App\Http\Controllers\BpjsController::index">index</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 10.1.16</a> using <a href="https://www.php.net/" target="_top">PHP 8.2.12</a> and <a href="https://phpunit.de/">PHPUnit 10.5.46</a> at Tue Jun 10 12:09:34 UTC 2025.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js?v=10.1.16" type="text/javascript"></script>
+  <script src="_js/d3.min.js?v=10.1.16" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js?v=10.1.16" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([47,2,0,0,0,2,0,1,2,1,3,27], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([164,1,0,0,0,0,1,1,1,4,1,48], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Console\/Commands\/Fixing.php.html#13\">App\\Console\\Commands\\Fixing<\/a>"],[100,2,"<a href=\"Console\/Commands\/UpdatePrediksiKGB.php.html#10\">App\\Console\\Commands\\UpdatePrediksiKGB<\/a>"],[66.66666666666666,2,"<a href=\"Console\/Kernel.php.html#9\">App\\Console\\Kernel<\/a>"],[100,0,"<a href=\"Constants.php.html#5\">App\\Constants<\/a>"],[100,0,"<a href=\"Data\/Salary.php.html#7\">App\\Data\\Salary<\/a>"],[6.25,8,"<a href=\"Exceptions\/Handler.php.html#13\">App\\Exceptions\\Handler<\/a>"],[0,3,"<a href=\"Exports\/UploadExport.php.html#10\">App\\Exports\\UploadExport<\/a>"],[0,3,"<a href=\"Exports\/Upload\/MealAllowance.php.html#10\">App\\Exports\\Upload\\MealAllowance<\/a>"],[0,3,"<a href=\"Exports\/Upload\/MonthlySalary.php.html#10\">App\\Exports\\Upload\\MonthlySalary<\/a>"],[100,1,"<a href=\"Helpers\/ActivityLogger.php.html#8\">App\\Helpers\\ActivityLogger<\/a>"],[0,14,"<a href=\"Http\/Controllers\/Admin\/AccountController.php.html#14\">App\\Http\\Controllers\\Admin\\AccountController<\/a>"],[0,5,"<a href=\"Http\/Controllers\/Admin\/ApiKeyController.php.html#15\">App\\Http\\Controllers\\Admin\\ApiKeyController<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Api\/AccountController.php.html#12\">App\\Http\\Controllers\\Api\\AccountController<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Api\/MockApiController.php.html#8\">App\\Http\\Controllers\\Api\\MockApiController<\/a>"],[0,6,"<a href=\"Http\/Controllers\/Api\/SlipController.php.html#14\">App\\Http\\Controllers\\Api\\SlipController<\/a>"],[0,5,"<a href=\"Http\/Controllers\/Auth\/AuthenticatedSessionController.php.html#9\">App\\Http\\Controllers\\Auth\\AuthenticatedSessionController<\/a>"],[0,9,"<a href=\"Http\/Controllers\/Auth\/PasswordResetController.php.html#16\">App\\Http\\Controllers\\Auth\\PasswordResetController<\/a>"],[0,9,"<a href=\"Http\/Controllers\/AuthenticatorController.php.html#9\">App\\Http\\Controllers\\AuthenticatorController<\/a>"],[95.23809523809523,6,"<a href=\"Http\/Controllers\/BpjsController.php.html#11\">App\\Http\\Controllers\\BpjsController<\/a>"],[100,0,"<a href=\"Http\/Controllers\/Controller.php.html#9\">App\\Http\\Controllers\\Controller<\/a>"],[0,1,"<a href=\"Http\/Controllers\/DashboardController.php.html#8\">App\\Http\\Controllers\\DashboardController<\/a>"],[78.99159663865547,14,"<a href=\"Http\/Controllers\/EmployeeController.php.html#16\">App\\Http\\Controllers\\EmployeeController<\/a>"],[0,7,"<a href=\"Http\/Controllers\/EmployeeSalaryController.php.html#13\">App\\Http\\Controllers\\EmployeeSalaryController<\/a>"],[0,18,"<a href=\"Http\/Controllers\/Finance\/UploadController.php.html#22\">App\\Http\\Controllers\\Finance\\UploadController<\/a>"],[100,1,"<a href=\"Http\/Controllers\/KgbController.php.html#8\">App\\Http\\Controllers\\KgbController<\/a>"],[91.25,26,"<a href=\"Http\/Controllers\/LaporanController.php.html#11\">App\\Http\\Controllers\\LaporanController<\/a>"],[0,1,"<a href=\"Http\/Controllers\/LogActivityController.php.html#7\">App\\Http\\Controllers\\LogActivityController<\/a>"],[80.0705467372134,51,"<a href=\"Http\/Controllers\/Payroll\/PayrollController.php.html#24\">App\\Http\\Controllers\\Payroll\\PayrollController<\/a>"],[0,37,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#26\">App\\Http\\Controllers\\Payroll\\SalaryController<\/a>"],[0,3,"<a href=\"Http\/Controllers\/Payroll\/SalaryRaiseController.php.html#10\">App\\Http\\Controllers\\Payroll\\SalaryRaiseController<\/a>"],[0,5,"<a href=\"Http\/Controllers\/Payroll\/SalaryStatusController.php.html#9\">App\\Http\\Payroll\\Controllers\\SalaryStatusController<\/a>"],[100,7,"<a href=\"Http\/Controllers\/Payroll\/TaxController.php.html#10\">App\\Http\\Controllers\\Payroll\\TaxController<\/a>"],[0,2,"<a href=\"Http\/Controllers\/ProfileController.php.html#9\">App\\Http\\Controllers\\ProfileController<\/a>"],[0,10,"<a href=\"Http\/Controllers\/SlipController.php.html#15\">App\\Http\\Controllers\\SlipController<\/a>"],[100,0,"<a href=\"Http\/Kernel.php.html#7\">App\\Http\\Kernel<\/a>"],[0,5,"<a href=\"Http\/Middleware\/ApiKeyMiddleware.php.html#13\">App\\Http\\Middleware\\ApiKeyMiddleware<\/a>"],[0,2,"<a href=\"Http\/Middleware\/Authenticate.php.html#8\">App\\Http\\Middleware\\Authenticate<\/a>"],[100,0,"<a href=\"Http\/Middleware\/EncryptCookies.php.html#7\">App\\Http\\Middleware\\EncryptCookies<\/a>"],[100,0,"<a href=\"Http\/Middleware\/PreventRequestsDuringMaintenance.php.html#7\">App\\Http\\Middleware\\PreventRequestsDuringMaintenance<\/a>"],[0,4,"<a href=\"Http\/Middleware\/RedirectIfAuthenticated.php.html#11\">App\\Http\\Middleware\\RedirectIfAuthenticated<\/a>"],[100,0,"<a href=\"Http\/Middleware\/TrimStrings.php.html#7\">App\\Http\\Middleware\\TrimStrings<\/a>"],[0,1,"<a href=\"Http\/Middleware\/TrustHosts.php.html#7\">App\\Http\\Middleware\\TrustHosts<\/a>"],[100,0,"<a href=\"Http\/Middleware\/TrustProxies.php.html#8\">App\\Http\\Middleware\\TrustProxies<\/a>"],[100,0,"<a href=\"Http\/Middleware\/ValidateSignature.php.html#7\">App\\Http\\Middleware\\ValidateSignature<\/a>"],[100,0,"<a href=\"Http\/Middleware\/VerifyCsrfToken.php.html#7\">App\\Http\\Middleware\\VerifyCsrfToken<\/a>"],[0,1,"<a href=\"Models\/Absensi.php.html#8\">App\\Models\\Absensi<\/a>"],[0,1,"<a href=\"Models\/Anak.php.html#8\">App\\Models\\Anak<\/a>"],[0,3,"<a href=\"Models\/ApiKey.php.html#11\">App\\Models\\ApiKey<\/a>"],[100,1,"<a href=\"Models\/Bpjs.php.html#8\">App\\Models\\Bpjs<\/a>"],[40,14,"<a href=\"Models\/Employee.php.html#12\">App\\Models\\Employee<\/a>"],[100,0,"<a href=\"Models\/EmployeeBpjs.php.html#8\">App\\Models\\EmployeeBpjs<\/a>"],[100,0,"<a href=\"Models\/GajiPokokPns.php.html#8\">App\\Models\\GajiPokokPns<\/a>"],[100,0,"<a href=\"Models\/GajiPokokPppk.php.html#8\">App\\Models\\GajiPokokPppk<\/a>"],[0,2,"<a href=\"Models\/JabatanFungsional.php.html#8\">App\\Models\\JabatanFungsional<\/a>"],[0,1,"<a href=\"Models\/KelasJabatan.php.html#7\">App\\Models\\KelasJabatan<\/a>"],[100,1,"<a href=\"Models\/Laporan.php.html#8\">App\\Models\\Laporan<\/a>"],[0,1,"<a href=\"Models\/LogActivity.php.html#8\">App\\Models\\LogActivity<\/a>"],[0,1,"<a href=\"Models\/Ptkp.php.html#8\">App\\Models\\Ptkp<\/a>"],[100,1,"<a href=\"Models\/Salary.php.html#8\">App\\Models\\Salary<\/a>"],[0,2,"<a href=\"Models\/SalaryLog.php.html#8\">App\\Models\\SalaryLog<\/a>"],[0,9,"<a href=\"Models\/SalaryRaise.php.html#8\">App\\Models\\SalaryRaise<\/a>"],[40,3,"<a href=\"Models\/Tax.php.html#8\">App\\Models\\Tax<\/a>"],[0,1,"<a href=\"Models\/Ter.php.html#8\">App\\Models\\Ter<\/a>"],[100,0,"<a href=\"Models\/TunjanganFungsional.php.html#7\">App\\Models\\TunjanganFungsional<\/a>"],[0,1,"<a href=\"Models\/TunjanganFungsionalDosen.php.html#9\">App\\Models\\TunjanganFungsionalDosen<\/a>"],[0,1,"<a href=\"Models\/TunjanganKinerja.php.html#7\">App\\Models\\TunjanganKinerja<\/a>"],[0,1,"<a href=\"Models\/TunjanganKinerjaDosen.php.html#8\">App\\Models\\TunjanganKinerjaDosen<\/a>"],[100,0,"<a href=\"Models\/TunjanganUmum.php.html#8\">App\\Models\\TunjanganUmum<\/a>"],[100,0,"<a href=\"Models\/UangLembur.php.html#7\">App\\Models\\UangLembur<\/a>"],[100,0,"<a href=\"Models\/UangMakan.php.html#7\">App\\Models\\UangMakan<\/a>"],[78.57142857142857,8,"<a href=\"Models\/User.php.html#13\">App\\Models\\User<\/a>"],[0,5,"<a href=\"Models\/UserFile.php.html#10\">App\\Models\\UserFile<\/a>"],[0,5,"<a href=\"Models\/UserUpload.php.html#10\">App\\Models\\UserUpload<\/a>"],[100,2,"<a href=\"Providers\/AppServiceProvider.php.html#7\">App\\Providers\\AppServiceProvider<\/a>"],[100,1,"<a href=\"Providers\/AuthServiceProvider.php.html#8\">App\\Providers\\AuthServiceProvider<\/a>"],[0,1,"<a href=\"Providers\/BroadcastServiceProvider.php.html#8\">App\\Providers\\BroadcastServiceProvider<\/a>"],[100,2,"<a href=\"Providers\/EventServiceProvider.php.html#10\">App\\Providers\\EventServiceProvider<\/a>"],[92.3076923076923,3,"<a href=\"Providers\/RouteServiceProvider.php.html#11\">App\\Providers\\RouteServiceProvider<\/a>"],[0,3,"<a href=\"Services\/ApiAuth.php.html#7\">App\\Services\\ApiAuth<\/a>"],[0,7,"<a href=\"Services\/EmployeeService.php.html#7\">App\\Services\\EmployeeService<\/a>"],[0,6,"<a href=\"Services\/ParseSlip.php.html#10\">App\\Services\\ParseSlip<\/a>"],[0,17,"<a href=\"Services\/SalaryService.php.html#11\">App\\Services\\SalaryService<\/a>"],[0,5,"<a href=\"Services\/TerCalculator.php.html#7\">App\\Services\\TERCalculator<\/a>"],[0,5,"<a href=\"Services\/UploadService.php.html#13\">App\\Services\\UploadService<\/a>"],[5.319148936170213,31,"<a href=\"Utils.php.html#23\">App\\Utils<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Console\/Commands\/Fixing.php.html#32\">App\\Console\\Commands\\Fixing::handle<\/a>"],[100,2,"<a href=\"Console\/Commands\/UpdatePrediksiKGB.php.html#15\">App\\Console\\Commands\\UpdatePrediksiKGB::handle<\/a>"],[0,1,"<a href=\"Console\/Kernel.php.html#14\">App\\Console\\Kernel::schedule<\/a>"],[100,1,"<a href=\"Console\/Kernel.php.html#23\">App\\Console\\Kernel::commands<\/a>"],[6.25,8,"<a href=\"Exceptions\/Handler.php.html#47\">App\\Exceptions\\Handler::render<\/a>"],[0,1,"<a href=\"Exports\/UploadExport.php.html#14\">App\\Exports\\UploadExport::__construct<\/a>"],[0,1,"<a href=\"Exports\/UploadExport.php.html#19\">App\\Exports\\UploadExport::view<\/a>"],[0,1,"<a href=\"Exports\/UploadExport.php.html#26\">App\\Exports\\UploadExport::registerEvents<\/a>"],[0,1,"<a href=\"Exports\/Upload\/MealAllowance.php.html#14\">App\\Exports\\Upload\\MealAllowance::__construct<\/a>"],[0,1,"<a href=\"Exports\/Upload\/MealAllowance.php.html#19\">App\\Exports\\Upload\\MealAllowance::view<\/a>"],[0,1,"<a href=\"Exports\/Upload\/MealAllowance.php.html#26\">App\\Exports\\Upload\\MealAllowance::registerEvents<\/a>"],[0,1,"<a href=\"Exports\/Upload\/MonthlySalary.php.html#14\">App\\Exports\\Upload\\MonthlySalary::__construct<\/a>"],[0,1,"<a href=\"Exports\/Upload\/MonthlySalary.php.html#19\">App\\Exports\\Upload\\MonthlySalary::view<\/a>"],[0,1,"<a href=\"Exports\/Upload\/MonthlySalary.php.html#26\">App\\Exports\\Upload\\MonthlySalary::registerEvents<\/a>"],[100,1,"<a href=\"Helpers\/ActivityLogger.php.html#10\">App\\Helpers\\ActivityLogger::log<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/AccountController.php.html#16\">App\\Http\\Controllers\\Admin\\AccountController::index<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/AccountController.php.html#21\">App\\Http\\Controllers\\Admin\\AccountController::store<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Admin\/AccountController.php.html#60\">App\\Http\\Controllers\\Admin\\AccountController::update<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/AccountController.php.html#100\">App\\Http\\Controllers\\Admin\\AccountController::updatePassword<\/a>"],[0,3,"<a href=\"Http\/Controllers\/Admin\/AccountController.php.html#122\">App\\Http\\Controllers\\Admin\\AccountController::disableAuthenticator<\/a>"],[0,4,"<a href=\"Http\/Controllers\/Admin\/AccountController.php.html#148\">App\\Http\\Controllers\\Admin\\AccountController::delete<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Admin\/AccountController.php.html#176\">App\\Http\\Controllers\\Admin\\AccountController::getDatatable<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/ApiKeyController.php.html#17\">App\\Http\\Controllers\\Admin\\ApiKeyController::index<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/ApiKeyController.php.html#22\">App\\Http\\Controllers\\Admin\\ApiKeyController::store<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Admin\/ApiKeyController.php.html#51\">App\\Http\\Controllers\\Admin\\ApiKeyController::delete<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/ApiKeyController.php.html#72\">App\\Http\\Controllers\\Admin\\ApiKeyController::getDatatable<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Api\/AccountController.php.html#14\">App\\Http\\Controllers\\Api\\AccountController::get<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Api\/MockApiController.php.html#10\">App\\Http\\Controllers\\Api\\MockApiController::getPegawai<\/a>"],[0,3,"<a href=\"Http\/Controllers\/Api\/SlipController.php.html#16\">App\\Http\\Controllers\\Api\\SlipController::list<\/a>"],[0,3,"<a href=\"Http\/Controllers\/Api\/SlipController.php.html#56\">App\\Http\\Controllers\\Api\\SlipController::get<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Auth\/AuthenticatedSessionController.php.html#11\">App\\Http\\Controllers\\Auth\\AuthenticatedSessionController::create<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Auth\/AuthenticatedSessionController.php.html#16\">App\\Http\\Controllers\\Auth\\AuthenticatedSessionController::store<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Auth\/AuthenticatedSessionController.php.html#36\">App\\Http\\Controllers\\Auth\\AuthenticatedSessionController::reset<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Auth\/AuthenticatedSessionController.php.html#51\">App\\Http\\Controllers\\Auth\\AuthenticatedSessionController::destroy<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Auth\/PasswordResetController.php.html#18\">App\\Http\\Controllers\\Auth\\PasswordResetController::showForgotPasswordForm<\/a>"],[0,5,"<a href=\"Http\/Controllers\/Auth\/PasswordResetController.php.html#23\">App\\Http\\Controllers\\Auth\\PasswordResetController::sendResetLink<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Auth\/PasswordResetController.php.html#71\">App\\Http\\Controllers\\Auth\\PasswordResetController::showResetPasswordForm<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Auth\/PasswordResetController.php.html#76\">App\\Http\\Controllers\\Auth\\PasswordResetController::resetPassword<\/a>"],[0,3,"<a href=\"Http\/Controllers\/AuthenticatorController.php.html#11\">App\\Http\\Controllers\\AuthenticatorController::verify<\/a>"],[0,3,"<a href=\"Http\/Controllers\/AuthenticatorController.php.html#36\">App\\Http\\Controllers\\AuthenticatorController::enable<\/a>"],[0,3,"<a href=\"Http\/Controllers\/AuthenticatorController.php.html#68\">App\\Http\\Controllers\\AuthenticatorController::disable<\/a>"],[83.33333333333334,2,"<a href=\"Http\/Controllers\/BpjsController.php.html#14\">App\\Http\\Controllers\\BpjsController::index<\/a>"],[100,2,"<a href=\"Http\/Controllers\/BpjsController.php.html#28\">App\\Http\\Controllers\\BpjsController::myBpjs<\/a>"],[100,1,"<a href=\"Http\/Controllers\/BpjsController.php.html#43\">App\\Http\\Controllers\\BpjsController::exportPDF<\/a>"],[100,1,"<a href=\"Http\/Controllers\/BpjsController.php.html#54\">App\\Http\\Controllers\\BpjsController::destroy<\/a>"],[0,1,"<a href=\"Http\/Controllers\/DashboardController.php.html#10\">App\\Http\\Controllers\\DashboardController::index<\/a>"],[100,1,"<a href=\"Http\/Controllers\/EmployeeController.php.html#21\">App\\Http\\Controllers\\EmployeeController::index<\/a>"],[100,2,"<a href=\"Http\/Controllers\/EmployeeController.php.html#33\">App\\Http\\Controllers\\EmployeeController::profile<\/a>"],[0,1,"<a href=\"Http\/Controllers\/EmployeeController.php.html#48\">App\\Http\\Controllers\\EmployeeController::create<\/a>"],[100,1,"<a href=\"Http\/Controllers\/EmployeeController.php.html#57\">App\\Http\\Controllers\\EmployeeController::store<\/a>"],[0,2,"<a href=\"Http\/Controllers\/EmployeeController.php.html#125\">App\\Http\\Controllers\\EmployeeController::edit<\/a>"],[100,2,"<a href=\"Http\/Controllers\/EmployeeController.php.html#143\">App\\Http\\Controllers\\EmployeeController::update<\/a>"],[0,2,"<a href=\"Http\/Controllers\/EmployeeController.php.html#181\">App\\Http\\Controllers\\EmployeeController::showOwnData<\/a>"],[0,2,"<a href=\"Http\/Controllers\/EmployeeController.php.html#193\">App\\Http\\Controllers\\EmployeeController::prediksiKGB<\/a>"],[100,1,"<a href=\"Http\/Controllers\/EmployeeController.php.html#222\">App\\Http\\Controllers\\EmployeeController::destroy<\/a>"],[0,5,"<a href=\"Http\/Controllers\/EmployeeSalaryController.php.html#17\">App\\Http\\Controllers\\EmployeeSalaryController::index<\/a>"],[0,2,"<a href=\"Http\/Controllers\/EmployeeSalaryController.php.html#55\">App\\Http\\Controllers\\EmployeeSalaryController::downloadSlip<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Finance\/UploadController.php.html#24\">App\\Http\\Controllers\\Finance\\UploadController::index<\/a>"],[0,7,"<a href=\"Http\/Controllers\/Finance\/UploadController.php.html#29\">App\\Http\\Controllers\\Finance\\UploadController::download<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Finance\/UploadController.php.html#60\">App\\Http\\Controllers\\Finance\\UploadController::getReceivers<\/a>"],[0,3,"<a href=\"Http\/Controllers\/Finance\/UploadController.php.html#86\">App\\Http\\Controllers\\Finance\\UploadController::store<\/a>"],[0,4,"<a href=\"Http\/Controllers\/Finance\/UploadController.php.html#123\">App\\Http\\Controllers\\Finance\\UploadController::delete<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Finance\/UploadController.php.html#150\">App\\Http\\Controllers\\Finance\\UploadController::getDatatable<\/a>"],[100,1,"<a href=\"Http\/Controllers\/KgbController.php.html#12\">App\\Http\\Controllers\\KgbController::updatePrediksiManual<\/a>"],[100,1,"<a href=\"Http\/Controllers\/LaporanController.php.html#15\">App\\Http\\Controllers\\LaporanController::__construct<\/a>"],[57.14285714285714,7,"<a href=\"Http\/Controllers\/LaporanController.php.html#20\">App\\Http\\Controllers\\LaporanController::index<\/a>"],[100,1,"<a href=\"Http\/Controllers\/LaporanController.php.html#50\">App\\Http\\Controllers\\LaporanController::byJenis<\/a>"],[100,1,"<a href=\"Http\/Controllers\/LaporanController.php.html#56\">App\\Http\\Controllers\\LaporanController::show<\/a>"],[100,2,"<a href=\"Http\/Controllers\/LaporanController.php.html#62\">App\\Http\\Controllers\\LaporanController::create<\/a>"],[100,4,"<a href=\"Http\/Controllers\/LaporanController.php.html#76\">App\\Http\\Controllers\\LaporanController::download<\/a>"],[97.2972972972973,4,"<a href=\"Http\/Controllers\/LaporanController.php.html#93\">App\\Http\\Controllers\\LaporanController::store<\/a>"],[100,6,"<a href=\"Http\/Controllers\/LaporanController.php.html#147\">App\\Http\\Controllers\\LaporanController::destroy<\/a>"],[0,1,"<a href=\"Http\/Controllers\/LogActivityController.php.html#9\">App\\Http\\Controllers\\LogActivityController::index<\/a>"],[80.76923076923077,4,"<a href=\"Http\/Controllers\/Payroll\/PayrollController.php.html#101\">App\\Http\\Controllers\\Payroll\\PayrollController::showResult<\/a>"],[85.48387096774194,18,"<a href=\"Http\/Controllers\/Payroll\/PayrollController.php.html#141\">App\\Http\\Controllers\\Payroll\\PayrollController::hitungGaji<\/a>"],[80.51948051948052,19,"<a href=\"Http\/Controllers\/Payroll\/PayrollController.php.html#449\">App\\Http\\Controllers\\Payroll\\PayrollController::generateAllSalaries<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Payroll\/PayrollController.php.html#755\">App\\Http\\Controllers\\Payroll\\PayrollController::checkExistingSalary<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Payroll\/PayrollController.php.html#775\">App\\Http\\Controllers\\Payroll\\PayrollController::checkExistingSalaryAll<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Payroll\/PayrollController.php.html#787\">App\\Http\\Controllers\\Payroll\\PayrollController::showGenerate<\/a>"],[100,1,"<a href=\"Http\/Controllers\/Payroll\/PayrollController.php.html#803\">App\\Http\\Controllers\\Payroll\\PayrollController::exportKustomPDF<\/a>"],[100,1,"<a href=\"Http\/Controllers\/Payroll\/PayrollController.php.html#815\">App\\Http\\Controllers\\Payroll\\PayrollController::destroy<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Payroll\/PayrollController.php.html#823\">App\\Http\\Controllers\\Payroll\\PayrollController::edit<\/a>"],[100,2,"<a href=\"Http\/Controllers\/Payroll\/PayrollController.php.html#832\">App\\Http\\Controllers\\Payroll\\PayrollController::updatetunjanganlainlain<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#56\">App\\Http\\Controllers\\Payroll\\SalaryController::create<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#89\">App\\Http\\Controllers\\Payroll\\SalaryController::getGolonganUtama<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#229\">App\\Http\\Controllers\\Payroll\\SalaryController::showGenerate<\/a>"],[0,8,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#237\">App\\Http\\Controllers\\Payroll\\SalaryController::store<\/a>"],[0,3,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#429\">App\\Http\\Controllers\\Payroll\\SalaryController::calculatePph21<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#457\">App\\Http\\Controllers\\Payroll\\SalaryController::getPTKP<\/a>"],[0,5,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#611\">App\\Http\\Controllers\\Payroll\\SalaryController::update<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#739\">App\\Http\\Controllers\\Payroll\\SalaryController::destroy<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#745\">App\\Http\\Controllers\\Payroll\\SalaryController::validateData<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#759\">App\\Http\\Controllers\\Payroll\\SalaryController::calculateTotalSalary<\/a>"],[0,5,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#772\">App\\Http\\Controllers\\Payroll\\SalaryController::salaryHistoryUser<\/a>"],[0,7,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#805\">App\\Http\\Controllers\\Payroll\\SalaryController::salaryHistory<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Payroll\/SalaryController.php.html#849\">App\\Http\\Controllers\\Payroll\\SalaryController::getSalaryLogsAjax<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Payroll\/SalaryRaiseController.php.html#12\">App\\Http\\Controllers\\Payroll\\SalaryRaiseController::index<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Payroll\/SalaryRaiseController.php.html#28\">App\\Http\\Controllers\\Payroll\\SalaryRaiseController::myRaises<\/a>"],[0,3,"<a href=\"Http\/Controllers\/Payroll\/SalaryStatusController.php.html#17\">App\\Http\\Payroll\\Controllers\\SalaryStatusController::finalize<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Payroll\/SalaryStatusController.php.html#39\">App\\Http\\Payroll\\Controllers\\SalaryStatusController::isSalaryComplete<\/a>"],[100,1,"<a href=\"Http\/Controllers\/Payroll\/TaxController.php.html#12\">App\\Http\\Controllers\\Payroll\\TaxController::index<\/a>"],[100,2,"<a href=\"Http\/Controllers\/Payroll\/TaxController.php.html#18\">App\\Http\\Controllers\\Payroll\\TaxController::myTax<\/a>"],[100,2,"<a href=\"Http\/Controllers\/Payroll\/TaxController.php.html#34\">App\\Http\\Controllers\\Payroll\\TaxController::exportBuktiPotongPDF<\/a>"],[100,2,"<a href=\"Http\/Controllers\/Payroll\/TaxController.php.html#62\">App\\Http\\Controllers\\Payroll\\TaxController::destroy<\/a>"],[0,2,"<a href=\"Http\/Controllers\/ProfileController.php.html#11\">App\\Http\\Controllers\\ProfileController::updatePassword<\/a>"],[0,1,"<a href=\"Http\/Controllers\/SlipController.php.html#17\">App\\Http\\Controllers\\SlipController::index<\/a>"],[0,8,"<a href=\"Http\/Controllers\/SlipController.php.html#22\">App\\Http\\Controllers\\SlipController::download<\/a>"],[0,1,"<a href=\"Http\/Controllers\/SlipController.php.html#71\">App\\Http\\Controllers\\SlipController::getDatatable<\/a>"],[0,5,"<a href=\"Http\/Middleware\/ApiKeyMiddleware.php.html#20\">App\\Http\\Middleware\\ApiKeyMiddleware::handle<\/a>"],[0,2,"<a href=\"Http\/Middleware\/Authenticate.php.html#13\">App\\Http\\Middleware\\Authenticate::redirectTo<\/a>"],[0,4,"<a href=\"Http\/Middleware\/RedirectIfAuthenticated.php.html#18\">App\\Http\\Middleware\\RedirectIfAuthenticated::handle<\/a>"],[0,1,"<a href=\"Http\/Middleware\/TrustHosts.php.html#14\">App\\Http\\Middleware\\TrustHosts::hosts<\/a>"],[0,1,"<a href=\"Models\/Absensi.php.html#22\">App\\Models\\Absensi::employee<\/a>"],[0,1,"<a href=\"Models\/Anak.php.html#31\">App\\Models\\Anak::employee<\/a>"],[0,1,"<a href=\"Models\/ApiKey.php.html#22\">App\\Models\\ApiKey::__construct<\/a>"],[0,2,"<a href=\"Models\/ApiKey.php.html#29\">App\\Models\\ApiKey::boot<\/a>"],[100,1,"<a href=\"Models\/Bpjs.php.html#25\">App\\Models\\Bpjs::employee<\/a>"],[100,1,"<a href=\"Models\/Employee.php.html#49\">App\\Models\\Employee::salaries<\/a>"],[100,1,"<a href=\"Models\/Employee.php.html#53\">App\\Models\\Employee::tax<\/a>"],[100,1,"<a href=\"Models\/Employee.php.html#57\">App\\Models\\Employee::ptkp<\/a>"],[100,1,"<a href=\"Models\/Employee.php.html#64\">App\\Models\\Employee::user<\/a>"],[100,1,"<a href=\"Models\/Employee.php.html#70\">App\\Models\\Employee::bpjs<\/a>"],[100,1,"<a href=\"Models\/Employee.php.html#76\">App\\Models\\Employee::jabatanFungsional<\/a>"],[0,1,"<a href=\"Models\/Employee.php.html#82\">App\\Models\\Employee::laporans<\/a>"],[100,1,"<a href=\"Models\/Employee.php.html#87\">App\\Models\\Employee::anak<\/a>"],[0,2,"<a href=\"Models\/Employee.php.html#94\">App\\Models\\Employee::getMasaKerjaGolonganAttribute<\/a>"],[100,1,"<a href=\"Models\/Employee.php.html#107\">App\\Models\\Employee::salaryRaise<\/a>"],[0,3,"<a href=\"Models\/Employee.php.html#112\">App\\Models\\Employee::getPrediksiNaikGajiAttribute<\/a>"],[0,1,"<a href=\"Models\/JabatanFungsional.php.html#24\">App\\Models\\JabatanFungsional::tunjanganKinerjaDosens<\/a>"],[0,1,"<a href=\"Models\/JabatanFungsional.php.html#29\">App\\Models\\JabatanFungsional::tunjanganFungsionalDosen<\/a>"],[0,1,"<a href=\"Models\/KelasJabatan.php.html#18\">App\\Models\\KelasJabatan::tunjanganKinerja<\/a>"],[100,1,"<a href=\"Models\/Laporan.php.html#27\">App\\Models\\Laporan::employee<\/a>"],[0,1,"<a href=\"Models\/LogActivity.php.html#24\">App\\Models\\LogActivity::user<\/a>"],[0,1,"<a href=\"Models\/Ptkp.php.html#27\">App\\Models\\Ptkp::taxes<\/a>"],[100,1,"<a href=\"Models\/Salary.php.html#39\">App\\Models\\Salary::employee<\/a>"],[0,1,"<a href=\"Models\/SalaryLog.php.html#23\">App\\Models\\SalaryLog::employee<\/a>"],[0,1,"<a href=\"Models\/SalaryLog.php.html#28\">App\\Models\\SalaryLog::salary<\/a>"],[0,1,"<a href=\"Models\/SalaryRaise.php.html#23\">App\\Models\\SalaryRaise::employee<\/a>"],[0,5,"<a href=\"Models\/SalaryRaise.php.html#29\">App\\Models\\SalaryRaise::getStatusAttribute<\/a>"],[0,3,"<a href=\"Models\/SalaryRaise.php.html#38\">App\\Models\\SalaryRaise::getSelisihAttribute<\/a>"],[100,1,"<a href=\"Models\/Tax.php.html#28\">App\\Models\\Tax::employee<\/a>"],[0,1,"<a href=\"Models\/Tax.php.html#33\">App\\Models\\Tax::salary<\/a>"],[100,1,"<a href=\"Models\/Tax.php.html#40\">App\\Models\\Tax::ptkp<\/a>"],[0,1,"<a href=\"Models\/Ter.php.html#29\">App\\Models\\Ter::ptkp<\/a>"],[0,1,"<a href=\"Models\/TunjanganFungsionalDosen.php.html#29\">App\\Models\\TunjanganFungsionalDosen::jabatanFungsional<\/a>"],[0,1,"<a href=\"Models\/TunjanganKinerja.php.html#18\">App\\Models\\TunjanganKinerja::kelasJabatan<\/a>"],[0,1,"<a href=\"Models\/TunjanganKinerjaDosen.php.html#26\">App\\Models\\TunjanganKinerjaDosen::jabatanFungsional<\/a>"],[100,1,"<a href=\"Models\/User.php.html#47\">App\\Models\\User::__construct<\/a>"],[75,2,"<a href=\"Models\/User.php.html#54\">App\\Models\\User::getTable<\/a>"],[100,2,"<a href=\"Models\/User.php.html#63\">App\\Models\\User::boot<\/a>"],[0,1,"<a href=\"Models\/User.php.html#74\">App\\Models\\User::files<\/a>"],[0,1,"<a href=\"Models\/User.php.html#79\">App\\Models\\User::uploads<\/a>"],[100,1,"<a href=\"Models\/User.php.html#84\">App\\Models\\User::employee<\/a>"],[0,1,"<a href=\"Models\/UserFile.php.html#20\">App\\Models\\UserFile::__construct<\/a>"],[0,2,"<a href=\"Models\/UserFile.php.html#27\">App\\Models\\UserFile::boot<\/a>"],[0,1,"<a href=\"Models\/UserFile.php.html#38\">App\\Models\\UserFile::user<\/a>"],[0,1,"<a href=\"Models\/UserFile.php.html#43\">App\\Models\\UserFile::upload<\/a>"],[0,1,"<a href=\"Models\/UserUpload.php.html#20\">App\\Models\\UserUpload::__construct<\/a>"],[0,2,"<a href=\"Models\/UserUpload.php.html#27\">App\\Models\\UserUpload::boot<\/a>"],[0,1,"<a href=\"Models\/UserUpload.php.html#38\">App\\Models\\UserUpload::user<\/a>"],[0,1,"<a href=\"Models\/UserUpload.php.html#43\">App\\Models\\UserUpload::files<\/a>"],[100,1,"<a href=\"Providers\/AppServiceProvider.php.html#12\">App\\Providers\\AppServiceProvider::register<\/a>"],[100,1,"<a href=\"Providers\/AppServiceProvider.php.html#20\">App\\Providers\\AppServiceProvider::boot<\/a>"],[100,1,"<a href=\"Providers\/AuthServiceProvider.php.html#22\">App\\Providers\\AuthServiceProvider::boot<\/a>"],[0,1,"<a href=\"Providers\/BroadcastServiceProvider.php.html#13\">App\\Providers\\BroadcastServiceProvider::boot<\/a>"],[100,1,"<a href=\"Providers\/EventServiceProvider.php.html#26\">App\\Providers\\EventServiceProvider::boot<\/a>"],[100,1,"<a href=\"Providers\/EventServiceProvider.php.html#34\">App\\Providers\\EventServiceProvider::shouldDiscoverEvents<\/a>"],[100,1,"<a href=\"Providers\/RouteServiceProvider.php.html#25\">App\\Providers\\RouteServiceProvider::boot<\/a>"],[66.66666666666666,2,"<a href=\"Providers\/RouteServiceProvider.php.html#46\">App\\Providers\\RouteServiceProvider::configureRateLimiting<\/a>"],[0,1,"<a href=\"Services\/ApiAuth.php.html#17\">App\\Services\\ApiAuth::setKey<\/a>"],[0,1,"<a href=\"Services\/ApiAuth.php.html#27\">App\\Services\\ApiAuth::key<\/a>"],[0,1,"<a href=\"Services\/ApiAuth.php.html#38\">App\\Services\\ApiAuth::hasPermission<\/a>"],[0,1,"<a href=\"Services\/EmployeeService.php.html#9\">App\\Services\\EmployeeService::getAllWithRelationsPaginate<\/a>"],[0,1,"<a href=\"Services\/EmployeeService.php.html#14\">App\\Services\\EmployeeService::findById<\/a>"],[0,1,"<a href=\"Services\/EmployeeService.php.html#19\">App\\Services\\EmployeeService::find<\/a>"],[0,1,"<a href=\"Services\/EmployeeService.php.html#24\">App\\Services\\EmployeeService::create<\/a>"],[0,1,"<a href=\"Services\/EmployeeService.php.html#29\">App\\Services\\EmployeeService::update<\/a>"],[0,1,"<a href=\"Services\/EmployeeService.php.html#36\">App\\Services\\EmployeeService::deleteById<\/a>"],[0,1,"<a href=\"Services\/EmployeeService.php.html#49\">App\\Services\\EmployeeService::getActiveEmployeesPaginate<\/a>"],[0,4,"<a href=\"Services\/ParseSlip.php.html#12\">App\\Services\\ParseSlip::execute<\/a>"],[0,1,"<a href=\"Services\/ParseSlip.php.html#24\">App\\Services\\ParseSlip::parseMonthlySalary<\/a>"],[0,1,"<a href=\"Services\/ParseSlip.php.html#64\">App\\Services\\ParseSlip::parseMealAllowance<\/a>"],[0,1,"<a href=\"Services\/SalaryService.php.html#14\">App\\Services\\SalaryService::isSalaryDuplicate<\/a>"],[0,4,"<a href=\"Services\/SalaryService.php.html#22\">App\\Services\\SalaryService::hitungKenaikanGaji<\/a>"],[0,1,"<a href=\"Services\/SalaryService.php.html#35\">App\\Services\\SalaryService::getTunjanganTransportasi<\/a>"],[0,1,"<a href=\"Services\/SalaryService.php.html#47\">App\\Services\\SalaryService::hitungTunjanganMakan<\/a>"],[0,1,"<a href=\"Services\/SalaryService.php.html#53\">App\\Services\\SalaryService::calculateTotalSalary<\/a>"],[0,2,"<a href=\"Services\/SalaryService.php.html#59\">App\\Services\\SalaryService::logPerubahanSalary<\/a>"],[0,1,"<a href=\"Services\/SalaryService.php.html#74\">App\\Services\\SalaryService::saveTaxAndBpjs<\/a>"],[0,2,"<a href=\"Services\/SalaryService.php.html#121\">App\\Services\\SalaryService::createOrUpdateSalary<\/a>"],[0,4,"<a href=\"Services\/SalaryService.php.html#151\">App\\Services\\SalaryService::calculatePph21<\/a>"],[0,1,"<a href=\"Services\/TerCalculator.php.html#11\">App\\Services\\TERCalculator::__construct<\/a>"],[0,4,"<a href=\"Services\/TerCalculator.php.html#24\">App\\Services\\TERCalculator::hitungTER<\/a>"],[0,1,"<a href=\"Services\/UploadService.php.html#15\">App\\Services\\UploadService::store<\/a>"],[0,1,"<a href=\"Services\/UploadService.php.html#42\">App\\Services\\UploadService::parseFileData<\/a>"],[0,1,"<a href=\"Services\/UploadService.php.html#59\">App\\Services\\UploadService::fetchUserKeysByNumber<\/a>"],[0,2,"<a href=\"Services\/UploadService.php.html#91\">App\\Services\\UploadService::createEncryptedSlips<\/a>"],[0,1,"<a href=\"Utils.php.html#25\">App\\Utils::ENCRYPT_SLIP<\/a>"],[0,2,"<a href=\"Utils.php.html#38\">App\\Utils::DECRYPT_SLIP<\/a>"],[0,1,"<a href=\"Utils.php.html#53\">App\\Utils::GENERATE_RSA_KEY<\/a>"],[0,1,"<a href=\"Utils.php.html#64\">App\\Utils::ENCRYPT_RSA<\/a>"],[0,1,"<a href=\"Utils.php.html#73\">App\\Utils::DECRYPT_RSA<\/a>"],[0,1,"<a href=\"Utils.php.html#82\">App\\Utils::GENERATE_AES_KEY<\/a>"],[0,1,"<a href=\"Utils.php.html#87\">App\\Utils::ENCRYPT_AES<\/a>"],[0,1,"<a href=\"Utils.php.html#102\">App\\Utils::DECRYPT_AES<\/a>"],[0,1,"<a href=\"Utils.php.html#113\">App\\Utils::ENCRYPT_ENV<\/a>"],[0,1,"<a href=\"Utils.php.html#118\">App\\Utils::DECRYPT_ENV<\/a>"],[0,1,"<a href=\"Utils.php.html#123\">App\\Utils::GENERATE_2FA_SECRET<\/a>"],[0,1,"<a href=\"Utils.php.html#128\">App\\Utils::GET_2FA_QRCODE<\/a>"],[0,1,"<a href=\"Utils.php.html#144\">App\\Utils::VERIFY_2FA<\/a>"],[100,1,"<a href=\"Utils.php.html#149\">App\\Utils::CREATE_ENV_VARIABLE<\/a>"],[0,1,"<a href=\"Utils.php.html#161\">App\\Utils::GENERATE_API_USER<\/a>"],[0,1,"<a href=\"Utils.php.html#166\">App\\Utils::GENERATE_API_KEY<\/a>"],[0,3,"<a href=\"Utils.php.html#171\">App\\Utils::VERIFY_API_KEY<\/a>"],[0,1,"<a href=\"Utils.php.html#187\">App\\Utils::STORE_VALIDATED_DEVICE<\/a>"],[0,1,"<a href=\"Utils.php.html#193\">App\\Utils::GET_DEVICE_INFO<\/a>"],[0,1,"<a href=\"Utils.php.html#199\">App\\Utils::IS_DEVICE_VALIDATED<\/a>"],[0,2,"<a href=\"Utils.php.html#205\">App\\Utils::NUMBER_TO_MONTH<\/a>"],[0,2,"<a href=\"Utils.php.html#215\">App\\Utils::FORMAT_CURRENCY<\/a>"],[0,1,"<a href=\"Utils.php.html#224\">App\\Utils::NUMBER_TO_TEXT<\/a>"],[0,3,"<a href=\"Utils.php.html#229\">App\\Utils::GET_SALARY_AMOUNT<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

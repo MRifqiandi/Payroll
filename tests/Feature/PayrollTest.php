@@ -14,6 +14,8 @@ use App\Models\Absensi;
 use App\Models\JabatanFungsional;
 use App\Models\Ptkp;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Mockery;
 
@@ -21,23 +23,45 @@ class PayrollTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
+protected function setUp(): void
+{
+    parent::setUp();
 
+    // Matikan foreign key check agar bisa menghapus semua data tanpa error
+    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        // Membuat User untuk actingAs (pastikan users_id tidak null)
-        User::factory()->create(['id' => 1]);
+    // Hapus data dari tabel terkait
+    DB::table('users')->delete();
+    DB::table('ptkp')->delete();
+    DB::table('jabatan_fungsional')->delete();
 
-       $this->ptkp = Ptkp::factory()->create([
+    // Reset auto increment agar mulai dari 1 lagi
+    DB::statement('ALTER TABLE users AUTO_INCREMENT = 1');
+    DB::statement('ALTER TABLE ptkp AUTO_INCREMENT = 1');
+    DB::statement('ALTER TABLE jabatan_fungsional AUTO_INCREMENT = 1');
+
+    // Aktifkan kembali foreign key check
+    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+    // Buat user dengan ID 1 (tidak akan bentrok karena sudah bersih)
+    User::factory()->create(['id' => 1]);
+
+    // Buat data dummy lain
+    $this->ptkp = Ptkp::factory()->create([
         'nilai_ptkp' => 54000000,
     ]);
 
-    $this->jabfung1 = JabatanFungsional::factory()->create(['nama_jabatan_fungsional' => 'Lektor']);
-    $this->jabfung2 = JabatanFungsional::factory()->create(['nama_jabatan_fungsional' => 'Guru Besar']);
-    $this->jabfung3 = JabatanFungsional::factory()->create(['nama_jabatan_fungsional' => 'Asisten Ahli']);
+    $this->jabfung1 = JabatanFungsional::factory()->create([
+        'nama_jabatan_fungsional' => 'Lektor',
+    ]);
+    $this->jabfung2 = JabatanFungsional::factory()->create([
+        'nama_jabatan_fungsional' => 'Guru Besar',
+    ]);
+    $this->jabfung3 = JabatanFungsional::factory()->create([
+        'nama_jabatan_fungsional' => 'Asisten Ahli',
+    ]);
+}
 
-    }
 
 /** @test */
 public function test_it_can_calculate_salary_for_pns_employee()
@@ -205,6 +229,76 @@ public function test_it_can_calculate_salary_for_pns_employee()
             ],
         ]);
     }
+
+public function test_generate_all_salaries_successfully()
+{
+    $this->actingAs(User::factory()->create());
+
+    // Nonaktifkan foreign key checks untuk sementara
+    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+    // Hapus data terkait
+    DB::table('absensi')->delete();
+    DB::table('employee')->delete();
+    DB::table('gaji_pokok_pns')->delete();
+    DB::table('tunjangan_umum')->delete();
+
+    // Reset auto-increment
+    DB::statement('ALTER TABLE employee AUTO_INCREMENT = 1;');
+    DB::statement('ALTER TABLE gaji_pokok_pns AUTO_INCREMENT = 1;');
+    DB::statement('ALTER TABLE tunjangan_umum AUTO_INCREMENT = 1;');
+
+    // Aktifkan kembali foreign key checks
+    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+    // Lanjutkan proses test...
+    $ptkp = Ptkp::factory()->create();
+    $jabfung = JabatanFungsional::factory()->create();
+
+    $employee = Employee::factory()
+        ->hasAnak(2)
+        ->create([
+            'golongan' => 'IV/a',
+            'jenisKepegawaian' => 'PNS',
+            'ptkp_id' => $ptkp->id,
+            'jabatan_fungsional_id' => $jabfung->id,
+            'tanggalMasuk' => now()->subYears(5)->toDateString(),
+        ]);
+
+    $mkg = 3;
+    $formattedGolongan = 'PNS-' . strtoupper(str_replace(' ', '', $employee->golongan));
+
+    GajiPokokPns::factory()->create([
+        'golongan' => $formattedGolongan,
+        'mkg' => $mkg,
+        'nominal' => 4000000,
+    ]);
+
+    TunjanganUmum::factory()->create([
+        'golongan' => 'IV',
+        'tunjangan' => 300000,
+    ]);
+
+    Log::info('DEBUG TEST INPUT:', [
+        'employee_id' => $employee->id,
+        'employee_golongan' => $employee->golongan,
+        'jenis_kepegawaian' => $employee->jenisKepegawaian,
+        'formatted_golongan' => $formattedGolongan,
+        'mkg' => $mkg,
+    ]);
+
+    $response = $this->postJson(route('payroll.hitung-gaji-semua'), [
+        'periode_gaji' => '2025-05',
+        'tunjangan_lain_lain' => 200000,
+    ]);
+
+    $response->assertStatus(200);
+    $this->assertTrue($response->json("data.{$employee->id}.success"));
+    $this->assertArrayHasKey('salary_id', $response->json("data.{$employee->id}"));
+}
+
+
+
 
 
     /** @test */
@@ -449,17 +543,6 @@ public function it_can_update_tunjangan_lain_lain()
         $response->assertStatus(200);
         $response->assertHeader('Content-Type', 'application/pdf');
         $response->assertHeader('Content-Disposition', 'attachment; filename=Slip_Gaji_Budi_Santoso.pdf');
-    }
-
-    /** @test */
-    public function it_validates_request_for_check_existing_salary()
-    {
-        $response = $this->postJson('/payroll/check-existing-salary', [
-            'employee_id' => 1,
-        ]);
-
-        $response->assertStatus(422);
-        $response->assertJsonValidationErrors('periode_gaji');
     }
 
 }

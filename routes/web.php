@@ -156,9 +156,10 @@ Route::middleware('role:admin|finance|staff')->prefix('laporan')->group(function
         Route::delete('/laporan/{id}', [LaporanController::class, 'destroy'])->name('laporan.destroy');
 
         Route::post('/', 'store')->name('laporan.store');                   // /laporan (POST)
-        Route::get('/jenis/{jenis}', 'byJenis');                            // /laporan/jenis/{jenis}
-        Route::get('/{id}', 'show');                                        // /laporan/{id}
-        Route::delete('/{id}', 'destroy');                                 // /laporan/{id} (DELETE)
+        Route::get('/jenis/{jenis}', 'byJenis');
+        Route::get('/laporan/jenis/{jenis}', [LaporanController::class, 'byJenis'])->name('laporan.byJenis');
+        Route::get('/{id}', 'show');
+        Route::delete('/{id}', 'destroy');
     });
 });
 

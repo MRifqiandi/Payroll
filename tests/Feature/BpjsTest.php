@@ -18,8 +18,7 @@ class BpjsTest extends TestCase
     {
         parent::setUp();
 
-        // Simulasi role middleware
-        $this->withoutMiddleware(); // Untuk test ini bisa disable middleware agar fokus ke fitur
+        $this->withoutMiddleware();
     }
 
     public function test_index_admin_bpjs_page_can_be_accessed()
@@ -87,15 +86,25 @@ public function test_my_bpjs_for_user_without_employee_should_fail()
         $response->assertHeader('content-disposition'); // mengecek apakah ada header download
     }
 
-    public function test_destroy_bpjs_deletes_record()
-    {
-        $user = User::factory()->create();
-        $bpjs = Bpjs::factory()->create();
+public function test_destroy_bpjs_deletes_record()
+{
+    // Buat user dan data BPJS
+    $user = User::factory()->create();
+    $bpjs = Bpjs::factory()->create();
 
-        $this->actingAs($user)
-             ->delete(route('bpjs.destroy', $bpjs->id))
-             ->assertRedirect();
+    // Simulasikan user mengakses dari halaman index (supaya redirect()->back() bisa bekerja)
+    $response = $this->actingAs($user)
+                     ->from(route('admin.bpjs.index'))
+                     ->delete(route('bpjs.destroy', $bpjs->id));
 
-        $this->assertDatabaseMissing('bpjs', ['id' => $bpjs->id]);
-    }
+    // Pastikan diarahkan kembali ke halaman sebelumnya (index)
+    $response->assertRedirect(route('admin.bpjs.index'));
+
+    // Pastikan ada session flash "success"
+    $response->assertSessionHas('success', 'Data BPJS berhasil dihapus.');
+
+    // Pastikan data benar-benar terhapus dari database
+    $this->assertDatabaseMissing('bpjs', ['id' => $bpjs->id]);
+}
+
 }

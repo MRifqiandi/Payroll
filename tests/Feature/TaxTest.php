@@ -75,25 +75,29 @@ public function test_index_displays_tax_list()
 
 
 
-
-
     public function test_exportBuktiPotongpdf_downloads_pdf()
-    {
-        // Mock Pdf facade
-        $pdfMock = Mockery::mock('alias:' . Pdf::class);
-        $pdfInstance = Mockery::mock();
-        $pdfMock->shouldReceive('loadView')
-            ->once()
-            ->with('pages.tax.pdf', \Mockery::on(fn($arg) => isset($arg['tax'])))
-            ->andReturn($pdfInstance);
+{
+    // Mock seluruh rantai metode Pdf
+    Pdf::shouldReceive('loadView')
+        ->once()
+        ->with('pages.tax.pdf', \Mockery::on(fn($arg) => isset($arg['tax'])))
+        ->andReturnSelf(); // Masih boleh ini
 
-        $pdfInstance->shouldReceive('setPaper')->once()->with('A4', 'portrait')->andReturnSelf();
-        $pdfInstance->shouldReceive('download')->once()->with('Bukti_Potong_PPh21_Budi.pdf')->andReturn('file content');
+    Pdf::shouldReceive('setPaper')
+        ->once()
+        ->with('A4', 'portrait')
+        ->andReturnSelf(); // Masih boleh ini
 
-        $response = $this->actingAs($this->user)->get(route('tax.exportBuktiPotongPDF', $this->tax->id));
+    Pdf::shouldReceive('download')
+        ->once()
+        ->with('Bukti_Potong_PPh21_Budi.pdf')
+        ->andReturn(response('file content')); // HARUS return response, bukan string mentah
 
-        $this->assertEquals('file content', $response->getContent());
-    }
+    $response = $this->actingAs($this->user)->get(route('tax.exportBuktiPotongPDF', $this->tax->id));
+
+    $response->assertSee('file content'); // Karena yang dikembalikan adalah response()
+}
+
 
     public function test_exportBuktiPotongPDF_handles_exception()
     {

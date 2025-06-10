@@ -19,11 +19,6 @@ public function myTax()
 {
     $user = auth()->user();
 
-    // if (!$user->employee) {
-    //     abort(403, 'Tidak memiliki data pegawai.');
-    // }
-
-
     if (!$user->employee) {
         return response('Tidak memiliki data pegawai.', 403);
     }

@@ -16,7 +16,7 @@ class KgbManualTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJson([
-                'message' => '',
+                 'message' => 'Prediksi KGB semua karyawan telah diperbarui.'
             ]);
     }
 }

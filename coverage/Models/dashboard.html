@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for D:\Kuliah\Tugas Akhir\SIM GAJI\simgaji-update\simgaji\app\Models</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=10.1.16" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css?v=10.1.16" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=10.1.16" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">D:\Kuliah\Tugas Akhir\SIM GAJI\simgaji-update\simgaji\app</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Models</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Absensi.php.html#8">App\Models\Absensi</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Anak.php.html#8">App\Models\Anak</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ApiKey.php.html#11">App\Models\ApiKey</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="JabatanFungsional.php.html#8">App\Models\JabatanFungsional</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="KelasJabatan.php.html#7">App\Models\KelasJabatan</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="LogActivity.php.html#8">App\Models\LogActivity</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Ptkp.php.html#8">App\Models\Ptkp</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="SalaryLog.php.html#8">App\Models\SalaryLog</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="SalaryRaise.php.html#8">App\Models\SalaryRaise</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Ter.php.html#8">App\Models\Ter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TunjanganFungsionalDosen.php.html#9">App\Models\TunjanganFungsionalDosen</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TunjanganKinerja.php.html#7">App\Models\TunjanganKinerja</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TunjanganKinerjaDosen.php.html#8">App\Models\TunjanganKinerjaDosen</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserFile.php.html#10">App\Models\UserFile</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserUpload.php.html#10">App\Models\UserUpload</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Employee.php.html#12">App\Models\Employee</a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="Tax.php.html#8">App\Models\Tax</a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="User.php.html#13">App\Models\User</a></td><td class="text-right">78%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="SalaryRaise.php.html#8">App\Models\SalaryRaise</a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="Employee.php.html#12">App\Models\Employee</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="UserFile.php.html#10">App\Models\UserFile</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="UserUpload.php.html#10">App\Models\UserUpload</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="ApiKey.php.html#11">App\Models\ApiKey</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="User.php.html#13">App\Models\User</a></td><td class="text-right">8</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Absensi.php.html#22"><abbr title="App\Models\Absensi::employee">employee</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Anak.php.html#31"><abbr title="App\Models\Anak::employee">employee</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ApiKey.php.html#22"><abbr title="App\Models\ApiKey::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ApiKey.php.html#29"><abbr title="App\Models\ApiKey::boot">boot</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Employee.php.html#82"><abbr title="App\Models\Employee::laporans">laporans</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Employee.php.html#94"><abbr title="App\Models\Employee::getMasaKerjaGolonganAttribute">getMasaKerjaGolonganAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Employee.php.html#112"><abbr title="App\Models\Employee::getPrediksiNaikGajiAttribute">getPrediksiNaikGajiAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="JabatanFungsional.php.html#24"><abbr title="App\Models\JabatanFungsional::tunjanganKinerjaDosens">tunjanganKinerjaDosens</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="JabatanFungsional.php.html#29"><abbr title="App\Models\JabatanFungsional::tunjanganFungsionalDosen">tunjanganFungsionalDosen</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="KelasJabatan.php.html#18"><abbr title="App\Models\KelasJabatan::tunjanganKinerja">tunjanganKinerja</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="LogActivity.php.html#24"><abbr title="App\Models\LogActivity::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Ptkp.php.html#27"><abbr title="App\Models\Ptkp::taxes">taxes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="SalaryLog.php.html#23"><abbr title="App\Models\SalaryLog::employee">employee</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="SalaryLog.php.html#28"><abbr title="App\Models\SalaryLog::salary">salary</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="SalaryRaise.php.html#23"><abbr title="App\Models\SalaryRaise::employee">employee</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="SalaryRaise.php.html#29"><abbr title="App\Models\SalaryRaise::getStatusAttribute">getStatusAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="SalaryRaise.php.html#38"><abbr title="App\Models\SalaryRaise::getSelisihAttribute">getSelisihAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Tax.php.html#33"><abbr title="App\Models\Tax::salary">salary</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Ter.php.html#29"><abbr title="App\Models\Ter::ptkp">ptkp</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TunjanganFungsionalDosen.php.html#29"><abbr title="App\Models\TunjanganFungsionalDosen::jabatanFungsional">jabatanFungsional</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TunjanganKinerja.php.html#18"><abbr title="App\Models\TunjanganKinerja::kelasJabatan">kelasJabatan</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TunjanganKinerjaDosen.php.html#26"><abbr title="App\Models\TunjanganKinerjaDosen::jabatanFungsional">jabatanFungsional</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#74"><abbr title="App\Models\User::files">files</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#79"><abbr title="App\Models\User::uploads">uploads</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserFile.php.html#20"><abbr title="App\Models\UserFile::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserFile.php.html#27"><abbr title="App\Models\UserFile::boot">boot</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserFile.php.html#38"><abbr title="App\Models\UserFile::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserFile.php.html#43"><abbr title="App\Models\UserFile::upload">upload</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserUpload.php.html#20"><abbr title="App\Models\UserUpload::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserUpload.php.html#27"><abbr title="App\Models\UserUpload::boot">boot</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserUpload.php.html#38"><abbr title="App\Models\UserUpload::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserUpload.php.html#43"><abbr title="App\Models\UserUpload::files">files</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#54"><abbr title="App\Models\User::getTable">getTable</abbr></a></td><td class="text-right">75%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="SalaryRaise.php.html#29"><abbr title="App\Models\SalaryRaise::getStatusAttribute">getStatusAttribute</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Employee.php.html#112"><abbr title="App\Models\Employee::getPrediksiNaikGajiAttribute">getPrediksiNaikGajiAttribute</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="SalaryRaise.php.html#38"><abbr title="App\Models\SalaryRaise::getSelisihAttribute">getSelisihAttribute</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="ApiKey.php.html#29"><abbr title="App\Models\ApiKey::boot">boot</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Employee.php.html#94"><abbr title="App\Models\Employee::getMasaKerjaGolonganAttribute">getMasaKerjaGolonganAttribute</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="UserFile.php.html#27"><abbr title="App\Models\UserFile::boot">boot</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="UserUpload.php.html#27"><abbr title="App\Models\UserUpload::boot">boot</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User.php.html#54"><abbr title="App\Models\User::getTable">getTable</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 10.1.16</a> using <a href="https://www.php.net/" target="_top">PHP 8.2.12</a> and <a href="https://phpunit.de/">PHPUnit 10.5.46</a> at Tue Jun 10 12:09:34 UTC 2025.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js?v=10.1.16" type="text/javascript"></script>
+  <script src="../_js/d3.min.js?v=10.1.16" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js?v=10.1.16" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([15,0,0,0,0,2,0,0,1,0,0,10], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([32,0,0,0,0,0,0,0,1,0,0,16], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Absensi.php.html#8\">App\\Models\\Absensi<\/a>"],[0,1,"<a href=\"Anak.php.html#8\">App\\Models\\Anak<\/a>"],[0,3,"<a href=\"ApiKey.php.html#11\">App\\Models\\ApiKey<\/a>"],[100,1,"<a href=\"Bpjs.php.html#8\">App\\Models\\Bpjs<\/a>"],[40,14,"<a href=\"Employee.php.html#12\">App\\Models\\Employee<\/a>"],[100,0,"<a href=\"EmployeeBpjs.php.html#8\">App\\Models\\EmployeeBpjs<\/a>"],[100,0,"<a href=\"GajiPokokPns.php.html#8\">App\\Models\\GajiPokokPns<\/a>"],[100,0,"<a href=\"GajiPokokPppk.php.html#8\">App\\Models\\GajiPokokPppk<\/a>"],[0,2,"<a href=\"JabatanFungsional.php.html#8\">App\\Models\\JabatanFungsional<\/a>"],[0,1,"<a href=\"KelasJabatan.php.html#7\">App\\Models\\KelasJabatan<\/a>"],[100,1,"<a href=\"Laporan.php.html#8\">App\\Models\\Laporan<\/a>"],[0,1,"<a href=\"LogActivity.php.html#8\">App\\Models\\LogActivity<\/a>"],[0,1,"<a href=\"Ptkp.php.html#8\">App\\Models\\Ptkp<\/a>"],[100,1,"<a href=\"Salary.php.html#8\">App\\Models\\Salary<\/a>"],[0,2,"<a href=\"SalaryLog.php.html#8\">App\\Models\\SalaryLog<\/a>"],[0,9,"<a href=\"SalaryRaise.php.html#8\">App\\Models\\SalaryRaise<\/a>"],[40,3,"<a href=\"Tax.php.html#8\">App\\Models\\Tax<\/a>"],[0,1,"<a href=\"Ter.php.html#8\">App\\Models\\Ter<\/a>"],[100,0,"<a href=\"TunjanganFungsional.php.html#7\">App\\Models\\TunjanganFungsional<\/a>"],[0,1,"<a href=\"TunjanganFungsionalDosen.php.html#9\">App\\Models\\TunjanganFungsionalDosen<\/a>"],[0,1,"<a href=\"TunjanganKinerja.php.html#7\">App\\Models\\TunjanganKinerja<\/a>"],[0,1,"<a href=\"TunjanganKinerjaDosen.php.html#8\">App\\Models\\TunjanganKinerjaDosen<\/a>"],[100,0,"<a href=\"TunjanganUmum.php.html#8\">App\\Models\\TunjanganUmum<\/a>"],[100,0,"<a href=\"UangLembur.php.html#7\">App\\Models\\UangLembur<\/a>"],[100,0,"<a href=\"UangMakan.php.html#7\">App\\Models\\UangMakan<\/a>"],[78.57142857142857,8,"<a href=\"User.php.html#13\">App\\Models\\User<\/a>"],[0,5,"<a href=\"UserFile.php.html#10\">App\\Models\\UserFile<\/a>"],[0,5,"<a href=\"UserUpload.php.html#10\">App\\Models\\UserUpload<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Absensi.php.html#22\">App\\Models\\Absensi::employee<\/a>"],[0,1,"<a href=\"Anak.php.html#31\">App\\Models\\Anak::employee<\/a>"],[0,1,"<a href=\"ApiKey.php.html#22\">App\\Models\\ApiKey::__construct<\/a>"],[0,2,"<a href=\"ApiKey.php.html#29\">App\\Models\\ApiKey::boot<\/a>"],[100,1,"<a href=\"Bpjs.php.html#25\">App\\Models\\Bpjs::employee<\/a>"],[100,1,"<a href=\"Employee.php.html#49\">App\\Models\\Employee::salaries<\/a>"],[100,1,"<a href=\"Employee.php.html#53\">App\\Models\\Employee::tax<\/a>"],[100,1,"<a href=\"Employee.php.html#57\">App\\Models\\Employee::ptkp<\/a>"],[100,1,"<a href=\"Employee.php.html#64\">App\\Models\\Employee::user<\/a>"],[100,1,"<a href=\"Employee.php.html#70\">App\\Models\\Employee::bpjs<\/a>"],[100,1,"<a href=\"Employee.php.html#76\">App\\Models\\Employee::jabatanFungsional<\/a>"],[0,1,"<a href=\"Employee.php.html#82\">App\\Models\\Employee::laporans<\/a>"],[100,1,"<a href=\"Employee.php.html#87\">App\\Models\\Employee::anak<\/a>"],[0,2,"<a href=\"Employee.php.html#94\">App\\Models\\Employee::getMasaKerjaGolonganAttribute<\/a>"],[100,1,"<a href=\"Employee.php.html#107\">App\\Models\\Employee::salaryRaise<\/a>"],[0,3,"<a href=\"Employee.php.html#112\">App\\Models\\Employee::getPrediksiNaikGajiAttribute<\/a>"],[0,1,"<a href=\"JabatanFungsional.php.html#24\">App\\Models\\JabatanFungsional::tunjanganKinerjaDosens<\/a>"],[0,1,"<a href=\"JabatanFungsional.php.html#29\">App\\Models\\JabatanFungsional::tunjanganFungsionalDosen<\/a>"],[0,1,"<a href=\"KelasJabatan.php.html#18\">App\\Models\\KelasJabatan::tunjanganKinerja<\/a>"],[100,1,"<a href=\"Laporan.php.html#27\">App\\Models\\Laporan::employee<\/a>"],[0,1,"<a href=\"LogActivity.php.html#24\">App\\Models\\LogActivity::user<\/a>"],[0,1,"<a href=\"Ptkp.php.html#27\">App\\Models\\Ptkp::taxes<\/a>"],[100,1,"<a href=\"Salary.php.html#39\">App\\Models\\Salary::employee<\/a>"],[0,1,"<a href=\"SalaryLog.php.html#23\">App\\Models\\SalaryLog::employee<\/a>"],[0,1,"<a href=\"SalaryLog.php.html#28\">App\\Models\\SalaryLog::salary<\/a>"],[0,1,"<a href=\"SalaryRaise.php.html#23\">App\\Models\\SalaryRaise::employee<\/a>"],[0,5,"<a href=\"SalaryRaise.php.html#29\">App\\Models\\SalaryRaise::getStatusAttribute<\/a>"],[0,3,"<a href=\"SalaryRaise.php.html#38\">App\\Models\\SalaryRaise::getSelisihAttribute<\/a>"],[100,1,"<a href=\"Tax.php.html#28\">App\\Models\\Tax::employee<\/a>"],[0,1,"<a href=\"Tax.php.html#33\">App\\Models\\Tax::salary<\/a>"],[100,1,"<a href=\"Tax.php.html#40\">App\\Models\\Tax::ptkp<\/a>"],[0,1,"<a href=\"Ter.php.html#29\">App\\Models\\Ter::ptkp<\/a>"],[0,1,"<a href=\"TunjanganFungsionalDosen.php.html#29\">App\\Models\\TunjanganFungsionalDosen::jabatanFungsional<\/a>"],[0,1,"<a href=\"TunjanganKinerja.php.html#18\">App\\Models\\TunjanganKinerja::kelasJabatan<\/a>"],[0,1,"<a href=\"TunjanganKinerjaDosen.php.html#26\">App\\Models\\TunjanganKinerjaDosen::jabatanFungsional<\/a>"],[100,1,"<a href=\"User.php.html#47\">App\\Models\\User::__construct<\/a>"],[75,2,"<a href=\"User.php.html#54\">App\\Models\\User::getTable<\/a>"],[100,2,"<a href=\"User.php.html#63\">App\\Models\\User::boot<\/a>"],[0,1,"<a href=\"User.php.html#74\">App\\Models\\User::files<\/a>"],[0,1,"<a href=\"User.php.html#79\">App\\Models\\User::uploads<\/a>"],[100,1,"<a href=\"User.php.html#84\">App\\Models\\User::employee<\/a>"],[0,1,"<a href=\"UserFile.php.html#20\">App\\Models\\UserFile::__construct<\/a>"],[0,2,"<a href=\"UserFile.php.html#27\">App\\Models\\UserFile::boot<\/a>"],[0,1,"<a href=\"UserFile.php.html#38\">App\\Models\\UserFile::user<\/a>"],[0,1,"<a href=\"UserFile.php.html#43\">App\\Models\\UserFile::upload<\/a>"],[0,1,"<a href=\"UserUpload.php.html#20\">App\\Models\\UserUpload::__construct<\/a>"],[0,2,"<a href=\"UserUpload.php.html#27\">App\\Models\\UserUpload::boot<\/a>"],[0,1,"<a href=\"UserUpload.php.html#38\">App\\Models\\UserUpload::user<\/a>"],[0,1,"<a href=\"UserUpload.php.html#43\">App\\Models\\UserUpload::files<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

@@ -25,17 +25,13 @@ class LaporanController extends Controller
 
         // Filter berdasarkan role
         if ($user->hasRole('staff')) {
-            // Staff hanya melihat laporan miliknya sendiri
+            
             if ($user->employee) {
                 $query->where('employee_id', $user->employee->id);
             } else {
-                // Kalau user staff tapi tidak punya employee, hasil kosong
                 $query->whereNull('employee_id');
             }
         }
-        // Admin & finance lihat semua laporan, tidak perlu filter employee_id
-
-        // Filter request
 if ($request->has('jenisLaporan') && !empty($request->jenisLaporan)) {
     $query->where('jenisLaporan', $request->jenisLaporan);
 }
@@ -68,8 +64,7 @@ if ($request->has('namaKaryawan') && !empty($request->namaKaryawan)) {
         $user = Auth::user();
 
         if ($user->hasRole('staff')) {
-            // Staff hanya bisa upload untuk dirinya sendiri
-            $employees = collect([$user->employee]); // hanya employee miliknya sendiri
+            $employees = collect([$user->employee]);
         } else {
             // Admin & finance bisa pilih employee lain
             $employees = Employee::orderBy('nama')->get();

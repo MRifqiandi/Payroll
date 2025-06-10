@@ -178,9 +178,6 @@ public function hitungGaji(Request $request)
 
         $jenisPegawai = strtoupper($employee->jenisKepegawaian ?? 'PNS');
         $golonganFormatted = $jenisPegawai . '-' . strtoupper(str_replace(' ', '', $employee->golongan));
-
-
-                // Log data dasar sebelum cari gaji pokok
         Log::info('Proses hitung gaji - data dasar:', [
             'employee_id' => $employee->id,
             'nama' => $employee->nama,
@@ -358,23 +355,11 @@ public function hitungGaji(Request $request)
         ]);
 
         $totalPotongan = $pph21Bulanan + $iuranBpjsPeserta + $potonganIwp8;
-
-       // Hitung gaji bersih awal (sebelum pembulatan)
         $gajiBersih = $gajiKotor - $totalPotongan;
-
-        // Bulatkan ke atas ke kelipatan 100 rupiah
         $gajiBersihRounded = ceil($gajiBersih / 100) * 100;
-
-        // Hitung selisih pembulatan
         $selisihPembulatan = $gajiBersihRounded - $gajiBersih;
-
-        // Hanya tambahkan ke tunjangan pembulatan jika selisihnya positif
         $tunjanganPembulatan = max($selisihPembulatan, 0);
-
-        // Tambahkan tunjangan pembulatan ke gaji kotor
         $gajiKotor += $tunjanganPembulatan;
-
-        // Hitung ulang gaji bersih akhir
         $gajiBersih = $gajiKotor - $totalPotongan;
 
 
@@ -384,12 +369,9 @@ public function hitungGaji(Request $request)
             'gaji_pokok' => $gajiPokok,
             'tunjangan_fungsional' => $tunjanganFungsional,
             'tunjangan_umum' => $tunjanganUmum,
-            // 'tunjangan_kinerja' => $tunjanganKinerja,
             'tunjangan_lain_lain' => $tunjanganLainLain,
             'tunjangan_pembulatan' => $tunjanganPembulatan,
             'tunjangan_beras' => $tunjanganBeras,
-            // 'uang_makan' => $tunjanganMakanTotal,
-            // 'uang_lembur' => $uangLembur,
             'potongan_bpjs' => $iuranBpjsPeserta,
             'potongan_iwp_8' => $potonganIwp8,
             'pph21' => $pph21Bulanan,
@@ -438,7 +420,6 @@ public function hitungGaji(Request $request)
                 ]);
             }
         }
-          // Logging aktivitas sukses hitung gaji
             ActivityLogger::log(
                 'hitung_gaji',
                 "Sukses menghitung gaji employee_id: $employeeId, periode: $periodeGaji, gaji_bersih: $gajiBersih"
@@ -464,7 +445,6 @@ public function hitungGaji(Request $request)
         ], 500);
     }
 }
-
 
 public function generateAllSalaries(Request $request)
 {
@@ -497,7 +477,6 @@ public function generateAllSalaries(Request $request)
         ActivityLogger::log('generate_salary_start', "Mulai generate gaji untuk semua employee");
 
         try {
-            // === Copy logika hitung gaji ===
             $getGolonganUtama = function ($golongan) {
                 preg_match('/^(I{1,3}|IV|V)/i', strtoupper($golongan), $matches);
                 return $matches[0] ?? strtoupper($golongan);
@@ -514,7 +493,7 @@ public function generateAllSalaries(Request $request)
             $mkg = 0;
         }
 
-        $jenisPegawai = strtoupper($employee->jenisKepegawaian ?? 'PNS'); // Default ke 'PNS' jika null
+        $jenisPegawai = strtoupper($employee->jenisKepegawaian ?? 'PNS');
         $golonganFormatted = $jenisPegawai . '-' . strtoupper(str_replace(' ', '', $employee->golongan));
 
 
@@ -524,7 +503,6 @@ public function generateAllSalaries(Request $request)
             'golongan_asli' => $employee->golongan,
             'golongan_formatted' => $golonganFormatted,
             'tanggal_masuk' => $employee->tanggalMasuk,
-            // 'masa_kerja_golongan' => $employee->masa_kerja_golongan,
             'mkg_yang_digunakan' => $mkg,
             'periode_gaji' => $periodeGajiFull,
         ]);
@@ -535,7 +513,6 @@ if ($jenisPegawai === 'PNS') {
             ->orderBy('mkg', 'desc')
             ->first();
         } elseif ($jenisPegawai === 'PPPK') {
-            // Untuk PPPK, hilangkan prefix 'PPPK-' jika ada
             if (str_starts_with($golonganFormatted, 'PPPK-')) {
                 $golonganQuery = substr($golonganFormatted, strlen('PPPK-'));
             } else {
@@ -580,13 +557,6 @@ if ($jenisPegawai === 'PNS') {
                 TunjanganFungsionalDosen::where('jabatan_fungsional_id', $employee->jabatan_fungsional_id)->first()
             )->nominal ?? 0;
 
-            // $jumlahHadir = Absensi::where('employee_id', $employee->id)
-            //     ->where('statusKehadiran', 'Hadir')
-            //     ->whereYear('tanggalKehadiran', $periodeYear)
-            //     ->whereMonth('tanggalKehadiran', $periodeMonth)
-            //     ->count();
-
-
             $tunjanganIstriSuami = ($employee->statusPernikahan == 'Menikah') ? 0.10 * $gajiPokok : 0;
 
             $jumlahAnakBerhak = collect($employee->anak)->filter(function ($anak) {
@@ -594,15 +564,9 @@ if ($jenisPegawai === 'PNS') {
             })->count();
 
             $tunjanganAnak = $jumlahAnakBerhak * 0.02 * $gajiPokok;
-
-        // === TUNJANGAN BERAS (PANGAN) ===
-        // Rp 72.420 per orang, maksimal: pegawai + pasangan (jika menikah) + 2 anak berhak
         $hargaBerasPerOrang = 72420;
-
-        // Jumlah anak maksimal 2 yang dihitung
         $jumlahAnakBeras = min($jumlahAnakBerhak, 2);
 
-        // Total anggota keluarga berhak beras
         $jumlahOrangBeras = 1 + ($employee->statusPernikahan ? 1 : 0) + $jumlahAnakBeras;
 
         $tunjanganBeras = $hargaBerasPerOrang * $jumlahOrangBeras;
@@ -613,21 +577,14 @@ if ($jenisPegawai === 'PNS') {
         $tunjanganUmum = ceil($tunjanganUmum);
         $tunjanganLainLain = ceil($tunjanganLainLain);
         $tunjanganFungsional = ceil($tunjanganFungsional);
-        // $tunjanganKinerja = ceil($tunjanganKinerja);
         $tunjanganBeras = ceil($tunjanganBeras);
         $tunjanganIstriSuami = ceil($tunjanganIstriSuami);
         $tunjanganAnak = ceil($tunjanganAnak);
-        // $tunjanganMakanTotal = ceil($tunjanganMakanTotal);
-        // $uangLembur = ceil($uangLembur);
 
             $gajiKotor = $gajiPokok + $tunjanganUmum + $tunjanganFungsional + $tunjanganLainLain + $tunjanganBeras
                 + $tunjanganIstriSuami + $tunjanganAnak;
 
-        // === IWP (Iuran Wajib Pegawai) ===
-        // IWP 8%: 8% dari gaji pokok (pensiun dan THT)
         $potonganIwp8 = round($gajiKotor * 0.08);
-
-        // IWP 1%: dari gaji pokok + tunjangan melekat (umum, istri/suami, anak)
         $tunjanganMelekat = $tunjanganUmum + $tunjanganIstriSuami + $tunjanganAnak;
         $potonganIwp1 = round(($gajiKotor + $tunjanganMelekat) * 0.01);
 

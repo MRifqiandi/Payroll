@@ -3,6 +3,9 @@
 
 @section('content')
 
+@php
+    $errors = $errors ?? session()->get('errors', new \Illuminate\Support\MessageBag);
+@endphp
 
 <div class="bg-white min-vh-100 py-4">
     <div class="d-flex justify-content-between align-items-center pb-3 gap-3">
@@ -25,7 +28,7 @@
 
     <form action="{{ route('laporan.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
- 
+
         <div class="mb-3">
             <label for="employee_id" class="form-label">Nama Karyawan</label>
             <select name="employee_id" id="employee_id" class="form-select select2">
