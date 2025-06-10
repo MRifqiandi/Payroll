@@ -9,61 +9,49 @@ use App\Models\Bpjs;
 use App\Models\Absensi;
 use App\Models\SalaryLog;
 use App\Models\SalaryRaise;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Ptkp;
-use App\Models\Ter;
-use Illuminate\Pagination\Paginator;
+use App\Models\UangLembur;
+use App\Models\UangMakan;
+use App\Models\TunjanganFungsional;
+use App\Models\TunjanganKinerja;
+use App\Models\TunjanganUmum;
+use App\Models\GajiPokokPns;
+
+
+// use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SalaryController extends Controller
 {
-    public function index(Request $request)
-    {
+// public function index(Request $request)
+// {
+//     $user = auth()->user();
 
-        $search = $request->input('search');
-        $salaries = Salary::with(['employee'])
-            ->when($search, function ($query) use ($search) {
-                return $query->whereHas('employee', function ($query) use ($search) {
-                    $query->where('nama', 'like', '%' . $search . '%');
-                });
-            })
-            ->orderBy('periodeGaji', 'desc')
-            ->latest('created_at')
-            ->get();
-        return view('pages.payroll.index', compact('salaries'));
-    }
+//     $search = $request->input('search');
 
-        public function getSalary($id)
-{
-    $employee = Employee::with(['salary' => function($q) {
-        $q->latest();
-    }])->find($id);
+//     $query = Salary::with('employee');
 
-    if (!$employee || $employee->salary->isEmpty()) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Data salary tidak ditemukan.'
-        ]);
-    }
+//     // Jika ingin hanya menampilkan gaji employee login (misal staff)
+//     if ($user->employee) {
+//         $query->where('employee_id', $user->employee->id);
+//     }
 
-    $salary = $employee->salary->sortByDesc('created_at')->first();
+//     // Jika ada filter search nama karyawan
+//     if ($search) {
+//         $query->whereHas('employee', function ($q) use ($search) {
+//             $q->where('nama', 'like', '%' . $search . '%');
+//         });
+//     }
 
+//     $salaries = $query->orderBy('periode_gaji', 'desc')
+//                       ->latest('created_at')
+//                       ->get();
 
-    return response()->json([
-        'status' => 'success',
-        'salary' => [
-            'gajiPokok' => $salary->gajiPokok,
-            'tunjanganTransportasi' => $salary->tunjanganTransportasi,
-            'tunjanganMakan' => $salary->tunjanganMakan,
-            'tunjanganKesehatan' => $salary->tunjanganKesehatan,
-            'bonus' => $salary->bonus,
-            'insentif' => $salary->insentif,
-            'lembur' => $salary->lembur,
-            'totalPotongan' => $salary->totalPotongan,
-        ],
-        'tanggalMasuk' => $employee->tanggalMasuk,
-    ]);
-}
+//     return view('pages.payroll.index', compact('salaries'));
+// }
+
 
     public function create()
     {
@@ -71,6 +59,179 @@ class SalaryController extends Controller
         $ptkps = Ptkp::all();
         return view('pages.payroll.create', compact('employees', 'ptkps'));
     }
+
+//     public function mySalary(Request $request)
+// {
+//     $user = auth()->user();
+
+//     if (!$user->employee) {
+//         abort(403, 'Anda tidak punya data gaji.');
+//     }
+
+//     $search = $request->input('search');
+
+//     $query = Salary::with('employee')
+//         ->where('employee_id', $user->employee->id);
+
+//     if ($search) {
+//         $query->whereHas('employee', function ($q) use ($search) {
+//             $q->where('nama', 'like', '%' . $search . '%');
+//         });
+//     }
+
+//     $salaries = $query->orderBy('periodeGaji', 'desc')
+//                       ->latest('created_at')
+//                       ->paginate(10); // Ganti dari ->get() ke ->paginate()
+
+//     return view('pages.payroll.salary-user', compact('salaries'));
+// }
+
+function getGolonganUtama($golongan)
+{
+    // Misal golongan = "III/b" atau "II/a"
+    // kita ambil hanya bagian romawi, sebelum slash
+    $parts = explode('/', $golongan);
+    return strtoupper(trim($parts[0])); // misal "III"
+}
+
+
+// public function hitungGaji(Request $request)
+// {
+//     try {
+//         // Validasi input
+//         $request->validate([
+//             'employee_id' => 'required|exists:employees,id',
+//             'periode_gaji' => 'required|date_format:Y-m',
+//         ]);
+
+//         $employeeId = $request->employee_id;
+//         $periodeGaji = $request->periode_gaji; // format YYYY-MM
+
+//         $employee = Employee::with('anak')->findOrFail($employeeId);
+
+//         // Fungsi bantu untuk ambil golongan utama (bagian sebelum '/')
+//         $getGolonganUtama = function($golongan) {
+//             $parts = explode('/', $golongan);
+//             return strtoupper(trim($parts[0]));
+//         };
+
+//         $golonganUtama = $getGolonganUtama($employee->golongan);
+//         Log::info("Golongan utama employee: " . $golonganUtama);
+//         $jabatanFungsional = $employee->jabatan_fungsional;
+//         $mkg = $employee->masa_kerja_golongan;
+
+//         // Ambil gaji pokok dengan pencocokan golongan (like %golonganUtama%)
+//         // Contoh: jika di DB golongan pakai format "PNS-III/b"
+//         $gajiPokokData = GajiPokokPns::where('golongan', 'like', '%' . $golonganUtama . '%')
+//                         ->where('mkg', '<=', $mkg)
+//                         ->orderBy('mkg', 'desc')
+//                         ->first();
+
+//         $gajiPokok = $gajiPokokData ? $gajiPokokData->nominal : 0;
+
+//         // Ambil tunjangan umum sesuai golongan utama (misal: "III")
+//         $tunjanganUmumData = TunjanganUmum::where('golongan', $golonganUtama)->first();
+//         $tunjanganUmum = $tunjanganUmumData ? $tunjanganUmumData->tunjangan : 0;
+
+//         // Ambil tunjangan fungsional sesuai jabatan fungsional
+//         $tunjanganFungsionalData = TunjanganFungsional::where('jabatan_fungsional', $jabatanFungsional)->first();
+//         $tunjanganFungsional = $tunjanganFungsionalData ? $tunjanganFungsionalData->tunjangan : 0;
+
+//         // Parse tahun dan bulan dari periode_gaji (format Y-m)
+//         $tahunSekarang = date('Y', strtotime($periodeGaji . '-01'));
+//         $bulanSekarang = date('m', strtotime($periodeGaji . '-01'));
+
+//         // Hitung jumlah hadir di bulan itu
+//         $jumlahHadir = Absensi::where('employee_id', $employee->id)
+//             ->where('statusKehadiran', 'Hadir')
+//             ->whereYear('tanggalKehadiran', $tahunSekarang)
+//             ->whereMonth('tanggalKehadiran', $bulanSekarang)
+//             ->count();
+
+//         // Uang makan sesuai golongan utama
+//         $uangMakanData = UangMakan::where('golongan', $golonganUtama)->first();
+//         $nominalUangMakan = $uangMakanData ? $uangMakanData->nominal : 0;
+//         $tunjanganMakanTotal = $jumlahHadir * $nominalUangMakan;
+
+//         // Uang lembur sesuai golongan utama
+//         $uangLemburData = UangLembur::where('golongan', $golonganUtama)->first();
+//         $uangLembur = $uangLemburData ? $uangLemburData->nominal : 0;
+
+//         // Tunjangan istri/suami 10% dari gaji pokok jika status menikah
+//         $tunjanganIstriSuami = $employee->status_menikah ? 0.10 * $gajiPokok : 0;
+
+//         // Hitung tunjangan anak yang berhak
+//         $jumlahAnakBerhak = 0;
+//         foreach ($employee->anak as $anak) {
+//             if (!$anak->sudah_kawin &&
+//                 $anak->umur < 21 &&
+//                 !$anak->punya_penghasilan &&
+//                 $anak->menjadi_tanggungan) {
+//                 $jumlahAnakBerhak++;
+//             }
+//         }
+//         $tunjanganAnak = $jumlahAnakBerhak * 0.02 * $gajiPokok;
+
+//         // Tunjangan kinerja sesuai kelas jabatan
+//         $kelasJabatanId = $employee->kelas_jabatan_id;
+//         $tunjanganKinerjaData = TunjanganKinerja::where('kelas_jabatan_id', $kelasJabatanId)->first();
+//         $tunjanganKinerja = $tunjanganKinerjaData ? $tunjanganKinerjaData->tunjangan : 0;
+
+//         // Hitung gaji kotor
+//         $gajiKotor = $gajiPokok + $tunjanganUmum + $tunjanganFungsional + $tunjanganKinerja
+//             + $tunjanganIstriSuami + $tunjanganAnak + $tunjanganMakanTotal + $uangLembur;
+
+//         // Placeholder potongan
+//         $potonganPph21 = 0;
+//         $potonganBpjs = 0;
+//         $potonganLain = 0;
+
+//         $totalPotongan = $potonganPph21 + $potonganBpjs + $potonganLain;
+
+//         $gajiBersih = $gajiKotor - $totalPotongan;
+
+//         // Simpan data gaji
+//         $salary = Salary::create([
+//             'employee_id' => $employeeId,
+//             'periode_gaji' => $periodeGaji,
+//             'gaji_pokok' => $gajiPokok,
+//             'tunjangan_umum' => $tunjanganUmum,
+//             'tunjangan_fungsional' => $tunjanganFungsional,
+//             'tunjangan_kinerja' => $tunjanganKinerja,
+//             'tunjangan_istri_suami' => $tunjanganIstriSuami,
+//             'tunjangan_anak' => $tunjanganAnak,
+//             'uang_makan' => $tunjanganMakanTotal,
+//             'uang_lembur' => $uangLembur,
+//             'gaji_kotor' => $gajiKotor,
+//             'potongan_pph21' => $potonganPph21,
+//             'potongan_bpjs' => $potonganBpjs,
+//             'potongan_lain' => $potonganLain,
+//             'total_potongan' => $totalPotongan,
+//             'gaji_bersih' => $gajiBersih,
+//         ]);
+
+//         return response()->json([
+//             'message' => 'Gaji berhasil dihitung dan disimpan',
+//             'data' => $salary,
+//         ]);
+
+//     } catch (\Exception $e) {
+//         return response()->json([
+//             'message' => 'Terjadi kesalahan saat menghitung gaji',
+//             'error' => $e->getMessage(),
+//         ], 500);
+//     }
+// }
+
+
+
+
+public function showGenerate()
+{
+    $employees = Employee::all(); // misalnya kamu ingin memilih karyawan
+    return view('pages.payroll.generate', compact('employees'));
+}
+
 
 
 public function store(Request $request)
@@ -113,7 +274,7 @@ public function store(Request $request)
         return back()->withErrors(['ptkp' => 'Kode PTKP tidak ditemukan di database.']);
     }
     $ptkp = $ptkpModel->nilai_ptkp;
-    $ptkpId = $ptkpModel->id;  
+    $ptkpId = $ptkpModel->id;
 
     // Hitung masa kerja dalam tahun
     $masaKerja = $employee->tanggalMasuk
@@ -176,7 +337,7 @@ public function store(Request $request)
     $tunjanganMakanTotal = $jumlahHadir * $validatedData['tunjanganMakan'];
 
     // Hitung penghasilan bruto bulanan
-    $penghasilanBrutoBulanan = 
+    $penghasilanBrutoBulanan =
         $gajiPokokBaru +
         $tunjanganTransportasi +
         $tunjanganMakanTotal +
@@ -228,7 +389,7 @@ public function store(Request $request)
         $batasSebelumnya = $lapisan['batas'];
     }
 
-    
+
     $pph21Bulanan = $pph21Tahunan / 12;
     $totalPotongan = $pph21Bulanan + $iuranPensiunBulanan + $biayaJabatanBulanan;
 
@@ -244,9 +405,9 @@ public function store(Request $request)
         'bonus' => $validatedData['bonus'],
         'insentif' => $validatedData['insentif'],
         'lembur' => $validatedData['lembur'],
-        'biayaJabatan' => $biayaJabatanTahunan / 12,  
-        'iuranPensiun' => $iuranPensiunBulanan,       // Iuran pensiun per bulan
-        'totalPotongan' => $totalPotongan,  
+        'biayaJabatan' => $biayaJabatanTahunan / 12,
+        'iuranPensiun' => $iuranPensiunBulanan,
+        'totalPotongan' => $totalPotongan,
         'totalGaji' => $penghasilanBrutoBulanan - $pph21Bulanan - $biayaJabatanBulanan - $iuranPensiunBulanan,
     ]);
 
@@ -608,7 +769,38 @@ public function update(Request $request, $id)
             $data['lembur']
         ) - $totalPotongan;
     }
+public function salaryHistoryUser(Request $request)
+{
+    $employeeId = Auth::user()->employee_id;
 
+    // Filter riwayat gaji milik user login
+    $salaryHistoryQuery = Salary::with('employee')->where('employee_id', $employeeId);
+
+    if ($request->filled('filter_bulan')) {
+        $salaryHistoryQuery->whereMonth('periodeGaji', $request->filter_bulan);
+    }
+
+    if ($request->filled('filter_tahun')) {
+        $salaryHistoryQuery->whereYear('periodeGaji', $request->filter_tahun);
+    }
+
+    $salaryHistory = $salaryHistoryQuery->orderByDesc('created_at')->paginate(10);
+
+    // Filter riwayat perubahan gaji milik user login
+    $salaryLogQuery = SalaryLog::with('employee')->where('employee_id', $employeeId);
+
+    if ($request->filled('bulan')) {
+        $salaryLogQuery->whereMonth('created_at', $request->bulan);
+    }
+
+    if ($request->filled('tahun')) {
+        $salaryLogQuery->whereYear('created_at', $request->tahun);
+    }
+
+    $salaryLogs = $salaryLogQuery->orderByDesc('created_at')->paginate(10);
+
+    return view('pages.payroll.salary-history-user', compact('salaryHistory', 'salaryLogs'));
+}
 
 public function salaryHistory(Request $request)
 {
@@ -622,11 +814,11 @@ public function salaryHistory(Request $request)
     }
 
     if ($request->filled('filter_bulan')) {
-        $salaryHistoryQuery->whereMonth('created_at', $request->filter_bulan);
+        $salaryHistoryQuery->whereMonth('periodeGaji', $request->filter_bulan);
     }
 
     if ($request->filled('filter_tahun')) {
-        $salaryHistoryQuery->whereYear('created_at', $request->filter_tahun);
+        $salaryHistoryQuery->whereYear('periodeGaji', $request->filter_tahun);
     }
 
     $salaryHistory = $salaryHistoryQuery->orderByDesc('created_at')->paginate(10);
@@ -641,12 +833,12 @@ public function salaryHistory(Request $request)
         });
     }
 
-    if ($request->filled('bulan')) {
-        $salaryLogQuery->whereMonth('created_at', $request->bulan);
+    if ($request->filled('filter_bulan')) {
+        $salaryHistoryQuery->whereMonth('periodeGaji', $request->filter_bulan);
     }
 
-    if ($request->filled('tahun')) {
-        $salaryLogQuery->whereYear('created_at', $request->tahun);
+    if ($request->filled('filter_tahun')) {
+        $salaryHistoryQuery->whereYear('periodeGaji', $request->filter_tahun);
     }
 
     $salaryLogs = $salaryLogQuery->orderBy('created_at', 'desc')->paginate(10);

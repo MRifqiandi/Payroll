@@ -4,16 +4,18 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
     /**
      * Define the application's command schedule.
      */
-    protected function schedule(Schedule $schedule): void
-    {
-        // $schedule->command('inspire')->hourly();
-    }
+protected function schedule(Schedule $schedule)
+{
+    $schedule->command('kgb:update-prediksi')->everyMinute(); // atau dailyAt('02:00') jika ingin lebih spesifik
+}
+
 
     /**
      * Register the commands for the application.
@@ -24,4 +26,5 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
 }

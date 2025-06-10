@@ -5,8 +5,7 @@
 @section('content')
 <div class="bg-white min-vh-100 py-4">
 <div class="container mt-4">
-    <h1 class="fw-bold text-primary mb-4">Dashboard</h1>
-    <h4 class="text-muted">Selamat datang, {{ $employee->nama }}</h4>
+    <h2 class="fw-bold text-primary">Selamat datang, {{ $employee->nama }}</h2>
 
     @if ($employee)
     <div class="card mt-4 shadow-sm">

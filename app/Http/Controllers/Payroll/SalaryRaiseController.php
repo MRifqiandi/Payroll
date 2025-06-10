@@ -2,35 +2,40 @@
 
 namespace App\Http\Controllers\Payroll;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\SalaryRaise;
 use App\Models\Employee;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class SalaryRaiseController extends Controller
 {
-    // Menampilkan riwayat kenaikan gaji
     public function index(Request $request)
     {
-        // Ambil semua karyawan untuk dropdown
-        $employees = Employee::all();
+        $query = SalaryRaise::with('employee')->orderBy('tanggalKenaikan', 'desc');
 
-        // Ambil riwayat kenaikan gaji berdasarkan karyawan yang dipilih
-        $salaryRaises = null;
-        if ($request->has('employee_id') && $request->employee_id) {
-            $salaryRaises = SalaryRaise::where('employee_id', $request->input('employee_id'))
-                ->orderBy('tanggalKenaikan', 'desc')
-                ->get();
-
-            // Jika request AJAX, kirim data dalam bentuk JSON
-            if ($request->ajax()) {
-                return response()->json([
-                    'salaryRaises' => $salaryRaises
-                ]);
-            }
+        // Jika ingin filter berdasarkan karyawan (optional)
+        if ($request->filled('employee_id')) {
+            $query->where('employee_id', $request->employee_id);
         }
 
-        // Kembali ke view dengan data
-        return view('pages.payroll.salary-raise-history', compact('employees', 'salaryRaises'));
+        $salaryRaises = $query->paginate(15);
+
+        $employees = Employee::orderBy('nama')->get();
+
+        return view('pages.payroll.salary-raise-history', compact('salaryRaises', 'employees'));
     }
+
+    public function myRaises()
+{
+    $user = auth()->user();
+
+    // Pastikan hanya mengambil data kenaikan gaji milik karyawan yang login
+    $salaryRaises = SalaryRaise::with('employee')
+        ->where('employee_id', $user->employee->id)
+        ->orderBy('tanggalKenaikan', 'desc')
+        ->paginate(15);
+
+    return view('pages.payroll.salary-raise-history-user', compact('salaryRaises'));
+}
+
 }

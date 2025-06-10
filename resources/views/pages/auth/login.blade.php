@@ -42,7 +42,6 @@
                         style="position:absolute; margin-left: 80%; bottom: 45px" id="togglePassword"></i>
                 </div>
 
-
                 <div class="form-item">
                     <a href="{{ route('password.request') }}">Lupa Password?</a>
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\SlipController;
+use App\Http\Controllers\Api\MockApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,8 @@ Route::middleware('api_key')->group(function () {
             Route::get('/', 'get');
         });
     });
+
+    Route::get('/mock/pegawai', [MockApiController::class, 'getPegawai']);
 
     Route::prefix('slip')->group(function () {
         Route::controller(SlipController::class)->group(function () {

@@ -1,0 +1,10 @@
+
+   INFO  No scheduled commands are ready to run.  
+
+
+   INFO  No scheduled commands are ready to run.  
+
+
+  2025-05-27 18:21:15 Running ["artisan" kgb:update-prediksi] ........................................... 1,320ms DONE
+  ⇂ "C:\xampp\php\php.exe" "artisan" kgb:update-prediksi > "NUL" 2>&1  
+

@@ -9,13 +9,17 @@ class CreateLaporanTable extends Migration
     public function up()
     {
         Schema::create('laporan', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('employee_id')->nullable();
-            $table->string('jenisLaporan'); // misal: 'pajak', 'absensi', dll
+            $table->bigIncrements('id'); // Primary key
+            $table->unsignedBigInteger('employee_id')->nullable()->index(); // FK ke employees (nullable)
+            $table->string('jenisLaporan', 100);
             $table->date('tanggalLaporan');
-            $table->json('detailLaporan'); // bisa JSON atau teks
-            $table->timestamps();
+            $table->text('detailLaporan');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->string('originalBuktiPotong', 255)->nullable();
+            $table->string('originalFileLaporan', 255)->nullable(); // diasumsikan varchar juga
 
+            // Optional FK constraint
             $table->foreign('employee_id')->references('id')->on('employee')->onDelete('set null');
         });
     }
@@ -25,3 +29,4 @@ class CreateLaporanTable extends Migration
         Schema::dropIfExists('laporan');
     }
 }
+

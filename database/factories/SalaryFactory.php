@@ -3,28 +3,46 @@
 namespace Database\Factories;
 
 use App\Models\Salary;
+use App\Models\Employee;
+use App\Models\TunjanganFungsionalDosen;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SalaryFactory extends Factory
 {
     protected $model = Salary::class;
 
-    public function definition()
+    public function definition(): array
     {
+        $gajiPokok = $this->faker->numberBetween(3000000, 7000000);
+        $tunjanganLainLain = $this->faker->randomFloat(2, 0, 1000000);
+        $gajiKotor = $gajiPokok + $tunjanganLainLain;
+        $totalPotongan = $this->faker->numberBetween(100000, 1000000);
+        $gajiBersih = $gajiKotor - $totalPotongan;
+
         return [
-            'employee_id'             => $this->faker->numberBetween(1, 50), // sesuaikan dengan data employee kamu
-            'periodeGaji'             => $this->faker->date('Y-m-d'), // contoh tanggal periode gaji
-            'gajiPokok'               => $this->faker->randomFloat(2, 3000000, 15000000), // gaji pokok antara 3 juta - 15 juta
-            'tunjanganTransportasi'   => $this->faker->randomFloat(2, 500000, 2000000),
-            'tunjanganMakan'          => $this->faker->randomFloat(2, 300000, 1500000),
-            'tunjanganKesehatan'      => $this->faker->randomFloat(2, 200000, 1000000),
-            'bonus'                   => $this->faker->randomFloat(2, 0, 5000000),
-            'insentif'                => $this->faker->randomFloat(2, 0, 3000000),
-            'lembur'                  => $this->faker->randomFloat(2, 0, 2000000),
-            'totalPotongan'           => $this->faker->randomFloat(2, 0, 1000000),
-            'totalGaji'               => $this->faker->randomFloat(2, 3000000, 25000000),
-            'created_at'              => now(),
-            'updated_at'              => now(),
+            'employee_id' => Employee::factory(), // pastikan EmployeeFactory tersedia
+            'periode_gaji' => $this->faker->date('Y-m-d'),
+            'gaji_pokok' => $gajiPokok,
+            'tunjangan_umum' => $this->faker->numberBetween(0, 500000),
+            'tunjangan_fungsional' => TunjanganFungsionalDosen::factory(),
+            // 'tunjangan_kinerja' => $this->faker->numberBetween(0, 1000000),
+            'tunjangan_lain_lain' => $tunjanganLainLain,
+            'tunjangan_pembulatan' => $this->faker->randomFloat(2, 0, 10000),
+            'tunjangan_beras' => $this->faker->randomFloat(2, 0, 100000),
+            'tunjangan_istri_suami' => $this->faker->numberBetween(0, 500000),
+            'tunjangan_anak' => $this->faker->numberBetween(0, 500000),
+            'uang_makan' => $this->faker->numberBetween(0, 500000),
+            'uang_lembur' => $this->faker->numberBetween(0, 500000),
+            'gaji_kotor' => $gajiKotor,
+            'potongan_pph21' => $this->faker->numberBetween(0, 500000),
+            'potongan_bpjs' => $this->faker->numberBetween(0, 500000),
+            'potongan_iwp_8' => $this->faker->randomFloat(2, 0, 500000),
+            'potongan_iwp_1' => $this->faker->randomFloat(2, 0, 100000),
+            'potongan_lain' => $this->faker->numberBetween(0, 500000),
+            'total_potongan' => $totalPotongan,
+            'gaji_bersih' => $gajiBersih,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

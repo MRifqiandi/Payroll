@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
             'position' => 'Admin',
             'public_key' => $publicKey,
             'private_key' => $privateKey,
+             'employee_id' => 1,
         ])->assignRole('admin');
 
         User::create([
@@ -56,6 +57,7 @@ class DatabaseSeeder extends Seeder
             'position' => 'Admin',
             'public_key' => $publicKey,
             'private_key' => $privateKey,
+             'employee_id' => 2,
         ])->assignRole('finance');
 
         User::create([
@@ -68,6 +70,7 @@ class DatabaseSeeder extends Seeder
             'position' => 'Admin',
             'public_key' => $publicKey,
             'private_key' => $privateKey,
+             'employee_id' => 3,
         ])->assignRole('staff');
 
         collect([
@@ -100,6 +103,7 @@ class DatabaseSeeder extends Seeder
                 'position' => 'Staff',
                 'public_key' => $publicKey,
                 'private_key' => $privateKey,
+                'employee_id' => 3,
             ])->assignRole('staff');
         });
     }

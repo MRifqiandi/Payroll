@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\Employee;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -18,6 +19,7 @@ class UserFactory extends Factory
         public function definition(): array
     {
         return [
+            'employee_id' => Employee::factory(),
             'name' => fake()->name(),
             'number' => fake()->unique()->numerify('########'), // 8 digit unik
             'rank' => fake()->randomElement(['Junior', 'Senior', 'Manager', 'Director']),

@@ -2,7 +2,8 @@
 @section('title', 'Daftar Laporan')
 
 @section('content')
-<div class="bg-white min-vh-100 py-4">
+<div class="card card-flush h-md-100">
+    <div class="card-body pt-6">
     <div class="d-flex justify-content-between align-items-center pb-3 gap-3">
         <div class="container">
             <h2 class="pb-3 fw-bold text-primary">📄 Daftar Laporan</h2>
@@ -49,20 +50,18 @@
 </div>
 
 
-     <div class="card border-2" style="border-radius: 10px;">
-        <div class="card-body p-0">
-
-        <div class="table-responsive">
-    <table  class="table table-bordered table-striped align-middle m-0">
+    {{-- Table Data Gaji --}}
+        <div class="table-responsive mt-4">
+            <table class="table table-striped table-row-dashed align-middle gs-0 gy-3 my-0">
         <thead class="table-light">
             <tr>
                 <th>No</th>
                 <th>Karyawan</th>
                 <th>Jenis Laporan</th>
                 <th>Tanggal Laporan</th>
-                <th>Bukti Potong</th>
-                <th>File Laporan</th>
-                <th>Aksi</th>
+                <th class="text-center">Bukti Potong</th>
+                <th class="text-center">File Laporan</th>
+                <th class="text-center">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -135,7 +134,7 @@
 </div>
 </div>
 
-    {{ $laporan->links() }}
+
 </div>
 </div>
 </div>

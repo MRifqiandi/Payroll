@@ -47,7 +47,7 @@
                         <img src="{{ URL::asset('https://ui-avatars.com/api/?background=random&name=' . Auth::user()->name) }}"
                             alt="userprofile" class="rounded-circle" width="40">
                         <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span>
-                            <span class="text-dark">{{ Auth::user()->name }}</span>
+                             <span class="text-dark">{{ Auth::user()->name }}</span>
                             <i data-feather="chevron-down" class="svg-icon"></i>
                         </span>
                     </a>

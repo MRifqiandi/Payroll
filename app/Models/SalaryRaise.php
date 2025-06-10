@@ -20,9 +20,25 @@ class SalaryRaise extends Model
         'tanggalKenaikan',
     ];
 
-    // Relasi ke model Employee
     public function employee()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(Employee::class, 'employee_id');
+    }
+
+    // Hitung status perubahan
+    public function getStatusAttribute()
+    {
+        if (is_null($this->gajiLama) || is_null($this->gajiBaru)) return 'Tidak diketahui';
+
+        if ($this->gajiBaru > $this->gajiLama) return 'Naik';
+        if ($this->gajiBaru < $this->gajiLama) return 'Turun';
+        return 'Tetap';
+    }
+
+    public function getSelisihAttribute()
+    {
+        if (is_null($this->gajiLama) || is_null($this->gajiBaru)) return null;
+
+        return $this->gajiBaru - $this->gajiLama;
     }
 }

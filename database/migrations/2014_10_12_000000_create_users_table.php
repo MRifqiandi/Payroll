@@ -13,18 +13,19 @@ return new class extends Migration
     {
         Schema::create(config('database.tables.DB_USERS'), function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->unsignedBigInteger('employee_id')->index(); // Foreign key reference to employees
             $table->string('name');
-            $table->string('number');
-            $table->string('rank');
-            $table->date('join_date');
-            $table->string('position');
+            $table->string('number')->nullable();
+            $table->string('rank')->nullable();
+            $table->date('join_date')->nullable();
+            $table->string('position')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->text('2fa_secret')->nullable();
-            $table->text('public_key');
-            $table->text('private_key');
-            $table->rememberToken();
+            $table->text('public_key')->nullable();
+            $table->text('private_key')->nullable();
+            $table->rememberToken()->nullable();
             $table->timestamps();
         });
     }

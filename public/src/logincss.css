@@ -1,4 +1,4 @@
-body {
+/* body {
     background: url(login/images/background1.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -6,7 +6,7 @@ body {
     background-size: cover;
     font-family: 'HelveticaNeue', 'Arial', sans-serif;
 
-}
+} */
 
 a {
     color: #58bff6;
@@ -45,18 +45,18 @@ div.logo svg {
 }
 
 #formWrapper {
-    background: rgba(0, 0, 0, .2);
+    background: rgba(0, 0, 0, 0.2);
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 }
 
 .darken-bg {
     background: rgba(0, 0, 0, 0.719) !important;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 }
 
 div#form {
@@ -67,13 +67,13 @@ div#form {
     background-color: #fff;
     margin: auto;
     border-radius: 20px;
-    box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color];
+    box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional
+        spread radius] [color];
     padding: 20px;
     left: 50%;
     top: 50%;
     margin-left: -180px;
     margin-top: -200px;
-
 }
 
 div.form-item {
@@ -83,7 +83,7 @@ div.form-item {
 }
 
 input {
-    transition: all .2s ease;
+    transition: all 0.2s ease;
 }
 
 input.form-style {
@@ -100,9 +100,9 @@ input.form-style {
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     background-color: #fff;
-    font-family: 'HelveticaNeue', 'Arial', sans-serif;
+    font-family: "HelveticaNeue", "Arial", sans-serif;
     font-size: 105%;
-    letter-spacing: .8px;
+    letter-spacing: 0.8px;
 }
 
 div.form-item .form-style:focus {
@@ -115,12 +115,11 @@ div.form-item p.formLabel {
     position: absolute;
     left: 26px;
     top: 10px;
-    transition: all .4s ease;
+    transition: all 0.4s ease;
     color: #bbb;
 }
 
 .formTop {
-
     top: -10px !important;
     left: 26px;
     background-color: #fff;

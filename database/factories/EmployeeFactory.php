@@ -2,27 +2,39 @@
 
 namespace Database\Factories;
 
+use App\Models\Employee;
+use App\Models\Ptkp;
+use App\Models\JabatanFungsional;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class EmployeeFactory extends Factory
 {
-    public function definition(): array
+    protected $model = Employee::class;
+
+    public function definition()
     {
         return [
             'nama' => $this->faker->name(),
-            'nik' => $this->faker->unique()->numerify('##########'),
+            'nik' => $this->faker->unique()->numerify('###########'),
             'alamat' => $this->faker->address(),
-            'tanggalLahir' => $this->faker->date('Y-m-d', '-25 years'),
-            'statusPernikahan' => $this->faker->randomElement(['Belum Menikah', 'Menikah', 'Cerai']),
-            'jabatan' => $this->faker->randomElement(['Dosen', 'Rektor', 'Wakil Rektor', 'Staff']),
-            'departemen' => $this->faker->randomElement(['Keuangan', 'HRD', 'Marketing', 'IT', 'Operasional', 'Pemasaran']),
+            'tanggalLahir' => $this->faker->date(),
+            'statusPernikahan' => $this->faker->randomElement(['Menikah', 'Belum Menikah']),
+            'jabatan' => $this->faker->jobTitle(),
+            'ptkp_id' => Ptkp::factory(), // atau factory(Ptkp::class) jika relasi tersedia
+            'departemen' => $this->faker->randomElement(['IT', 'HRD', 'Finance', 'Umum']),
             'statusKepegawaian' => $this->faker->randomElement(['aktif', 'tidak aktif', 'tugas belajar']),
-            'masaKerja' => $this->faker->numberBetween(0, 30),
+            'jenisKepegawaian' => $this->faker->randomElement(['PNS', 'PPPK']),
+            'golongan' => $this->faker->randomElement(['I', 'II', 'III', 'IV']),
+            'tanggal_naik_golongan_terakhir' => $this->faker->optional()->date(),
             'npwp' => $this->faker->optional()->numerify('##.###.###.#-###.###'),
             'email' => $this->faker->unique()->safeEmail(),
-            'telepon' => $this->faker->phoneNumber(),
-            'tanggalMasuk' => $this->faker->date('Y-m-d', '-10 years'),
-            'tanggalKeluar' => null, // default null jika masih aktif
+            'telepon' => $this->faker->optional()->phoneNumber(),
+            'tanggalMasuk' => $this->faker->date(),
+            'tanggalKeluar' => $this->faker->optional()->date(),
+            'jabatan_fungsional_id' => JabatanFungsional::factory(), // atau factory(JabatanFungsional::class)
+            'tanggal_kgb_terakhir' => $this->faker->optional()->date(),
+            'prediksi_kgb_berikutnya' => $this->faker->optional()->date(),
         ];
     }
 }

@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Ptkp extends Model
 {
+
+    use HasFactory;
     // Nama tabel
     protected $table = 'ptkp';
 
@@ -25,4 +28,6 @@ class Ptkp extends Model
     {
         return $this->hasMany(Tax::class, 'ptkp_id');
     }
+
+
 }

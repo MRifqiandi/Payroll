@@ -45,7 +45,7 @@
                 <option value="">-- Pilih Jenis Laporan --</option>
                 <option value="pajak" {{ old('jenisLaporan') == 'pajak' ? 'selected' : '' }}>Pajak</option>
                 <option value="bpjs" {{ old('jenisLaporan') == 'bpjs' ? 'selected' : '' }}>BPJS</option>
-                <option value="kepatuhan" {{ old('jenisLaporan') == 'kepatuhan' ? 'selected' : '' }}>Kepatuhan</option>
+                <option value="kontrak_kerja" {{ old('jenisLaporan') == 'kontrak_kerja' ? 'selected' : '' }}>Kontrak Kerja</option>
                 <option value="audit_internal" {{ old('jenisLaporan') == 'audit_internal' ? 'selected' : '' }}>Audit Internal</option>
             </select>
         </div>

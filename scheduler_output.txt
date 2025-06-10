@@ -1,0 +1,45 @@
+
+  2025-05-27 18:22:08 Running ["artisan" kgb:update-prediksi] ........................................... 1,498ms DONE
+  ⇂ "C:\xampp\php\php.exe" "artisan" kgb:update-prediksi > "NUL" 2>&1  
+
+Ran at Wed 05/28/2025  2:22:10.07 
+
+  2025-05-28 16:00:05 Running ["artisan" kgb:update-prediksi] ........................................... 1,975ms DONE
+  ⇂ "C:\xampp\php\php.exe" "artisan" kgb:update-prediksi > "NUL" 2>&1  
+
+Ran at Thu 05/29/2025  0:00:07.72 
+^C
+  2025-05-30 16:00:04 Running ["artisan" kgb:update-prediksi] ............................................. 854ms DONE
+  ⇂ "C:\xampp\php\php.exe" "artisan" kgb:update-prediksi > "NUL" 2>&1  
+
+Ran at Sat 05/31/2025  0:00:05.66 
+
+  2025-06-01 16:00:03 Running ["artisan" kgb:update-prediksi] ............................................. 651ms DONE
+  ⇂ "C:\xampp\php\php.exe" "artisan" kgb:update-prediksi > "NUL" 2>&1  
+
+Ran at Mon 06/02/2025  0:00:04.33 
+
+  2025-06-02 16:00:04 Running ["artisan" kgb:update-prediksi] ............................................. 868ms DONE
+  ⇂ "C:\xampp\php\php.exe" "artisan" kgb:update-prediksi > "NUL" 2>&1  
+
+Ran at Tue 06/03/2025  0:00:05.05 
+
+  2025-06-03 16:00:05 Running ["artisan" kgb:update-prediksi] ............................................. 837ms DONE
+  ⇂ "C:\xampp\php\php.exe" "artisan" kgb:update-prediksi > "NUL" 2>&1  
+
+Ran at Wed 06/04/2025  0:00:06.37 
+
+  2025-06-07 16:00:04 Running ["artisan" kgb:update-prediksi] ............................................. 850ms DONE
+  ⇂ "C:\xampp\php\php.exe" "artisan" kgb:update-prediksi > "NUL" 2>&1  
+
+Ran at Sun 06/08/2025  0:00:05.61 
+
+  2025-06-08 16:00:03 Running ["artisan" kgb:update-prediksi] ............................................. 917ms DONE
+  ⇂ "C:\xampp\php\php.exe" "artisan" kgb:update-prediksi > "NUL" 2>&1  
+
+Ran at Mon 06/09/2025  0:00:04.07 
+
+  2025-06-09 16:00:05 Running ["artisan" kgb:update-prediksi] ........................................... 1,076ms DONE
+  ⇂ "C:\xampp\php\php.exe" "artisan" kgb:update-prediksi > "NUL" 2>&1  
+
+Ran at Tue 06/10/2025  0:00:06.55 
